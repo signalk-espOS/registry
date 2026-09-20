@@ -1,0 +1,35 @@
+name: Validate
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v6
+        with:
+          node-version: "24"
+      - name: Validate project entries
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: node scripts/validate.mjs
+      - name: Rebuild the index and check it was committed
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          node scripts/reindex.mjs
+          # index.json is generated. A stale one in the tree means the store
+          # shows something different from what the entries say.
+          if ! git diff --quiet index.json; then
+            echo "::error::index.json is out of date — it is rebuilt nightly, but a change here should be committed too"
+            git --no-pager diff --stat index.json
+            exit 1
+          fi

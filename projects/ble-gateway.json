@@ -1,0 +1,20 @@
+{
+  "id": "ble-gateway",
+  "app": "ble_gateway",
+  "name": "BLE Gateway",
+  "summary": "Bridges Bluetooth sensors into Signal K",
+  "description": "Scans for Bluetooth Low Energy sensors — temperature, humidity, battery monitors — and forwards their readings to a Signal K server. Runs on several ESP32 variants.",
+  "repo": "dirkwa/espos-ble-gateway",
+  "license": "Apache-2.0",
+  "targets": ["esp32p4", "esp32", "esp32s3", "esp32c3", "esp32c6"],
+  "boards": [
+    {
+      "id": "esp32c6-devkit",
+      "target": "esp32c6",
+      "name": "ESP32-C6 development board",
+      "notes": "The ESP32-C6-MINI-1U has no PCB antenna: without an external one the radio sees nothing, which looks exactly like a software fault."
+    }
+  ],
+  "channels": ["stable"],
+  "official": true
+}

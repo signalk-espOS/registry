@@ -1,0 +1,118 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/signalk-espOS/registry/main/schema/project.schema.json",
+  "title": "espOS firmware project",
+  "description": "One firmware project that can be installed on an espOS device. Mirrors the RegistryProject type in signalk-espos-manager; CI validates every entry against this file.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "app", "name", "repo", "targets"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9-]{1,38}$",
+      "description": "Short identifier; must equal the filename without .json."
+    },
+    "app": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 32,
+      "description": "The firmware's CMake project() name — what the device reports via mDNS and /api/v1/system/ping, and what espOS matches an update manifest against. NOT the repository name, and NOT espos_start_opts_t.app_name. Getting this wrong means devices never find their updates, with no hint why."
+    },
+    "name": {
+      "type": "string",
+      "minLength": 3,
+      "maxLength": 60,
+      "description": "Display name, e.g. \"P4 Cockpit\"."
+    },
+    "summary": {
+      "type": "string",
+      "maxLength": 140,
+      "description": "One line describing what the firmware does."
+    },
+    "description": { "type": "string", "maxLength": 4000 },
+    "repo": {
+      "type": "string",
+      "pattern": "^[\\w.-]+/[\\w.-]+$",
+      "description": "GitHub owner/repo. Releases are read from here."
+    },
+    "homepage": { "type": "string", "format": "uri" },
+    "license": { "type": "string", "maxLength": 64 },
+    "targets": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "enum": [
+          "esp32",
+          "esp32c2",
+          "esp32c3",
+          "esp32c5",
+          "esp32c6",
+          "esp32c61",
+          "esp32h2",
+          "esp32p4",
+          "esp32s2",
+          "esp32s3"
+        ]
+      }
+    },
+    "boards": {
+      "type": "array",
+      "description": "Boards this firmware supports. Declare every one: espOS matches an update on chip alone, so when two incompatible boards share a target the flasher has to ask which the user has — the wrong image is usually a black screen.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "target", "name"],
+        "properties": {
+          "id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]{1,48}$" },
+          "target": { "type": "string" },
+          "name": { "type": "string", "minLength": 3, "maxLength": 120 },
+          "flashMinBytes": {
+            "type": "integer",
+            "minimum": 1048576,
+            "description": "Smallest flash this firmware fits. A 16 MB partition table on a 4 MB module fails or half-works."
+          },
+          "notes": { "type": "string", "maxLength": 400 },
+          "buyUrl": { "type": "string", "format": "uri" }
+        }
+      }
+    },
+    "channels": {
+      "type": "array",
+      "items": { "type": "string", "enum": ["stable", "beta"] }
+    },
+    "assets": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Anchored regexes matching the release assets. Only needed when the names do not carry a target segment, as the cockpit's currently do not.",
+      "properties": {
+        "ota": { "type": "string" },
+        "merged": { "type": "string" }
+      }
+    },
+    "signingKeyId": {
+      "type": "string",
+      "maxLength": 64,
+      "description": "Stable identity of the signing key these releases use — the first 16 hex characters of the SHA-256 of the public key, not the key itself. A device only accepts firmware signed with the key it was flashed with, so changing this strands every device already in the field."
+    },
+    "signed": {
+      "type": "boolean",
+      "default": true,
+      "description": "False when releases are built with a throwaway key: those flash over USB but accept no updates afterwards."
+    },
+    "official": {
+      "type": "boolean",
+      "description": "Maintained by the signalk-espOS organisation. Set by maintainers only."
+    },
+    "deprecated": {
+      "oneOf": [{ "type": "boolean" }, { "type": "string" }],
+      "description": "True, or a sentence saying what to use instead."
+    },
+    "screenshots": {
+      "type": "array",
+      "maxItems": 6,
+      "items": { "type": "string", "format": "uri" }
+    },
+    "minEsposVersion": { "type": "string" }
+  }
+}

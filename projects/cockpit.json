@@ -1,0 +1,32 @@
+{
+  "id": "cockpit",
+  "app": "cockpit",
+  "name": "P4 Cockpit",
+  "summary": "Touch instrument panel for Signal K, on a Waveshare ESP32-P4 display",
+  "description": "A configurable instrument panel: gauges, arcs, anchor watch and digital switching, laid out in the Signal K HMI designer and rendered on the panel. Also does voice control and NMEA 2000 over CAN.",
+  "repo": "dirkwa/espos-p4-cockpit",
+  "license": "Apache-2.0",
+  "targets": ["esp32p4"],
+  "boards": [
+    {
+      "id": "waveshare-p4-touch-7b",
+      "target": "esp32p4",
+      "name": "Waveshare ESP32-P4-WIFI6-Touch-LCD-7B (1024x600)",
+      "flashMinBytes": 16777216,
+      "notes": "The 7B and the X use different display controllers and are not interchangeable: the wrong firmware usually leaves the screen black."
+    },
+    {
+      "id": "waveshare-p4-touch-x",
+      "target": "esp32p4",
+      "name": "Waveshare ESP32-P4-WIFI6-Touch-LCD-X (720x1280, rotated)",
+      "flashMinBytes": 16777216,
+      "notes": "Portrait panel rotated to landscape. Not interchangeable with the 7B."
+    }
+  ],
+  "channels": ["stable", "beta"],
+  "assets": {
+    "ota": "^p4_cockpit-v?(?<version>[0-9][^-]*)-ota\\.bin$",
+    "merged": "^p4_cockpit-v?(?<version>[0-9][^-]*)-merged\\.bin$"
+  },
+  "official": true
+}

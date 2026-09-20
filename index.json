@@ -1,0 +1,153 @@
+{
+  "schema": 1,
+  "updated": "2026-09-20T16:31:07.029Z",
+  "projects": [
+    {
+      "id": "ble-gateway",
+      "app": "ble_gateway",
+      "name": "BLE Gateway",
+      "summary": "Bridges Bluetooth sensors into Signal K",
+      "description": "Scans for Bluetooth Low Energy sensors — temperature, humidity, battery monitors — and forwards their readings to a Signal K server. Runs on several ESP32 variants.",
+      "repo": "dirkwa/espos-ble-gateway",
+      "license": "Apache-2.0",
+      "targets": [
+        "esp32p4",
+        "esp32",
+        "esp32s3",
+        "esp32c3",
+        "esp32c6"
+      ],
+      "boards": [
+        {
+          "id": "esp32c6-devkit",
+          "target": "esp32c6",
+          "name": "ESP32-C6 development board",
+          "notes": "The ESP32-C6-MINI-1U has no PCB antenna: without an external one the radio sees nothing, which looks exactly like a software fault."
+        }
+      ],
+      "channels": [
+        "stable"
+      ],
+      "official": true,
+      "releases": []
+    },
+    {
+      "id": "cockpit",
+      "app": "cockpit",
+      "name": "P4 Cockpit",
+      "summary": "Touch instrument panel for Signal K, on a Waveshare ESP32-P4 display",
+      "description": "A configurable instrument panel: gauges, arcs, anchor watch and digital switching, laid out in the Signal K HMI designer and rendered on the panel. Also does voice control and NMEA 2000 over CAN.",
+      "repo": "dirkwa/espos-p4-cockpit",
+      "license": "Apache-2.0",
+      "targets": [
+        "esp32p4"
+      ],
+      "boards": [
+        {
+          "id": "waveshare-p4-touch-7b",
+          "target": "esp32p4",
+          "name": "Waveshare ESP32-P4-WIFI6-Touch-LCD-7B (1024x600)",
+          "flashMinBytes": 16777216,
+          "notes": "The 7B and the X use different display controllers and are not interchangeable: the wrong firmware usually leaves the screen black."
+        },
+        {
+          "id": "waveshare-p4-touch-x",
+          "target": "esp32p4",
+          "name": "Waveshare ESP32-P4-WIFI6-Touch-LCD-X (720x1280, rotated)",
+          "flashMinBytes": 16777216,
+          "notes": "Portrait panel rotated to landscape. Not interchangeable with the 7B."
+        }
+      ],
+      "channels": [
+        "stable",
+        "beta"
+      ],
+      "assets": {
+        "ota": "^p4_cockpit-v?(?<version>[0-9][^-]*)-ota\\.bin$",
+        "merged": "^p4_cockpit-v?(?<version>[0-9][^-]*)-merged\\.bin$"
+      },
+      "official": true,
+      "releases": [
+        {
+          "version": "1.2.0",
+          "tag": "v1.2.0",
+          "channel": "stable",
+          "publishedAt": "2026-09-19T04:41:17Z",
+          "notes": "slider: @brightness sentinel for the backlight (#126) (b2734c9)",
+          "notesUrl": "https://github.com/dirkwa/espos-p4-cockpit/releases/tag/v1.2.0",
+          "builds": [
+            {
+              "target": "esp32p4",
+              "otaUrl": "https://github.com/dirkwa/espos-p4-cockpit/releases/download/v1.2.0/p4_cockpit-v1.2.0-ota.bin",
+              "otaBytes": 4460544,
+              "mergedUrl": "https://github.com/dirkwa/espos-p4-cockpit/releases/download/v1.2.0/p4_cockpit-v1.2.0-merged.bin",
+              "mergedBytes": 15036742
+            }
+          ]
+        },
+        {
+          "version": "1.1.0",
+          "tag": "v1.1.0",
+          "channel": "stable",
+          "publishedAt": "2026-09-06T04:58:37Z",
+          "notes": "espOS-based ESP32-P4 cockpit — the display-streaming + voice release.",
+          "notesUrl": "https://github.com/dirkwa/espos-p4-cockpit/releases/tag/v1.1.0",
+          "builds": [
+            {
+              "target": "esp32p4",
+              "otaUrl": "https://github.com/dirkwa/espos-p4-cockpit/releases/download/v1.1.0/p4_cockpit-v1.1.0-ota.bin",
+              "otaBytes": 4395008,
+              "mergedUrl": "https://github.com/dirkwa/espos-p4-cockpit/releases/download/v1.1.0/p4_cockpit-v1.1.0-merged.bin",
+              "mergedBytes": 15036742
+            }
+          ]
+        },
+        {
+          "version": "1.0.1",
+          "tag": "v1.0.1",
+          "channel": "stable",
+          "publishedAt": "2026-08-17T06:03:10Z",
+          "notes": "Fixes one contributor to truncated voice commands. v1.0.0's binaries do not contain this — that tag was cut from the relicense commit, before the fix merged.",
+          "notesUrl": "https://github.com/dirkwa/espos-p4-cockpit/releases/tag/v1.0.1",
+          "builds": [
+            {
+              "target": "esp32p4",
+              "mergedUrl": "https://github.com/dirkwa/espos-p4-cockpit/releases/download/v1.0.1/p4_cockpit-merged.bin",
+              "mergedBytes": 15036742
+            }
+          ]
+        },
+        {
+          "version": "1.0.0",
+          "tag": "v1.0.0",
+          "channel": "stable",
+          "publishedAt": "2026-08-16T18:06:08Z",
+          "notes": "Puts sensesp-p4-cockpit under the same source-available, no-redistribution terms the signalk- plugins and sensesp-ble-gateway now use.",
+          "notesUrl": "https://github.com/dirkwa/espos-p4-cockpit/releases/tag/v1.0.0",
+          "builds": [
+            {
+              "target": "esp32p4",
+              "mergedUrl": "https://github.com/dirkwa/espos-p4-cockpit/releases/download/v1.0.0/p4_cockpit-merged.bin",
+              "mergedBytes": 15036742
+            }
+          ]
+        },
+        {
+          "version": "0.3.0",
+          "tag": "v0.3.0",
+          "channel": "stable",
+          "publishedAt": "2026-08-15T21:06:47Z",
+          "notes": "Security fix — reflash if you are running v0.2.0 or v0.2.1.",
+          "notesUrl": "https://github.com/dirkwa/espos-p4-cockpit/releases/tag/v0.3.0",
+          "builds": [
+            {
+              "target": "esp32p4",
+              "mergedUrl": "https://github.com/dirkwa/espos-p4-cockpit/releases/download/v0.3.0/p4_cockpit-merged.bin",
+              "mergedBytes": 15036742
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
