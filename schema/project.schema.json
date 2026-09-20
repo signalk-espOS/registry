@@ -5,7 +5,13 @@
   "description": "One firmware project that can be installed on an espOS device. Mirrors the RegistryProject type in signalk-espos-manager; CI validates every entry against this file.",
   "type": "object",
   "additionalProperties": false,
-  "required": ["id", "app", "name", "repo", "targets"],
+  "required": [
+    "id",
+    "app",
+    "name",
+    "repo",
+    "targets"
+  ],
   "properties": {
     "id": {
       "type": "string",
@@ -29,14 +35,23 @@
       "maxLength": 140,
       "description": "One line describing what the firmware does."
     },
-    "description": { "type": "string", "maxLength": 4000 },
+    "description": {
+      "type": "string",
+      "maxLength": 4000
+    },
     "repo": {
       "type": "string",
       "pattern": "^[\\w.-]+/[\\w.-]+$",
       "description": "GitHub owner/repo. Releases are read from here."
     },
-    "homepage": { "type": "string", "format": "uri" },
-    "license": { "type": "string", "maxLength": 64 },
+    "homepage": {
+      "type": "string",
+      "format": "uri"
+    },
+    "license": {
+      "type": "string",
+      "maxLength": 64
+    },
     "targets": {
       "type": "array",
       "minItems": 1,
@@ -62,32 +77,73 @@
       "items": {
         "type": "object",
         "additionalProperties": false,
-        "required": ["id", "target", "name"],
+        "required": [
+          "id",
+          "target",
+          "name"
+        ],
         "properties": {
-          "id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]{1,48}$" },
-          "target": { "type": "string" },
-          "name": { "type": "string", "minLength": 3, "maxLength": 120 },
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z0-9][a-z0-9-]{1,48}$"
+          },
+          "target": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 120
+          },
           "flashMinBytes": {
             "type": "integer",
             "minimum": 1048576,
             "description": "Smallest flash this firmware fits. A 16 MB partition table on a 4 MB module fails or half-works."
           },
-          "notes": { "type": "string", "maxLength": 400 },
-          "buyUrl": { "type": "string", "format": "uri" }
+          "notes": {
+            "type": "string",
+            "maxLength": 400
+          },
+          "buyUrl": {
+            "type": "string",
+            "format": "uri"
+          },
+          "reportedAs": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 64,
+            "description": "The board string this board's firmware reports verbatim in GET /api/v1/system/info -> hardware.board (espOS opts.board). Matched EXACTLY, never fuzzily: it is what decides whether an over-the-air update may be offered, and a near-miss would install firmware for a different display. Omit it when the firmware does not report a board; the update is then withheld rather than guessed."
+          },
+          "assetSegment": {
+            "type": "string",
+            "pattern": "^[a-z0-9]+$",
+            "maxLength": 24,
+            "description": "The segment this board's release assets carry, as captured by the `board` named group in assets.ota/assets.merged (e.g. \"7b\" in p4_cockpit-v1.3.0-7b-ota.bin). Compared case-insensitively. Without it a board-labelled asset cannot be tied to a board, and the build is not offered over the air."
+          }
         }
       }
     },
     "channels": {
       "type": "array",
-      "items": { "type": "string", "enum": ["stable", "beta"] }
+      "items": {
+        "type": "string",
+        "enum": [
+          "stable",
+          "beta"
+        ]
+      }
     },
     "assets": {
       "type": "object",
       "additionalProperties": false,
-      "description": "Anchored regexes matching the release assets. Only needed when the names do not carry a target segment, as the cockpit's currently do not.",
+      "description": "Anchored regexes matching the release assets. A `version` named group is required; a `board` named group is needed when a release carries one image per board, and its value is matched against each board's assetSegment. Without a board group a release with several assets is not indexed at all, rather than one being picked arbitrarily.",
       "properties": {
-        "ota": { "type": "string" },
-        "merged": { "type": "string" }
+        "ota": {
+          "type": "string"
+        },
+        "merged": {
+          "type": "string"
+        }
       }
     },
     "signingKeyId": {
@@ -105,14 +161,26 @@
       "description": "Maintained by the signalk-espOS organisation. Set by maintainers only."
     },
     "deprecated": {
-      "oneOf": [{ "type": "boolean" }, { "type": "string" }],
+      "oneOf": [
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "string"
+        }
+      ],
       "description": "True, or a sentence saying what to use instead."
     },
     "screenshots": {
       "type": "array",
       "maxItems": 6,
-      "items": { "type": "string", "format": "uri" }
+      "items": {
+        "type": "string",
+        "format": "uri"
+      }
     },
-    "minEsposVersion": { "type": "string" }
+    "minEsposVersion": {
+      "type": "string"
+    }
   }
 }

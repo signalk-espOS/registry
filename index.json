@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "updated": "2026-09-20T21:37:52.501Z",
+  "updated": "2026-09-20T23:30:37.724Z",
   "projects": [
     {
       "id": "ble-gateway",
@@ -70,14 +70,18 @@
           "name": "Waveshare ESP32-P4-WIFI6-Touch-LCD-7B (1024x600)",
           "flashMinBytes": 16777216,
           "notes": "1024x600 landscape, EK79007 controller. The 7B and the X are different boards: the wrong firmware leaves the screen black, because each drives a backlight pin the other does not connect.",
-          "buyUrl": "https://www.waveshare.com/esp32-p4-wifi6-touch-lcd-7b.htm"
+          "buyUrl": "https://www.waveshare.com/esp32-p4-wifi6-touch-lcd-7b.htm",
+          "reportedAs": "Waveshare ESP32-P4-WIFI6-Touch-LCD-7B",
+          "assetSegment": "7b"
         },
         {
           "id": "waveshare-p4-touch-x-7",
           "target": "esp32p4",
           "name": "Waveshare ESP32-P4-WIFI6-Touch-LCD-X, 7 inch (720x1280, rotated)",
           "flashMinBytes": 16777216,
-          "notes": "720x1280 portrait ILI9881C on a 7-inch panel, shown rotated to landscape by the P4 PPA. Each size in the X series uses a different display controller, so a build is specific to one: the 8-inch and 10.1-inch X panels are JD9365 and are not supported. Not interchangeable with the 7B either — see that board's note."
+          "notes": "720x1280 portrait ILI9881C on a 7-inch panel, shown rotated to landscape by the P4 PPA. Each size in the X series uses a different display controller, so a build is specific to one: the 8-inch and 10.1-inch X panels are JD9365 and are not supported. Not interchangeable with the 7B either — see that board's note.",
+          "reportedAs": "Waveshare ESP32-P4-WIFI6-Touch-LCD-X 7in",
+          "assetSegment": "x7"
         }
       ],
       "channels": [
@@ -85,11 +89,37 @@
         "beta"
       ],
       "assets": {
-        "ota": "^p4_cockpit-v?(?<version>[0-9][^-]*)-ota\\.bin$",
-        "merged": "^p4_cockpit-v?(?<version>[0-9][^-]*)-merged\\.bin$"
+        "ota": "^p4_cockpit-v?(?<version>[0-9][^-]*)(?:-(?<board>[a-z0-9]+))?-ota\\.bin$",
+        "merged": "^p4_cockpit-v?(?<version>[0-9][^-]*)(?:-(?<board>[a-z0-9]+))?-merged\\.bin$"
       },
       "official": true,
       "releases": [
+        {
+          "version": "1.3.0",
+          "tag": "v1.3.0",
+          "channel": "stable",
+          "publishedAt": "2026-09-20T22:39:12Z",
+          "notes": "ci: build and publish one image per panel board (#131) (59c8203)",
+          "notesUrl": "https://github.com/dirkwa/espos-p4-cockpit/releases/tag/v1.3.0",
+          "builds": [
+            {
+              "target": "esp32p4",
+              "boardId": "waveshare-p4-touch-7b",
+              "otaUrl": "https://github.com/dirkwa/espos-p4-cockpit/releases/download/v1.3.0/p4_cockpit-v1.3.0-7b-ota.bin",
+              "otaBytes": 4460544,
+              "mergedUrl": "https://github.com/dirkwa/espos-p4-cockpit/releases/download/v1.3.0/p4_cockpit-v1.3.0-7b-merged.bin",
+              "mergedBytes": 15036742
+            },
+            {
+              "target": "esp32p4",
+              "boardId": "waveshare-p4-touch-x-7",
+              "otaUrl": "https://github.com/dirkwa/espos-p4-cockpit/releases/download/v1.3.0/p4_cockpit-v1.3.0-x7-ota.bin",
+              "otaBytes": 4526080,
+              "mergedUrl": "https://github.com/dirkwa/espos-p4-cockpit/releases/download/v1.3.0/p4_cockpit-v1.3.0-x7-merged.bin",
+              "mergedBytes": 15036742
+            }
+          ]
+        },
         {
           "version": "1.2.0",
           "tag": "v1.2.0",
@@ -120,51 +150,6 @@
               "otaUrl": "https://github.com/dirkwa/espos-p4-cockpit/releases/download/v1.1.0/p4_cockpit-v1.1.0-ota.bin",
               "otaBytes": 4395008,
               "mergedUrl": "https://github.com/dirkwa/espos-p4-cockpit/releases/download/v1.1.0/p4_cockpit-v1.1.0-merged.bin",
-              "mergedBytes": 15036742
-            }
-          ]
-        },
-        {
-          "version": "1.0.1",
-          "tag": "v1.0.1",
-          "channel": "stable",
-          "publishedAt": "2026-08-17T06:03:10Z",
-          "notes": "Fixes one contributor to truncated voice commands. v1.0.0's binaries do not contain this — that tag was cut from the relicense commit, before the fix merged.",
-          "notesUrl": "https://github.com/dirkwa/espos-p4-cockpit/releases/tag/v1.0.1",
-          "builds": [
-            {
-              "target": "esp32p4",
-              "mergedUrl": "https://github.com/dirkwa/espos-p4-cockpit/releases/download/v1.0.1/p4_cockpit-merged.bin",
-              "mergedBytes": 15036742
-            }
-          ]
-        },
-        {
-          "version": "1.0.0",
-          "tag": "v1.0.0",
-          "channel": "stable",
-          "publishedAt": "2026-08-16T18:06:08Z",
-          "notes": "Puts sensesp-p4-cockpit under the same source-available, no-redistribution terms the signalk- plugins and sensesp-ble-gateway now use.",
-          "notesUrl": "https://github.com/dirkwa/espos-p4-cockpit/releases/tag/v1.0.0",
-          "builds": [
-            {
-              "target": "esp32p4",
-              "mergedUrl": "https://github.com/dirkwa/espos-p4-cockpit/releases/download/v1.0.0/p4_cockpit-merged.bin",
-              "mergedBytes": 15036742
-            }
-          ]
-        },
-        {
-          "version": "0.3.0",
-          "tag": "v0.3.0",
-          "channel": "stable",
-          "publishedAt": "2026-08-15T21:06:47Z",
-          "notes": "Security fix — reflash if you are running v0.2.0 or v0.2.1.",
-          "notesUrl": "https://github.com/dirkwa/espos-p4-cockpit/releases/tag/v0.3.0",
-          "builds": [
-            {
-              "target": "esp32p4",
-              "mergedUrl": "https://github.com/dirkwa/espos-p4-cockpit/releases/download/v0.3.0/p4_cockpit-merged.bin",
               "mergedBytes": 15036742
             }
           ]
