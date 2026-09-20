@@ -5,6 +5,13 @@ on:
   push:
     branches: [main]
 
+# One run per ref: a new push to a pull request makes the run already in
+# flight for it pointless. main keys on the commit so a merge's own run is
+# never cancelled by the push that follows it.
+concurrency:
+  group: validate-${{ github.ref == 'refs/heads/main' && github.sha || github.ref }}
+  cancel-in-progress: true
+
 permissions:
   contents: read
 

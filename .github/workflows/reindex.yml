@@ -7,6 +7,12 @@ on:
     - cron: "17 4 * * *"
   workflow_dispatch:
 
+# The index is pushed, so a cancelled run can leave it half-written: later
+# runs queue behind the one in flight rather than replacing it.
+concurrency:
+  group: reindex
+  cancel-in-progress: false
+
 permissions:
   contents: write
 
