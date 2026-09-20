@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "updated": "2026-09-20T16:31:07.029Z",
+  "updated": "2026-09-20T18:51:43.952Z",
   "projects": [
     {
       "id": "ble-gateway",
@@ -23,6 +23,27 @@
           "target": "esp32c6",
           "name": "ESP32-C6 development board",
           "notes": "The ESP32-C6-MINI-1U has no PCB antenna: without an external one the radio sees nothing, which looks exactly like a software fault."
+        },
+        {
+          "id": "esp32c3-devkit",
+          "target": "esp32c3",
+          "name": "ESP32-C3 development board"
+        },
+        {
+          "id": "esp32s3-devkit",
+          "target": "esp32s3",
+          "name": "ESP32-S3 development board"
+        },
+        {
+          "id": "esp32-devkit",
+          "target": "esp32",
+          "name": "ESP32 development board"
+        },
+        {
+          "id": "waveshare-p4-poe",
+          "target": "esp32p4",
+          "name": "Waveshare ESP32-P4-WIFI6-POE-ETH",
+          "notes": "Never connect USB and Ethernet at the same time: powering the board from USB and PoE together damages it."
         }
       ],
       "channels": [
@@ -48,14 +69,15 @@
           "target": "esp32p4",
           "name": "Waveshare ESP32-P4-WIFI6-Touch-LCD-7B (1024x600)",
           "flashMinBytes": 16777216,
-          "notes": "The 7B and the X use different display controllers and are not interchangeable: the wrong firmware usually leaves the screen black."
+          "notes": "1024x600 landscape, EK79007 controller. The 7B and the X are different boards: the wrong firmware leaves the screen black, because each drives a backlight pin the other does not connect.",
+          "buyUrl": "https://www.waveshare.com/esp32-p4-wifi6-touch-lcd-7b.htm"
         },
         {
           "id": "waveshare-p4-touch-x",
           "target": "esp32p4",
           "name": "Waveshare ESP32-P4-WIFI6-Touch-LCD-X (720x1280, rotated)",
           "flashMinBytes": 16777216,
-          "notes": "Portrait panel rotated to landscape. Not interchangeable with the 7B."
+          "notes": "720x1280 portrait ILI9881C, shown rotated to landscape. Not interchangeable with the 7B — see that board's note."
         }
       ],
       "channels": [
