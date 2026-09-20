@@ -125,6 +125,24 @@ function matchAssets(assets, pattern, fallbackSuffix, context) {
       const m = re.exec(a.name);
       if (m !== null) hits.push({ asset: a, board: m.groups?.board });
     }
+    // Two assets normalising to one board key means find() below would take
+    // whichever came first -- the same arbitrary pick this function exists to
+    // remove, just one level down. Refuse the lot and say so.
+    const seen = new Map();
+    for (const h of hits) {
+      const key = boardSegmentKey(h.board);
+      seen.set(key, (seen.get(key) ?? 0) + 1);
+    }
+    const clashes = [...seen.entries()].filter(([, n]) => n > 1);
+    if (clashes.length > 0) {
+      warnings.push(
+        `${context}: ${clashes
+          .map(([k, n]) => `${n} assets match board "${k === NO_BOARD ? "(none)" : k}"`)
+          .join(", ")} for ${fallbackSuffix}, so none was indexed -- the pattern ` +
+          `cannot tell those images apart`,
+      );
+      return [];
+    }
     if (hits.length > 0) return hits;
   }
   const loose = assets.filter((a) => a.name.endsWith(fallbackSuffix));
@@ -140,11 +158,26 @@ function matchAssets(assets, pattern, fallbackSuffix, context) {
   return loose.map((a) => ({ asset: a, board: undefined }));
 }
 
+/**
+ * The grouping key for a captured `board` segment.
+ *
+ * Trimmed and lower-cased, and the SAME normalisation board ids are resolved
+ * with -- otherwise `-7B-ota.bin` and `-7b-merged.bin` group as two builds,
+ * each missing half its images, while both resolve to one board id: two builds
+ * claiming one board. `\u0000` cannot occur in a filename, so it is a safe
+ * stand-in for "this release names no board".
+ */
+const NO_BOARD = "\u0000none";
+function boardSegmentKey(segment) {
+  if (segment === undefined) return NO_BOARD;
+  const key = String(segment).trim().toLowerCase();
+  return key === "" ? NO_BOARD : key;
+}
+
 /** The declared board id a captured `board` segment names, or undefined. */
 function boardIdFromSegment(project, segment, context) {
-  if (segment === undefined) return undefined;
-  const wanted = String(segment).trim().toLowerCase();
-  if (wanted === "") return undefined;
+  const wanted = boardSegmentKey(segment);
+  if (wanted === NO_BOARD) return undefined;
   const hits = (project.boards ?? []).filter(
     (b) => (b.assetSegment ?? "").trim().toLowerCase() === wanted,
   );
@@ -190,13 +223,13 @@ async function resolveProject(project) {
     // release that names no board), which is what pairs an ota with its merged
     // image.
     const keys = new Set(
-      [...otas, ...mergeds].map((h) => h.board ?? "\u0000none"),
+      [...otas, ...mergeds].map((h) => boardSegmentKey(h.board)),
     );
     const builds = [];
     for (const key of keys) {
-      const seg = key === "\u0000none" ? undefined : key;
-      const ota = otas.find((h) => (h.board ?? "\u0000none") === key)?.asset;
-      const merged = mergeds.find((h) => (h.board ?? "\u0000none") === key)
+      const seg = key === NO_BOARD ? undefined : key;
+      const ota = otas.find((h) => boardSegmentKey(h.board) === key)?.asset;
+      const merged = mergeds.find((h) => boardSegmentKey(h.board) === key)
         ?.asset;
 
       const named = targetFromName(ota?.name ?? merged?.name ?? "");
