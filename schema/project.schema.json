@@ -113,6 +113,12 @@
             "minLength": 1,
             "maxLength": 64,
             "description": "The board string this board's firmware reports verbatim in GET /api/v1/system/info -> hardware.board (espOS opts.board). Matched EXACTLY, never fuzzily: it is what decides whether an over-the-air update may be offered, and a near-miss would install firmware for a different display. Omit it when the firmware does not report a board; the update is then withheld rather than guessed."
+          },
+          "assetSegment": {
+            "type": "string",
+            "pattern": "^[a-z0-9]+$",
+            "maxLength": 24,
+            "description": "The segment this board's release assets carry, as captured by the `board` named group in assets.ota/assets.merged (e.g. \"7b\" in p4_cockpit-v1.3.0-7b-ota.bin). Compared case-insensitively. Without it a board-labelled asset cannot be tied to a board, and the build is not offered over the air."
           }
         }
       }
@@ -130,7 +136,7 @@
     "assets": {
       "type": "object",
       "additionalProperties": false,
-      "description": "Anchored regexes matching the release assets. Only needed when the names do not carry a target segment, as the cockpit's currently do not.",
+      "description": "Anchored regexes matching the release assets. A `version` named group is required; a `board` named group is needed when a release carries one image per board, and its value is matched against each board's assetSegment. Without a board group a release with several assets is not indexed at all, rather than one being picked arbitrarily.",
       "properties": {
         "ota": {
           "type": "string"

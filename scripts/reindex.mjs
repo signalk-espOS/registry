@@ -102,13 +102,61 @@ function summarise(body) {
   return "";
 }
 
-function matchAsset(assets, pattern, fallbackSuffix) {
+/**
+ * Every asset a pattern matches, with the `board` named group it captured.
+ *
+ * A release may carry one image per board -- the cockpit publishes
+ * `p4_cockpit-v1.3.0-7b-ota.bin` and `-x7-ota.bin` -- and those are NOT
+ * interchangeable: the wrong one leaves the screen black. So this returns all
+ * matches rather than the first, and the caller emits one build per board.
+ *
+ * The suffix fallback stays for projects with no pattern and older releases
+ * that predate the convention, but it only applies when it is unambiguous: if
+ * several assets end with the suffix and no pattern told us which board each
+ * is for, picking one would be a guess about hardware. That is exactly how a
+ * two-board release got indexed as a single unlabelled build, which would have
+ * offered an X panel the 7B image.
+ */
+function matchAssets(assets, pattern, fallbackSuffix, context) {
   if (pattern !== undefined) {
     const re = new RegExp(pattern);
-    const hit = assets.find((a) => re.test(a.name));
-    if (hit !== undefined) return hit;
+    const hits = [];
+    for (const a of assets) {
+      const m = re.exec(a.name);
+      if (m !== null) hits.push({ asset: a, board: m.groups?.board });
+    }
+    if (hits.length > 0) return hits;
   }
-  return assets.find((a) => a.name.endsWith(fallbackSuffix));
+  const loose = assets.filter((a) => a.name.endsWith(fallbackSuffix));
+  if (loose.length > 1) {
+    warnings.push(
+      `${context}: ${loose.length} assets end with "${fallbackSuffix}" and the ` +
+        `project's pattern did not match them, so none was indexed -- add a ` +
+        `"board" named group to assets.${fallbackSuffix.includes("ota") ? "ota" : "merged"} ` +
+        `so each image can be tied to the board it was built for`,
+    );
+    return [];
+  }
+  return loose.map((a) => ({ asset: a, board: undefined }));
+}
+
+/** The declared board id a captured `board` segment names, or undefined. */
+function boardIdFromSegment(project, segment, context) {
+  if (segment === undefined) return undefined;
+  const wanted = String(segment).trim().toLowerCase();
+  if (wanted === "") return undefined;
+  const hits = (project.boards ?? []).filter(
+    (b) => (b.assetSegment ?? "").trim().toLowerCase() === wanted,
+  );
+  if (hits.length === 1) return hits[0].id;
+  warnings.push(
+    `${context}: asset names a board segment "${segment}" that ` +
+      (hits.length === 0
+        ? `no board declares as assetSegment`
+        : `${hits.length} boards claim`) +
+      `, so the build is not tied to a board and will not be offered over the air`,
+  );
+  return undefined;
 }
 
 async function resolveProject(project) {
@@ -124,27 +172,57 @@ async function resolveProject(project) {
   for (const release of releases) {
     if (release.draft === true) continue;
     const assets = release.assets ?? [];
-    const ota = matchAsset(assets, project.assets?.ota, "-ota.bin");
-    const merged = matchAsset(assets, project.assets?.merged, "-merged.bin");
-    if (ota === undefined && merged === undefined) {
+    const context = `${project.id} ${release.tag_name}`;
+    const otas = matchAssets(assets, project.assets?.ota, "-ota.bin", context);
+    const mergeds = matchAssets(
+      assets,
+      project.assets?.merged,
+      "-merged.bin",
+      context,
+    );
+    if (otas.length === 0 && mergeds.length === 0) {
       // Normal for a source-only release; not worth a warning.
       continue;
     }
 
-    const named = targetFromName(ota?.name ?? merged?.name ?? "");
-    let target = named;
-    if (target === undefined) {
-      if (project.targets.length === 1) {
-        target = project.targets[0];
-      } else {
-        warnings.push(
-          `${project.id} ${release.tag_name}: asset names carry no target and ` +
-            `the project declares ${project.targets.length}, so the build was ` +
-            `skipped rather than guessed`,
-        );
-        continue;
+    // One build per board segment, so a release carrying an image per panel
+    // yields one entry each. The key is the raw segment (undefined for a
+    // release that names no board), which is what pairs an ota with its merged
+    // image.
+    const keys = new Set(
+      [...otas, ...mergeds].map((h) => h.board ?? "\u0000none"),
+    );
+    const builds = [];
+    for (const key of keys) {
+      const seg = key === "\u0000none" ? undefined : key;
+      const ota = otas.find((h) => (h.board ?? "\u0000none") === key)?.asset;
+      const merged = mergeds.find((h) => (h.board ?? "\u0000none") === key)
+        ?.asset;
+
+      const named = targetFromName(ota?.name ?? merged?.name ?? "");
+      let target = named;
+      if (target === undefined) {
+        if (project.targets.length === 1) {
+          target = project.targets[0];
+        } else {
+          warnings.push(
+            `${context}: asset names carry no target and the project declares ` +
+              `${project.targets.length}, so the build was skipped rather than guessed`,
+          );
+          continue;
+        }
       }
+
+      builds.push({
+        target,
+        boardId: boardIdFromSegment(project, seg, context),
+        otaUrl: ota?.browser_download_url,
+        otaBytes: ota?.size,
+        mergedUrl: merged?.browser_download_url,
+        mergedBytes: merged?.size,
+      });
     }
+    if (builds.length === 0) continue;
 
     resolved.push({
       version: String(release.tag_name).replace(/^v/, ""),
@@ -153,15 +231,7 @@ async function resolveProject(project) {
       publishedAt: release.published_at,
       notes: summarise(release.body),
       notesUrl: release.html_url,
-      builds: [
-        {
-          target,
-          otaUrl: ota?.browser_download_url,
-          otaBytes: ota?.size,
-          mergedUrl: merged?.browser_download_url,
-          mergedBytes: merged?.size,
-        },
-      ],
+      builds,
     });
   }
 
