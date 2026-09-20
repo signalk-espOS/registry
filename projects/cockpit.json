@@ -19,11 +19,11 @@
       "buyUrl": "https://www.waveshare.com/esp32-p4-wifi6-touch-lcd-7b.htm"
     },
     {
-      "id": "waveshare-p4-touch-x",
+      "id": "waveshare-p4-touch-x-7",
       "target": "esp32p4",
-      "name": "Waveshare ESP32-P4-WIFI6-Touch-LCD-X (720x1280, rotated)",
+      "name": "Waveshare ESP32-P4-WIFI6-Touch-LCD-X, 7 inch (720x1280, rotated)",
       "flashMinBytes": 16777216,
-      "notes": "720x1280 portrait ILI9881C, shown rotated to landscape. Not interchangeable with the 7B \u2014 see that board's note."
+      "notes": "720x1280 portrait ILI9881C on a 7-inch panel, shown rotated to landscape by the P4 PPA. Each size in the X series uses a different display controller, so a build is specific to one: the 8-inch and 10.1-inch X panels are JD9365 and are not supported. Not interchangeable with the 7B either — see that board's note."
     }
   ],
   "channels": [
