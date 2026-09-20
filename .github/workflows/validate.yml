@@ -25,11 +25,20 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          cp index.json /tmp/index-committed.json
           node scripts/reindex.mjs
-          # index.json is generated. A stale one in the tree means the store
-          # shows something different from what the entries say.
-          if ! git diff --quiet index.json; then
-            echo "::error::index.json is out of date — it is rebuilt nightly, but a change here should be committed too"
-            git --no-pager diff --stat index.json
+          # Compare everything EXCEPT `updated`, which is a build timestamp and
+          # therefore differs on every run. Comparing the whole file made this
+          # check impossible to satisfy rather than merely strict.
+          strip() { node -e '
+            const fs = require("fs");
+            const d = JSON.parse(fs.readFileSync(process.argv[1], "utf8"));
+            delete d.updated;
+            process.stdout.write(JSON.stringify(d, null, 2));
+          ' "$1"; }
+          if ! diff -q <(strip /tmp/index-committed.json) <(strip index.json) >/dev/null; then
+            echo "::error::index.json does not match the project entries — run scripts/reindex.mjs and commit the result"
+            diff <(strip /tmp/index-committed.json) <(strip index.json) | head -40 || true
             exit 1
           fi
+          echo "index.json matches the project entries."
