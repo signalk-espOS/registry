@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "updated": "2026-09-20T23:30:37.724Z",
+  "updated": "2026-09-21T09:57:16.284Z",
   "projects": [
     {
       "id": "ble-gateway",
@@ -94,6 +94,32 @@
       },
       "official": true,
       "releases": [
+        {
+          "version": "1.3.1",
+          "tag": "v1.3.1",
+          "channel": "stable",
+          "publishedAt": "2026-09-21T02:42:13Z",
+          "notes": "jlp: move the subject registry to LVGL's current subject API (#134) (26a76a7)",
+          "notesUrl": "https://github.com/dirkwa/espos-p4-cockpit/releases/tag/v1.3.1",
+          "builds": [
+            {
+              "target": "esp32p4",
+              "boardId": "waveshare-p4-touch-7b",
+              "otaUrl": "https://github.com/dirkwa/espos-p4-cockpit/releases/download/v1.3.1/p4_cockpit-v1.3.1-7b-ota.bin",
+              "otaBytes": 4460544,
+              "mergedUrl": "https://github.com/dirkwa/espos-p4-cockpit/releases/download/v1.3.1/p4_cockpit-v1.3.1-7b-merged.bin",
+              "mergedBytes": 15036742
+            },
+            {
+              "target": "esp32p4",
+              "boardId": "waveshare-p4-touch-x-7",
+              "otaUrl": "https://github.com/dirkwa/espos-p4-cockpit/releases/download/v1.3.1/p4_cockpit-v1.3.1-x7-ota.bin",
+              "otaBytes": 4526080,
+              "mergedUrl": "https://github.com/dirkwa/espos-p4-cockpit/releases/download/v1.3.1/p4_cockpit-v1.3.1-x7-merged.bin",
+              "mergedBytes": 15036742
+            }
+          ]
+        },
         {
           "version": "1.3.0",
           "tag": "v1.3.0",
