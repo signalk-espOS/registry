@@ -246,12 +246,43 @@ async function resolveProject(project) {
         }
       }
 
+      // A URL a BROWSER may fetch, when the project publishes one.
+      //
+      // browser_download_url is misnamed for our purposes: GitHub serves
+      // release downloads with no Access-Control-Allow-Origin, so a web page
+      // cannot read them at all. raw.githubusercontent does send it, so a
+      // project that mirrors its images to a branch gets a second URL that
+      // the web flasher can actually use. The release URL stays as-is: the
+      // Signal K plugin fetches server-side and is unaffected by CORS.
+      const webUrl = (asset) => {
+        if (project.webAssetsBranch === undefined || asset === undefined) {
+          return undefined;
+        }
+        // Encode each component. A tag or asset name may legitimately contain
+        // `#` or `?`, and unencoded either one truncates the path: `fw#1.bin`
+        // becomes `fw` with `#1.bin` as a fragment, which 404s and reads as a
+        // missing file rather than a malformed URL. The branch may contain
+        // slashes (`release/assets`), so its separators are preserved while
+        // its segments are encoded.
+        const branch = project.webAssetsBranch
+          .split("/")
+          .map(encodeURIComponent)
+          .join("/");
+        return (
+          `https://raw.githubusercontent.com/${project.repo}/` +
+          `${branch}/${encodeURIComponent(release.tag_name)}/` +
+          encodeURIComponent(asset.name)
+        );
+      };
+
       builds.push({
         target,
         boardId: boardIdFromSegment(project, seg, context),
         otaUrl: ota?.browser_download_url,
+        otaWebUrl: webUrl(ota),
         otaBytes: ota?.size,
         mergedUrl: merged?.browser_download_url,
+        mergedWebUrl: webUrl(merged),
         mergedBytes: merged?.size,
       });
     }

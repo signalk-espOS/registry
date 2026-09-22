@@ -59,6 +59,7 @@
     "ota": "^ble-gateway-(?<board>esp32[a-z0-9]*)-v?(?<version>[0-9][^-]*)-ota\\.bin$",
     "merged": "^ble-gateway-(?<board>esp32[a-z0-9]*)-v?(?<version>[0-9][^-]*)-merged\\.bin$"
   },
+  "webAssetsBranch": "release-assets",
   "channels": [
     "stable"
   ],
