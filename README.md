@@ -51,10 +51,42 @@ wrong image is one a device rejects only after the whole download.
 
 ### Boards
 
-List every board your firmware supports. espOS matches an update on chip
-alone, so when two boards share a target the flasher has to ask the user which
-they have — on a display panel the wrong image is usually a black screen, which
-reads as a hardware fault rather than a wrong download.
+List every board your firmware supports. A board is what someone recognises on
+a shop page, and it is what the flasher asks about first: "which board do you
+have?", then what can run on it. Several projects can offer the same board —
+that is the point, and nothing needs coordinating between them.
+
+**Two boards on one chip needs one extra step.** espOS matches an update on
+chip alone, so if you ship a separate image per board, the registry is the only
+place that can tell them apart. That takes two halves, and **both** are
+required:
+
+1. a `board` named group in your `assets` patterns, and
+2. an `assetSegment` on each of those boards, matching what the group captures.
+
+The cockpit does this for its two P4 panels:
+
+```jsonc
+"assets": {
+  "merged": "^p4_cockpit-v?(?<version>[0-9][^-]*)(?:-(?<board>[a-z0-9]+))?-merged\\.bin$"
+},
+"boards": [
+  { "id": "waveshare-p4-touch-7b",  "target": "esp32p4", "assetSegment": "7b" },
+  { "id": "waveshare-p4-touch-x-7", "target": "esp32p4", "assetSegment": "x7" }
+]
+```
+
+so `p4_cockpit-v1.3.2-7b-merged.bin` resolves to the 7B and nothing else.
+
+With either half missing, no image can be tied to a board, and **every** image
+for that chip is withheld rather than offered as a coin toss — on a display
+panel the wrong one is usually a black screen, which reads as a hardware fault
+rather than a wrong download. CI rejects that shape and tells you which half is
+missing, so you find out on the pull request instead of after publishing.
+
+If each of your boards is the only board for its chip, you need none of this: a
+target segment in the filename is enough, and you can point `assetSegment` at
+the target itself (the BLE gateway does exactly that).
 
 ### Signing
 
