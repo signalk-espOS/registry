@@ -3,17 +3,24 @@
   "app": "ble_gateway",
   "name": "BLE Gateway",
   "summary": "Bridges Bluetooth sensors into Signal K",
-  "description": "Scans for Bluetooth Low Energy sensors \u2014 temperature, humidity, battery monitors \u2014 and forwards their readings to a Signal K server. Runs on several ESP32 variants.",
+  "description": "Scans for Bluetooth Low Energy sensors — temperature, humidity, battery monitors — and forwards their readings to a Signal K server. Runs on several ESP32 variants.",
   "repo": "dirkwa/espos-ble-gateway",
   "license": "Apache-2.0",
   "targets": [
     "esp32p4",
+    "esp32c5",
     "esp32",
     "esp32s3",
     "esp32c3",
     "esp32c6"
   ],
   "boards": [
+    {
+      "id": "esp32c5-devkit",
+      "target": "esp32c5",
+      "name": "ESP32-C5 development board",
+      "notes": "The only ESP32 with dual-band WiFi: it can join a 5 GHz network, which the other chips here cannot."
+    },
     {
       "id": "esp32c6-devkit",
       "target": "esp32c6",
