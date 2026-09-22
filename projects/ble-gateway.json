@@ -19,36 +19,46 @@
       "id": "esp32c5-devkit",
       "target": "esp32c5",
       "name": "ESP32-C5 development board",
-      "notes": "The only ESP32 with dual-band WiFi: it can join a 5 GHz network, which the other chips here cannot."
+      "notes": "The only ESP32 with dual-band WiFi: it can join a 5 GHz network, which the other chips here cannot.",
+      "assetSegment": "esp32c5"
     },
     {
       "id": "esp32c6-devkit",
       "target": "esp32c6",
       "name": "ESP32-C6 development board",
-      "notes": "The ESP32-C6-MINI-1U has no PCB antenna: without an external one the radio sees nothing, which looks exactly like a software fault."
+      "notes": "The ESP32-C6-MINI-1U has no PCB antenna: without an external one the radio sees nothing, which looks exactly like a software fault.",
+      "assetSegment": "esp32c6"
     },
     {
       "id": "esp32c3-devkit",
       "target": "esp32c3",
-      "name": "ESP32-C3 development board"
+      "name": "ESP32-C3 development board",
+      "assetSegment": "esp32c3"
     },
     {
       "id": "esp32s3-devkit",
       "target": "esp32s3",
-      "name": "ESP32-S3 development board"
+      "name": "ESP32-S3 development board",
+      "assetSegment": "esp32s3"
     },
     {
       "id": "esp32-devkit",
       "target": "esp32",
-      "name": "ESP32 development board"
+      "name": "ESP32 development board",
+      "assetSegment": "esp32"
     },
     {
       "id": "waveshare-p4-poe",
       "target": "esp32p4",
       "name": "Waveshare ESP32-P4-WIFI6-POE-ETH",
-      "notes": "Never connect USB and Ethernet at the same time: powering the board from USB and PoE together damages it."
+      "notes": "Never connect USB and Ethernet at the same time: powering the board from USB and PoE together damages it.",
+      "assetSegment": "esp32p4"
     }
   ],
+  "assets": {
+    "ota": "^ble-gateway-(?<board>esp32[a-z0-9]*)-v?(?<version>[0-9][^-]*)-ota\\.bin$",
+    "merged": "^ble-gateway-(?<board>esp32[a-z0-9]*)-v?(?<version>[0-9][^-]*)-merged\\.bin$"
+  },
   "channels": [
     "stable"
   ],
