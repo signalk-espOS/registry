@@ -103,11 +103,83 @@ for (const file of files) {
   if (entry.signed === false) {
     notes.push(`${file}: marked unsigned — those builds accept no updates afterwards`);
   }
+  // Several boards on one chip only works if a release can say which image is
+  // for which board. That needs two things together: a `board` named group in
+  // the asset patterns, and an `assetSegment` on each of those boards for the
+  // group to match against. With either missing, reindex ties no image to a
+  // board and the flasher withholds every one of them as ambiguous -- so the
+  // entry validates, publishes, and nobody can flash it. This used to be a
+  // note reading "the flasher will ask which one the user has", which is the
+  // opposite of what happens.
   if ((entry.boards ?? []).length > 1) {
     const perTarget = {};
-    for (const b of entry.boards) perTarget[b.target] = (perTarget[b.target] ?? 0) + 1;
-    for (const [t, n] of Object.entries(perTarget)) {
-      if (n > 1) notes.push(`${file}: ${n} boards share target ${t} — the flasher will ask which one the user has`);
+    for (const b of entry.boards) (perTarget[b.target] ??= []).push(b);
+    for (const [t, boards] of Object.entries(perTarget)) {
+      if (boards.length < 2) continue;
+
+      // Does the pattern declare a `board` capture group? Asking the regex
+      // itself is unreliable -- groups only appear on a match, and these
+      // patterns match filenames, not the empty string -- so read the source.
+      const captures = (kind) => /\(\?<board>/.test(entry.assets?.[kind] ?? "");
+      // Both kinds matter, and a half-declared entry fails in a way that is
+      // easy to miss: with `ota` undefined, matchAssets falls back to a plain
+      // suffix match, which refuses two -ota.bin files. The boards would be
+      // flashable over USB and never updatable over the air.
+      const KINDS = ["ota", "merged"];
+      const missingPattern = KINDS.filter((k) => entry.assets?.[k] === undefined);
+      const missingGroup = KINDS.filter(
+        (k) => entry.assets?.[k] !== undefined && !captures(k),
+      );
+      const noSegment = boards.filter(
+        (b) => (b.assetSegment ?? "").trim() === "",
+      );
+
+      if (missingPattern.length === KINDS.length) {
+        fail(
+          file,
+          `${boards.length} boards share target ${t}, but the entry declares no ` +
+            `assets patterns. A release with one image per board cannot be tied ` +
+            `to boards without them, so none of its images would be offered. ` +
+            `Add assets.ota/assets.merged with a (?<board>...) group.`,
+        );
+      } else if (missingPattern.length > 0) {
+        fail(
+          file,
+          `${boards.length} boards share target ${t}, but the entry declares ` +
+            `assets.${missingPattern.map((k) => k).join(" and assets.")} ` +
+            `nowhere. Without ${missingPattern.length === 1 ? "that pattern" : "those patterns"} ` +
+            `the matching images fall back to a plain suffix match, which ` +
+            `refuses a release carrying one per board — so those boards would ` +
+            `be ${missingPattern.includes("ota") ? "flashable but never updatable" : "updatable but never flashable"}.`,
+        );
+      } else if (missingGroup.length > 0) {
+        fail(
+          file,
+          `${boards.length} boards share target ${t}, but assets.` +
+            `${missingGroup.join(" and assets.")} has no (?<board>...) named ` +
+            `group, so images for those boards cannot be told apart and none ` +
+            `would be offered.`,
+        );
+      } else if (noSegment.length > 0) {
+        fail(
+          file,
+          `${boards.length} boards share target ${t}, but ` +
+            `${noSegment.map((b) => `"${b.id}"`).join(", ")} declare${noSegment.length === 1 ? "s" : ""} ` +
+            `no assetSegment, so the board group in the asset name matches ` +
+            `nothing and that firmware would never be offered.`,
+        );
+      } else {
+        const segs = boards.map((b) => b.assetSegment.trim().toLowerCase());
+        const dupes = segs.filter((x, i) => segs.indexOf(x) !== i);
+        if (dupes.length > 0) {
+          fail(
+            file,
+            `boards on target ${t} share the assetSegment ` +
+              `"${dupes[0]}" — two boards claiming one segment is ambiguous, ` +
+              `so reindex ties the image to neither.`,
+          );
+        }
+      }
     }
   }
 }
