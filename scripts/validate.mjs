@@ -121,19 +121,36 @@ for (const file of files) {
       // itself is unreliable -- groups only appear on a match, and these
       // patterns match filenames, not the empty string -- so read the source.
       const captures = (kind) => /\(\?<board>/.test(entry.assets?.[kind] ?? "");
-      const kinds = ["ota", "merged"].filter((k) => entry.assets?.[k] !== undefined);
-      const missingGroup = kinds.filter((k) => !captures(k));
+      // Both kinds matter, and a half-declared entry fails in a way that is
+      // easy to miss: with `ota` undefined, matchAssets falls back to a plain
+      // suffix match, which refuses two -ota.bin files. The boards would be
+      // flashable over USB and never updatable over the air.
+      const KINDS = ["ota", "merged"];
+      const missingPattern = KINDS.filter((k) => entry.assets?.[k] === undefined);
+      const missingGroup = KINDS.filter(
+        (k) => entry.assets?.[k] !== undefined && !captures(k),
+      );
       const noSegment = boards.filter(
         (b) => (b.assetSegment ?? "").trim() === "",
       );
 
-      if (kinds.length === 0) {
+      if (missingPattern.length === KINDS.length) {
         fail(
           file,
           `${boards.length} boards share target ${t}, but the entry declares no ` +
             `assets patterns. A release with one image per board cannot be tied ` +
             `to boards without them, so none of its images would be offered. ` +
             `Add assets.ota/assets.merged with a (?<board>...) group.`,
+        );
+      } else if (missingPattern.length > 0) {
+        fail(
+          file,
+          `${boards.length} boards share target ${t}, but the entry declares ` +
+            `assets.${missingPattern.map((k) => k).join(" and assets.")} ` +
+            `nowhere. Without ${missingPattern.length === 1 ? "that pattern" : "those patterns"} ` +
+            `the matching images fall back to a plain suffix match, which ` +
+            `refuses a release carrying one per board — so those boards would ` +
+            `be ${missingPattern.includes("ota") ? "flashable but never updatable" : "updatable but never flashable"}.`,
         );
       } else if (missingGroup.length > 0) {
         fail(
