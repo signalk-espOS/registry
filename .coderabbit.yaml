@@ -294,8 +294,10 @@ reviews:
         changed entry: a changed `signingKeyId` strands devices, a
         changed `reportedAs` orphans a board, a removed board or target
         silently withdraws updates. Check that the regenerated
-        `index.json` in the same PR reflects exactly this entry's change
-        and nothing else.
+        `index.json` in the same PR reflects this entry's change; any
+        other difference must be a release another project published
+        since the last reindex (CI regenerates against the live API), not
+        a hand edit.
 
     - path: "index.json"
       instructions: |
