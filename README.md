@@ -88,6 +88,22 @@ If each of your boards is the only board for its chip, you need none of this: a
 target segment in the filename is enough, and you can point `assetSegment` at
 the target itself (the BLE gateway does exactly that).
 
+### Which espOS a build was made with
+
+Generated, not declared: the reindexer reads your espOS submodule pin at each
+release tag and records the version that release was built against, as `espos`
+on the release, alongside `esposLatest` at the top of the index. A consumer can
+then say "this firmware is a runtime release behind" — which a web flasher
+talking to a blank board has no other way to know, since an unflashed board
+cannot be asked.
+
+Nothing is required of you if your submodule lives at `espos`. If it lives
+elsewhere, set `esposSubmodule` to its path.
+
+The match is exact: a release pinned to an untagged espOS commit records no
+version rather than the nearest tag, because naming a version the build was not
+made from is worse than saying nothing.
+
 ### Signing
 
 A device accepts only firmware signed with the key it was flashed with. So:

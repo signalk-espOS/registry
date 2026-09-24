@@ -174,6 +174,87 @@ function boardSegmentKey(segment) {
   return key === "" ? NO_BOARD : key;
 }
 
+/* ------------------------------------------------- espOS version per release
+ *
+ * Which espOS a firmware was built against is worth knowing: it is what decides
+ * whether a device gets a fix that landed in the runtime rather than in the
+ * application. Nothing in a release records it -- the assets are bare .bin
+ * files -- but a consumer pins espOS as a submodule, and a submodule pin IS the
+ * version, exactly, at whatever tag the release was cut from.
+ *
+ * Reading it that way means no firmware CI change and it works retroactively
+ * for releases already published. Verified against real releases:
+ * espos-ble-gateway v0.3.1 pins 2b4fdc86 = espOS v0.10.3, v0.3.0 = v0.10.2.
+ *
+ * An EXACT sha-to-tag match, never `git describe`-style nearest-tag guessing: a
+ * consumer that pinned an untagged commit is between releases, and saying
+ * "v0.10.3" about a commit that is not v0.10.3 would be worse than saying
+ * nothing. Unmatched simply omits the field.
+ */
+const ESPOS_REPO = "signalk-espOS/espOS";
+
+/**
+ * Compare dotted numeric versions.
+ *
+ * Deliberately small: its only caller filters to /^[0-9]+(\.[0-9]+)*$/ first,
+ * so there are no prerelease suffixes to order and none of espOS's own
+ * comparison rules are needed. A full implementation here would be a third copy
+ * of logic that already exists in two places and would have to stay in step
+ * with the device for no benefit.
+ */
+function compareVersions(a, b) {
+  const pa = a.split(".").map(Number);
+  const pb = b.split(".").map(Number);
+  for (let i = 0; i < Math.max(pa.length, pb.length); i++) {
+    const d = (pa[i] ?? 0) - (pb[i] ?? 0);
+    if (d !== 0) return d < 0 ? -1 : 1;
+  }
+  return 0;
+}
+
+/** sha -> tag for every espOS tag, fetched once. */
+let esposTagsBySha;
+
+async function esposTags() {
+  if (esposTagsBySha !== undefined) return esposTagsBySha;
+  esposTagsBySha = new Map();
+  try {
+    /* Tags, not releases: a tag always exists for a release, and this is one
+     * request per 100 rather than one per release. */
+    for (let page = 1; page <= 5; page++) {
+      const tags = await gh(`/repos/${ESPOS_REPO}/tags?per_page=100&page=${page}`);
+      for (const t of tags) esposTagsBySha.set(t.commit?.sha, t.name);
+      if (tags.length < 100) break;
+    }
+  } catch (error) {
+    warnings.push(`could not list ${ESPOS_REPO} tags (${error.message}); no espOS versions will be recorded`);
+  }
+  return esposTagsBySha;
+}
+
+/** The espOS version a release was built against, or undefined. */
+async function esposVersionAt(project, tag) {
+  const path = project.esposSubmodule ?? "espos";
+  let sha;
+  try {
+    const entry = await gh(
+      `/repos/${project.repo}/contents/${encodeURIComponent(path)}?ref=${encodeURIComponent(tag)}`,
+    );
+    /* A submodule reads back as type "submodule" and its sha is the pinned
+     * commit. Anything else means the path is not what we assumed, and a
+     * directory's sha would be a tree, never an espOS commit. */
+    if (entry?.type !== "submodule") return undefined;
+    sha = entry.sha;
+  } catch {
+    /* No such path at that tag: an older release from before the submodule
+     * existed, or a project that consumes espOS some other way. Not a warning:
+     * this is optional metadata and a missing field says so. */
+    return undefined;
+  }
+  const name = (await esposTags()).get(sha);
+  return name === undefined ? undefined : String(name).replace(/^v/, "");
+}
+
 /** The declared board id a captured `board` segment names, or undefined. */
 function boardIdFromSegment(project, segment, context) {
   const wanted = boardSegmentKey(segment);
@@ -291,6 +372,7 @@ async function resolveProject(project) {
     resolved.push({
       version: String(release.tag_name).replace(/^v/, ""),
       tag: release.tag_name,
+      espos: await esposVersionAt(project, release.tag_name),
       channel: release.prerelease === true ? "beta" : "stable",
       publishedAt: release.published_at,
       notes: summarise(release.body),
@@ -316,9 +398,23 @@ for (const file of files) {
   projects.push(await resolveProject(project));
 }
 
+/* The newest espOS, so a consumer can say "this build is a release behind"
+ * without fetching anything itself -- a flasher talking to a blank board over
+ * USB has no other way to know, and an unflashed board cannot be asked. */
+const esposLatest = (() => {
+  const names = [...(esposTagsBySha?.values() ?? [])]
+    .map((n) => String(n).replace(/^v/, ""))
+    /* Releases only: a tag like "v0.1.0-rc1" is not what a consumer should be
+     * told it is behind. */
+    .filter((n) => /^[0-9]+(\.[0-9]+)*$/.test(n));
+  names.sort(compareVersions);
+  return names[names.length - 1];
+})();
+
 const index = {
   schema: 1,
   updated: new Date().toISOString(),
+  ...(esposLatest === undefined ? {} : { esposLatest }),
   projects,
 };
 await writeFile(join(ROOT, "index.json"), JSON.stringify(index, null, 2) + "\n");
