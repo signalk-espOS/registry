@@ -187,6 +187,12 @@
       "pattern": "^[A-Za-z0-9._/-]+$",
       "maxLength": 128,
       "description": "Branch of `repo` carrying the release images, laid out as <tag>/<asset>. GitHub serves release downloads without an Access-Control-Allow-Origin header, so a browser cannot fetch them; raw.githubusercontent does send one. Declare this and the index also publishes mergedWebUrl/otaWebUrl pointing there, which is what the web flasher uses. Without it a project's firmware can only be installed from the Signal K plugin, which fetches server-side and is unaffected."
+    },
+    "esposSubmodule": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9._/-]+$",
+      "maxLength": 128,
+      "description": "Path of the espOS submodule inside `repo`, when it is not the default \"espos\". The reindexer reads the pin at each release tag and records the espOS version that release was built against, so a consumer can say whether a build predates a runtime fix. An exact tag match only: a project pinned to an untagged commit records no version rather than a wrong one."
     }
   }
 }
