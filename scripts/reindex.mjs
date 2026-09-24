@@ -241,8 +241,15 @@ async function esposVersionAt(project, tag) {
   const path = project.esposSubmodule ?? "espos";
   let sha;
   try {
+    /* Encode each SEGMENT, not the whole path: the schema allows a nested
+     * `esposSubmodule` like "libs/espos", and encoding it wholesale turns the
+     * separator into %2F, which the contents API answers 404 to. A 404 is
+     * treated as "no submodule here", so the mistake would be invisible --
+     * that project would simply never record an espOS version. Same care the
+     * web-asset URLs already take a few lines below. */
+    const encodedPath = path.split("/").map(encodeURIComponent).join("/");
     const entry = await gh(
-      `/repos/${project.repo}/contents/${encodeURIComponent(path)}?ref=${encodeURIComponent(tag)}`,
+      `/repos/${project.repo}/contents/${encodedPath}?ref=${encodeURIComponent(tag)}`,
     );
     /* A submodule reads back as type "submodule" and its sha is the pinned
      * commit. Anything else means the path is not what we assumed, and a
