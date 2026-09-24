@@ -42,7 +42,11 @@ async function gh(path) {
   if (TOKEN !== undefined) headers.Authorization = `Bearer ${TOKEN}`;
   const response = await fetch(`https://api.github.com${path}`, { headers });
   if (!response.ok) {
-    throw new Error(`GET ${path} -> HTTP ${response.status}`);
+    /* The status, not just a message: a caller has to tell "no such path"
+     * (routine) from "rate limited" (everything is about to be wrong). */
+    const error = new Error(`GET ${path} -> HTTP ${response.status}`);
+    error.status = response.status;
+    throw error;
   }
   return response.json();
 }
@@ -245,10 +249,20 @@ async function esposVersionAt(project, tag) {
      * directory's sha would be a tree, never an espOS commit. */
     if (entry?.type !== "submodule") return undefined;
     sha = entry.sha;
-  } catch {
-    /* No such path at that tag: an older release from before the submodule
-     * existed, or a project that consumes espOS some other way. Not a warning:
-     * this is optional metadata and a missing field says so. */
+  } catch (error) {
+    if (error.status === 404) {
+      /* No such path at that tag: an older release from before the submodule
+       * existed, or a project that consumes espOS some other way. Not a
+       * warning -- this is optional metadata and a missing field says so. */
+      return undefined;
+    }
+    /* Anything else -- a 403 rate limit above all -- would otherwise omit the
+     * version from EVERY release and read as "no project pins espOS", which is
+     * a wrong index rather than an incomplete one. Say so. */
+    warnings.push(
+      `${project.id} ${tag}: could not read the espOS pin (${error.message}); ` +
+        `no espOS version recorded for it`,
+    );
     return undefined;
   }
   const name = (await esposTags()).get(sha);
@@ -401,6 +415,9 @@ for (const file of files) {
 /* The newest espOS, so a consumer can say "this build is a release behind"
  * without fetching anything itself -- a flasher talking to a blank board over
  * USB has no other way to know, and an unflashed board cannot be asked. */
+await esposTags(); /* explicitly, not as a side effect of resolving releases:
+                    * a registry where no project pins espOS as a submodule
+                    * would otherwise report no latest version at all. */
 const esposLatest = (() => {
   const names = [...(esposTagsBySha?.values() ?? [])]
     .map((n) => String(n).replace(/^v/, ""))
