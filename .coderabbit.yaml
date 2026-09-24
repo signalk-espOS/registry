@@ -1,0 +1,493 @@
+# CodeRabbit configuration for signalk-espOS/registry.
+# Schema: https://coderabbit.ai/integrations/schema.v2.json
+# Validate locally with `coderabbit config validate`.
+#
+# The "ecosystem" and "conventions" sections of the catch-all instruction are
+# shared verbatim with signalk-espOS/espOS and
+# signalk-espOS/signalk-espos-manager. Edit all three together.
+
+language: en-US
+tone_instructions: >-
+  Terse engineering register. Lead with the defect and what it does to a
+  device in the field or to the nightly index. No praise, no restating the
+  diff, no emoji.
+
+reviews:
+  profile: assertive
+  # Off, as in every sibling repository: CodeRabbit comments, it does not gate.
+  # A `mode: error` pre-merge check therefore reads as a hard failure in the
+  # walkthrough table but blocks a merge only if the "CodeRabbit" status is
+  # made required in branch protection.
+  request_changes_workflow: false
+  review_details: true
+  in_progress_fortune: false
+  poem: false
+  suggested_reviewers: false
+  # JSON entries and two scripts; a sequence diagram of a JSON edit is noise.
+  sequence_diagrams: false
+  high_level_summary_instructions: |
+    Present tense, no "This PR". Say which project entries change, what the
+    regenerated index.json now offers to devices and to the hosted flasher,
+    and whether the entry schema moved.
+
+  labeling_instructions:
+    - label: bug
+      instructions: "A `fix:` change, or an entry correction that made the index offer the wrong build or none."
+    - label: enhancement
+      instructions: "A new registered project (`add: <id>`), a new board or channel on an existing entry, or a new script or schema capability."
+    - label: documentation
+      instructions: "Changes confined to README.md, schema descriptions or the PR template."
+  auto_apply_labels: false
+
+  auto_review:
+    enabled: true
+    auto_incremental_review: true
+    drafts: false
+    ignore_title_keywords:
+      - "[skip review]"
+    ignore_usernames:
+      - "github-actions[bot]"
+      - "dependabot[bot]"
+
+  # index.json stays in review on purpose: it must be checked for consistency
+  # with the entry diff, not ignored.
+  path_filters:
+    - "!LICENSE"
+
+  path_instructions:
+    - path: "**/*"
+      instructions: |
+        ## Scope
+
+        Review the diff against `main` with the two consumers in mind (the
+        plugin's server-side fetch and the hosted browser flasher) and
+        with the nightly reindex in mind, which rewrites `index.json` from
+        whatever the entries say. There are no tests; the reviewer is the
+        validator the scripts do not implement.
+
+        ## This repository
+
+        The registry is a small tree of JSON and two scripts. One
+        `projects/<id>.json` per firmware project, `schema/project.schema.json` (JSON Schema
+        2020-12, `additionalProperties: false`), two dependency-free
+        Node 24 ESM scripts (`scripts/validate.mjs` exits 1 on entry
+        errors; `scripts/reindex.mjs` calls the GitHub Releases, Contents
+        and Tags APIs with `GITHUB_TOKEN` when present and writes
+        `index.json`), the generated and committed `index.json`, and two
+        workflows: `validate.yml` (PRs and pushes to main: validate,
+        regenerate, diff ignoring `updated`) and `reindex.yml` (nightly
+        cron and `workflow_dispatch`: regenerate and push to main as
+        github-actions[bot] with "chore: refresh the firmware index"). No
+        package.json, no tests, no linter. Third parties register by
+        forking, copying an entry, and opening a PR titled `add: <id>`;
+        after the first review the contributor owns the file.
+
+        ## The espOS ecosystem: three repositories, one contract chain
+
+        - **signalk-espOS/espOS** is the ESP-IDF 6 runtime a firmware project builds
+          on, pinned as the git submodule `espos/` at a release tag or pulled from the
+          IDF component registry (`signalk-espos/espos_*`). It owns everything a
+          device says to the network: the `_espos._tcp` mDNS advertisement (TXT
+          `id`, `v`, `app`, `espos`, `target`, `api`, and `auth`, which is
+          hard-coded to `0`), the HTTP API under `/api/v1/` (`system/ping` answers
+          `{app, version, auth}` without a key; `system/info`, `ota/*`, `config` and
+          the rest need `Authorization: Bearer <key>` or the `espos_sid` cookie),
+          pull-based signed OTA (`POST /ota {"url": ...}`; the device downloads and
+          accepts only an RSA-3072 signature from the key it was flashed with), the
+          OTA version manifest (`schema: 1`), and the reusable `build-firmware.yml`
+          workflow (`workflow_call`) that turns a consumer's tag into
+          `<name>-<tag>-merged.bin` and `<name>-<tag>-ota.bin` release assets, where
+          the caller's `name` input carries the target or board segment. espOS's own
+          releases carry no binaries: the `vX.Y.Z` tag and the component registry
+          are the deliverable.
+        - **signalk-espOS/registry** holds one `projects/<id>.json` per firmware
+          project, validated by `schema/project.schema.json`, and a generated and
+          committed `index.json` that resolves each project's GitHub releases into
+          per-board builds (`otaUrl`, `mergedUrl`, the CORS-readable `*WebUrl`
+          variants, the `espos` version each build pins) plus `esposLatest`. It is
+          read unauthenticated from raw.githubusercontent.com; `schema: 1` at the top
+          is the wire version.
+        - **signalk-espOS/signalk-espos-manager** is the Signal K server plugin. It
+          browses `_espos._tcp`, keys every device on TXT `id` (the last two bytes of
+          the base MAC in hex; no REST route exposes it), matches `app` plus
+          `hardware.board` (must equal `boards[].reportedAs` exactly) against the
+          registry, mirrors firmware under its unauthenticated webapp mount
+          (`/signalk-espos-manager/fw/<app>/`), points the device's `ota.manifest_*`
+          config at that mount, hands the device a LAN `url` to pull, and hosts a
+          browser flasher (GitHub Pages, esptool-js) that can only read
+          `mergedWebUrl` because GitHub release downloads carry no CORS header.
+        - Downstream firmware (dirkwa/espos-p4-cockpit, dirkwa/espos-ble-gateway)
+          pins espOS as a submodule, releases through `build-firmware.yml`, and is
+          what the registry lists.
+
+        ### Contract points
+
+        A change on one side of any of these must say, in the PR body, how the other
+        side keeps working, or name the companion PR. Flag one that does not.
+
+        1. mDNS TXT keys and the JSON shapes of `/api/v1/system/ping`,
+           `/system/info` (`hardware.board`, `hardware.mac`, `chip`, ...; the whole
+           `hardware` object is absent on firmware before 0.10), `/ota/status`
+           (`state`, `running.key_fp`, `running.pending_verify`, ...) and `/config`
+           (`ota.manifest_src`, `ota.manifest_path`): espOS emits, the manager
+           parses tolerantly but by exact key name. Firmware 0.7.x to 0.10.x
+           coexist on one boat, so fields are added, never renamed or repurposed.
+        2. `hardware.board` versus `boards[].reportedAs`: the firmware passes it as
+           `espos_start_opts_t.board`, the registry declares it, the manager
+           compares it exactly (trimmed, case-sensitive). A board name is a wire
+           string, not a label.
+        3. Release asset names versus the registry's `assets.ota` and
+           `assets.merged` regexes (named groups `version` and `board`):
+           `build-firmware.yml` emits them, the registry indexes one build per
+           board or nothing at all.
+        4. The registry entry schema versus the manager's `RegistryProject` type
+           (`src/registry/types.ts`) and the flasher catalogue: the schema states it
+           mirrors that type. Additive changes only; the parser drops what it does
+           not know.
+        5. The `index.json` shape (`schema`, `esposLatest`,
+           `projects[].releases[].builds[]`): the registry emits it, the plugin and
+           the hosted flasher consume it.
+        6. The OTA manifest `{schema: 1, app, builds[]}`, its byte limits (version
+           31, build url 255, notes 127, manifest url 167, manifest path 127, whole
+           manifest 16 KiB) and where it lives: the device fetches it with a bare
+           `esp_http_client` and no credentials, so it must sit on an
+           unauthenticated mount. espOS's OTA client defines the format, the
+           manager's `src/mirror/manifest.ts` obeys it.
+        7. Version ordering: espOS's `espos_ota_version_cmp` in C is the oracle;
+           the manager's `src/mirror/version.ts` is a byte-exact port with a fixture
+           generated from the C code. It is not semver.
+        8. Signing: a device accepts only images signed with the key it was flashed
+           with; `signingKeyId` in the registry names that key; changing a project's
+           key strands every fielded device unless `"signed": false` says so.
+        9. espOS tags `vX.Y.Z`: the registry resolves a firmware's submodule SHA to a
+           tag by exact match (never nearest-tag) and derives `esposLatest`; the
+           manager shows a build as "behind" from that.
+        10. The `build-firmware.yml` inputs (`target`, `name`, `require`,
+            `submodules`, `esptool`, `tag`, `artifact`), its `signing_key` secret
+            and `unsigned` output: every consumer firmware's release workflow calls
+            them by name.
+
+        ## Registry-specific rules
+
+        - `index.json` is generated, never hand-edited. A PR that touches
+          `projects/` must include the regenerated `index.json` (CI diffs
+          everything except `updated`); a PR that changes `index.json`
+          without touching `projects/` or `scripts/reindex.mjs` is a hand
+          edit. Review `index.json` only for consistency with the entry
+          diff, never line by line.
+        - `validate.mjs` checks less than the schema: required keys,
+          unknown top-level keys, `id` equal to the filename, unique `id`
+          and `app`, `boards[].target` in `targets`, regex hygiene, the
+          multi-board rules, and repo reachability only when a token is
+          present. Patterns, enums, lengths, types and unknown keys inside
+          `boards[]` are not checked, and the required `version` named
+          group is not enforced. Check every changed entry field against
+          `schema/project.schema.json` by hand.
+        - Never guess. The scripts omit or skip rather than infer: no
+          nearest-tag espOS match, no target guess when an entry has
+          several targets, no build when two assets claim one board, no
+          fallback suffix match unless exactly one asset carries it. Flag
+          any change that adds a fallback or a heuristic.
+        - Asset regexes run in the browser: anchored `^...$`, no `.*`, no
+          nested unbounded quantifiers, must compile with the `u` flag;
+          `[^-]*` is fine. Two or more boards on one target need both
+          `assets.ota` and `assets.merged`, a `(?<board>` group in both,
+          and distinct non-empty `assetSegment` values compared
+          case-insensitively.
+        - URL and API paths encode per segment
+          (`encodeURIComponent` on each), never the whole path (the
+          contents API breaks otherwise).
+        - `signingKeyId` is a promise to fielded devices: a change strands
+          them unless `"signed": false` is declared. `official` is set by
+          maintainers only. `reportedAs` is copied verbatim from what the
+          firmware passes as `espos_start_opts_t.board`; `app` is the
+          CMake `project()` name the device reports in `/system/ping` and
+          mDNS, not the repo name.
+        - The GitHub API is paged: 30 releases per project, five pages of
+          espOS tags. Warnings never fail `reindex.mjs` (omitting is better
+          than guessing); errors fail `validate.mjs`. Keep that split.
+        - Scripts stay dependency-free (global `fetch`, no package.json);
+          the only secret is `GITHUB_TOKEN`; `reindex.yml` is the only
+          workflow with `contents: write`.
+        - A schema change is a manager change: `schema/project.schema.json`
+          says it mirrors `RegistryProject` in signalk-espos-manager
+          (`src/registry/types.ts`), and the flasher reads `esposLatest`,
+          `release.espos` and `mergedWebUrl`. Additive only, and the PR
+          body names the manager change or says why none is needed.
+        - README claims about CI must match the workflows (today CI checks
+          that the repo exists, not that assets download). Flag a doc
+          claim the workflow does not implement.
+
+        ## What NOT to flag
+
+        - `app` differing from the repo name and from the asset prefix
+          (`ble_gateway` for repo `espos-ble-gateway`; `p4_cockpit-*`
+          assets for app `cockpit`).
+        - ble-gateway's `assetSegment` equal to the target name; the
+          cockpit's older releases without `boardId`; a release with no
+          `espos` when its pin is an untagged commit.
+        - `otaUrl` kept alongside `otaWebUrl`: the plugin fetches
+          server-side, the browser needs raw.githubusercontent because of
+          CORS.
+        - The `updated` timestamp excluded from the CI diff; a missing
+          `esposLatest` tolerated; `reindex.mjs` compiling patterns
+          without `u` while `validate.mjs` uses it.
+        - The PR diff check failing for reasons outside the PR when a
+          project released since the last nightly run.
+        - `reindex.yml` serialising runs instead of cancelling (it
+          pushes); validate's per-SHA concurrency on main.
+        - `add: <id>` PR titles from third-party contributors.
+        - `minEsposVersion` declared in the schema but unused by the
+          scripts, unless a PR claims to enforce it.
+
+        ## Conventions shared by every signalk-espOS repository
+
+        - Conventional Commits: `<type>(<scope>): <subject>`, imperative, lower-case
+          subject, no trailing period. Types in use: feat, fix, perf, refactor,
+          revert, docs, build, ci, test, chore. PRs are squash-merged, so the PR
+          title becomes the commit subject (and, in espOS, the release-notes line).
+          Flag a title that does not say what changed for whom.
+        - One logical change per PR. The house style is a long body that gives the
+          evidence: which device, which firmware version, what was observed. Flag a
+          body that says "tested" without saying what ran, and flag test plans with
+          unchecked checkboxes.
+        - No attribution trailers anywhere: no `Co-Authored-By`, no "Generated
+          with", no AI-tool mentions in commits, PR bodies, comments or code.
+        - No version bumps in feature or fix PRs. Versions move only in a dedicated
+          release PR.
+        - Comments say why, never what. Flag comments that restate the code,
+          narrate the bug they fixed, or cite a PR number instead of the reason.
+        - Documentation describes how things work now. Flag implementation-status
+          wording ("currently", "step 3", "TODO", progress markers) and snippets or
+          values that will drift from the code.
+        - Flag leftovers from earlier commits of the same PR: dangling imports,
+          comments naming symbols that no longer exist, superseded TODOs.
+        - Boat configuration is never committed: no SSIDs, passwords, device keys,
+          signing keys or LAN addresses, in source, defaults, fixtures or docs.
+          Firmware images are public release assets and `strings` prints every
+          literal.
+
+    - path: "projects/*.json"
+      instructions: |
+        One entry per firmware project; the filename is the `id`. Check
+        every field against `schema/project.schema.json` including what
+        `validate.mjs` skips: `id` `^[a-z0-9][a-z0-9-]{1,38}$`; `app` 1-32
+        characters and equal to the firmware's CMake `project()` name (it
+        is what `/api/v1/system/ping` and mDNS `app` report; the wrong
+        value means the device never matches); `repo` `owner/repo` and
+        reachable; `targets` from the chip enum; `boards[]` with `id`
+        `^[a-z0-9][a-z0-9-]{1,48}$`, `target` in `targets`, `name` 3-120,
+        `flashMinBytes` at least 1 MiB, `reportedAs` 1-64 verbatim from
+        the firmware, `assetSegment` `^[a-z0-9]+$` up to 24 and unique
+        per target, `buyUrl` and `notes` sane; `channels` from stable and
+        beta; `assets.ota` and `assets.merged` anchored regexes with a
+        `(?<version>` group and, with more than one board on a target, a
+        `(?<board>` group in both; `signingKeyId` the first 16 hex
+        characters of the SHA-256 of the public key; `signed: false` only
+        with an explanation; `webAssetsBranch` a branch laid out
+        `<tag>/<asset>` when the hosted flasher must reach the image;
+        `esposSubmodule` only when the submodule is not at `espos`.
+
+        For a new entry (`add: <id>`): the repo must exist and have at
+        least one release whose assets match the regexes, the PR template
+        checklist must be honest, and `official` must be absent. For a
+        changed entry: a changed `signingKeyId` strands devices, a
+        changed `reportedAs` orphans a board, a removed board or target
+        silently withdraws updates. Check that the regenerated
+        `index.json` in the same PR reflects exactly this entry's change
+        and nothing else.
+
+    - path: "index.json"
+      instructions: |
+        Generated by `scripts/reindex.mjs`; `JSON.stringify(index, null,
+        2)` plus a newline. Do not review it line by line. Check that its
+        diff is explained by the entry diff (or by a `reindex.mjs` change)
+        and by releases published since the last run: new `projects[]`
+        fields appear only when the entry added them, `releases[]` and
+        `builds[]` follow the asset regexes, `boardId` appears for every
+        build of a multi-board target, `otaWebUrl`/`mergedWebUrl` appear
+        only with `webAssetsBranch`, `espos` appears only when the
+        submodule SHA matched a tag exactly. A hand edit is any change
+        the script would overwrite tonight.
+
+    - path: "schema/**"
+      instructions: |
+        The schema is the contract with contributors and it mirrors the
+        manager's `RegistryProject` type. A new field is additive with a
+        description that states its semantics in one sentence, its
+        constraints, and who reads it (plugin, flasher, reindex). Flag a
+        removed or renamed field, a widened enum without a reason, a
+        constraint the validator cannot check without a note saying so,
+        and any change without the matching manager PR named in the body.
+        The `$id` is the raw.githubusercontent URL of this file on main;
+        keep it valid.
+
+    - path: "scripts/**"
+      instructions: |
+        Dependency-free Node 24 ESM. `reindex.mjs`: reads `projects/*.json`
+        sorted by filename, fetches `/repos/<repo>/releases?per_page=30`
+        (drafts skipped, prereleases become `beta`), matches assets with
+        the entry regexes (fallback to a unique `-ota.bin`/`-merged.bin`
+        suffix only), keys builds by the `board` capture normalised, maps
+        it to `boards[].assetSegment`, resolves `target` from a known
+        token in the filename with the most specific first (`esp32c61`
+        before `esp32`) or the entry's single target, resolves `espos` by
+        reading the submodule SHA at the tag through the contents API
+        (path encoded per segment) and matching it exactly against
+        signalk-espOS/espOS tags, computes `esposLatest` from numeric
+        tags only, and writes `index.json`. Warnings are `note:` lines and
+        never fail the run. `validate.mjs` emits `::error::` lines and
+        exits 1. Every URL that ends up in the index must be https and
+        point at the project's own repo. A change to ordering, matching
+        or resolution changes `index.json` for every project; say so in
+        the PR and include the regenerated file. Never add a heuristic
+        that turns an ambiguity into a build.
+
+    - path: ".github/workflows/**"
+      instructions: |
+        `validate.yml` runs on `pull_request` and `push` to main with
+        `contents: read`, concurrency per ref (per SHA on main): it runs
+        `validate.mjs`, regenerates the index against the live GitHub API,
+        and diffs it ignoring `updated`. `reindex.yml` runs on the nightly
+        cron and `workflow_dispatch` with `contents: write`, concurrency
+        group `reindex` with `cancel-in-progress: false` because it
+        pushes. Keep permissions minimal, keep the diff check honest (a
+        change that makes it ignore more than `updated` hides drift), and
+        keep any new step dependency-free. Actions are referenced by
+        major tag (`actions/checkout@v5`, `actions/setup-node@v6`); a bump
+        is its own PR.
+
+    - path: "README.md"
+      instructions: |
+        The README is the contributor contract: how to name assets, what
+        `app` means, how boards and `reportedAs` work, which espOS a build
+        was made with, and what signing means for OTA. Every statement
+        about what CI checks must be true of `validate.yml` today. Flag
+        any promise about signatures, checksums or asset verification the
+        scripts do not make, and flag a field description here that
+        contradicts `schema/project.schema.json`.
+
+  finishing_touches:
+    docstrings:
+      enabled: false
+    unit_tests:
+      enabled: false
+
+  pre_merge_checks:
+    docstrings:
+      mode: "off"
+    title:
+      mode: warning
+      requirements: >-
+        Either a Conventional Commit, `<type>(<scope>): <subject>` with type in
+        feat, fix, perf, refactor, revert, docs, test, build, ci, chore and the
+        project id as scope when one entry is affected (`fix(cockpit): ...`),
+        or `add: <id>` for a new third-party entry. Subject imperative,
+        lower-case, no trailing period.
+    description:
+      mode: warning
+    issue_assessment:
+      mode: warning
+    custom_checks:
+      - name: index.json regenerated with the entries
+        mode: error
+        instructions: >-
+          Fail if any file under projects/ is added, modified or removed and
+          index.json is not modified in the same PR. Also fail if index.json
+          is modified while no file under projects/ is modified and
+          scripts/reindex.mjs is not modified: that is a hand edit the
+          nightly run will overwrite. Pass otherwise.
+      - name: Entry validates against the full schema
+        mode: error
+        instructions: >-
+          For every added or modified file under projects/, validate the
+          complete document against schema/project.schema.json as a JSON
+          Schema 2020-12 validator would: required keys, additionalProperties
+          at every level including boards[], string patterns, enums,
+          minimum and maximum lengths, integer minimums, uri formats, and
+          that the filename without .json equals the id. Fail on the first
+          violation, naming the file, the JSON path and the constraint. Pass
+          when every entry validates or when no entry changed.
+      - name: Asset regexes index one build per board
+        mode: error
+        instructions: >-
+          For every added or modified file under projects/ that has assets
+          patterns: fail if a pattern does not start with ^ and end with $,
+          contains `.*`, contains a nested unbounded quantifier such as
+          (a+)+ or (a*)*, fails to compile as a JavaScript regular expression
+          with the u flag, or lacks a named group `version`. If two or more
+          boards share one target, fail unless both assets.ota and
+          assets.merged exist, both contain a named group `board`, and every
+          board on that target has a non-empty assetSegment distinct
+          (case-insensitively) from the others. Pass otherwise.
+      - name: Schema change mirrored in the manager
+        mode: warning
+        instructions: >-
+          If schema/project.schema.json is modified, pass only when the PR
+          body either links a signalk-espOS/signalk-espos-manager pull
+          request or commit that updates src/registry/types.ts, or states in
+          one sentence why the manager needs no change (for example a
+          description-only edit). Fail when the body is silent. Pass when the
+          schema is untouched.
+
+  tools:
+    languagetool:
+      enabled: false
+
+chat:
+  art: false
+  auto_reply: true
+
+knowledge_base:
+  web_search:
+    enabled: true
+  code_guidelines:
+    enabled: true
+    filePatterns:
+      # Local: the contributor contract and the field semantics.
+      - files: "README.md,schema/project.schema.json"
+        applyTo: "projects/**,scripts/**,schema/**,index.json"
+      # Cross-repo (same organization): what a device and the release
+      # workflow actually produce, and what the plugin does with the index.
+      - files: "espOS:docs/ota.md,espOS:docs/releasing.md"
+        applyTo: "projects/**,scripts/**,schema/**,.github/**,README.md"
+      - files: "signalk-espos-manager:README.md"
+        applyTo: "schema/**,scripts/**,README.md"
+  learnings:
+    scope: global
+  issues:
+    scope: global
+  pull_requests:
+    scope: global
+  automatic_linking_mode: auto
+  linked_repositories:
+    - repository: signalk-espOS/signalk-espos-manager
+      instructions: >-
+        The consumer of index.json. src/registry/types.ts and client.ts
+        parse it (id, app, targets required; everything else optional);
+        src/registry/resolve.ts chooses a build (app exact, target, boardId
+        against reportedAs, channel, signingKeyId versus the device's
+        key_fp); web/src/flash/catalogue.ts and web/flash/main.tsx read
+        esposLatest, release.espos, mergedWebUrl and board metadata for the
+        hosted flasher. Any schema or index-shape change must keep them
+        working.
+    - repository: signalk-espOS/espOS
+      instructions: >-
+        Defines what devices report (/api/v1/system/ping app and version;
+        /system/info hardware.board from espos_start_opts_t.board), the OTA
+        manifest and version comparison, signing (one RSA-3072 key per
+        project, verified on the device), and build-firmware.yml, which
+        names release assets <name>-<tag>-{merged,ota}.bin. Its vX.Y.Z tags
+        feed esposLatest and each release's espos field.
+    - repository: dirkwa/espos-ble-gateway
+      instructions: >-
+        Registered project ble-gateway (six targets, one board per target,
+        assetSegment equal to the target). Its real release asset names and
+        webAssetsBranch layout are what projects/ble-gateway.json must
+        match.
+    - repository: dirkwa/espos-p4-cockpit
+      instructions: >-
+        Registered project cockpit (one chip, two boards: 7b and x7). Its
+        release asset names and the hardware.board strings its firmware
+        passes are what projects/cockpit.json must match; the two boards on
+        one target are why the board rules exist.
