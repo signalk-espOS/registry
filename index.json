@@ -8,25 +8,17 @@
       "app": "ble_gateway",
       "name": "BLE Gateway",
       "summary": "Bridges Bluetooth sensors into Signal K",
-      "description": "Scans for Bluetooth Low Energy sensors — temperature, humidity, battery monitors — and forwards their readings to a Signal K server. Runs on several ESP32 variants.",
+      "description": "Scans for Bluetooth Low Energy sensors — temperature, humidity, battery monitors — and forwards their readings to a Signal K server.\n\nRuns on the ESP32-P4 (BLE via its ESP32-C6 co-processor, which is what two gateways here use in daily service) and on the ESP32, C3, S3 and C6.\n\nNot the ESP32-C5: it builds and scans, then reboots after about 30 seconds. BLE plus WiFi plus the Signal K client needs ~152 KB of its ~176 KB of internal RAM, the HTTP posts start failing and the health watchdog restarts the board. Its 8 MB of PSRAM does not help — what remains is task stacks and DMA buffers, which cannot live in external RAM. A C5 is a good WiFi/Signal K board, but it is not a BLE bridge.",
       "repo": "dirkwa/espos-ble-gateway",
       "license": "Apache-2.0",
       "targets": [
         "esp32p4",
-        "esp32c5",
         "esp32",
         "esp32s3",
         "esp32c3",
         "esp32c6"
       ],
       "boards": [
-        {
-          "id": "esp32c5-devkit",
-          "target": "esp32c5",
-          "name": "ESP32-C5 development board",
-          "notes": "The only ESP32 with dual-band WiFi: it can join a 5 GHz network, which the other chips here cannot.",
-          "assetSegment": "esp32c5"
-        },
         {
           "id": "esp32c6-devkit",
           "target": "esp32c6",
@@ -100,16 +92,6 @@
               "mergedBytes": 6225920
             },
             {
-              "target": "esp32c5",
-              "boardId": "esp32c5-devkit",
-              "otaUrl": "https://github.com/dirkwa/espos-ble-gateway/releases/download/v0.3.2/ble-gateway-esp32c5-v0.3.2-ota.bin",
-              "otaWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-ble-gateway/release-assets/v0.3.2/ble-gateway-esp32c5-v0.3.2-ota.bin",
-              "otaBytes": 2232320,
-              "mergedUrl": "https://github.com/dirkwa/espos-ble-gateway/releases/download/v0.3.2/ble-gateway-esp32c5-v0.3.2-merged.bin",
-              "mergedWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-ble-gateway/release-assets/v0.3.2/ble-gateway-esp32c5-v0.3.2-merged.bin",
-              "mergedBytes": 6225920
-            },
-            {
               "target": "esp32c6",
               "boardId": "esp32c6-devkit",
               "otaUrl": "https://github.com/dirkwa/espos-ble-gateway/releases/download/v0.3.2/ble-gateway-esp32c6-v0.3.2-ota.bin",
@@ -171,16 +153,6 @@
               "mergedBytes": 6225920
             },
             {
-              "target": "esp32c5",
-              "boardId": "esp32c5-devkit",
-              "otaUrl": "https://github.com/dirkwa/espos-ble-gateway/releases/download/v0.3.1/ble-gateway-esp32c5-v0.3.1-ota.bin",
-              "otaWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-ble-gateway/release-assets/v0.3.1/ble-gateway-esp32c5-v0.3.1-ota.bin",
-              "otaBytes": 2232320,
-              "mergedUrl": "https://github.com/dirkwa/espos-ble-gateway/releases/download/v0.3.1/ble-gateway-esp32c5-v0.3.1-merged.bin",
-              "mergedWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-ble-gateway/release-assets/v0.3.1/ble-gateway-esp32c5-v0.3.1-merged.bin",
-              "mergedBytes": 6225920
-            },
-            {
               "target": "esp32c6",
               "boardId": "esp32c6-devkit",
               "otaUrl": "https://github.com/dirkwa/espos-ble-gateway/releases/download/v0.3.1/ble-gateway-esp32c6-v0.3.1-ota.bin",
@@ -239,16 +211,6 @@
               "otaBytes": 1970176,
               "mergedUrl": "https://github.com/dirkwa/espos-ble-gateway/releases/download/v0.3.0/ble-gateway-esp32c3-v0.3.0-merged.bin",
               "mergedWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-ble-gateway/release-assets/v0.3.0/ble-gateway-esp32c3-v0.3.0-merged.bin",
-              "mergedBytes": 6225920
-            },
-            {
-              "target": "esp32c5",
-              "boardId": "esp32c5-devkit",
-              "otaUrl": "https://github.com/dirkwa/espos-ble-gateway/releases/download/v0.3.0/ble-gateway-esp32c5-v0.3.0-ota.bin",
-              "otaWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-ble-gateway/release-assets/v0.3.0/ble-gateway-esp32c5-v0.3.0-ota.bin",
-              "otaBytes": 2232320,
-              "mergedUrl": "https://github.com/dirkwa/espos-ble-gateway/releases/download/v0.3.0/ble-gateway-esp32c5-v0.3.0-merged.bin",
-              "mergedWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-ble-gateway/release-assets/v0.3.0/ble-gateway-esp32c5-v0.3.0-merged.bin",
               "mergedBytes": 6225920
             },
             {
