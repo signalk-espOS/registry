@@ -38,5 +38,6 @@
     "ota": "^p4_cockpit-v?(?<version>[0-9][^-]*)(?:-(?<board>[a-z0-9]+))?-ota\\.bin$",
     "merged": "^p4_cockpit-v?(?<version>[0-9][^-]*)(?:-(?<board>[a-z0-9]+))?-merged\\.bin$"
   },
+  "webAssetsBranch": "release-assets",
   "official": true
 }
