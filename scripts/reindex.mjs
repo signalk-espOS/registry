@@ -303,6 +303,37 @@ async function resolveProject(project) {
     return { ...project, releases: [] };
   }
 
+  // Which tags the mirror branch actually holds. A webAssetsBranch is pruned --
+  // it keeps the newest few tags -- and it starts existing at some point in a
+  // project's life, so older releases have no copy there. Rewriting a release URL
+  // into that branch without checking produces a link that 404s, and the web
+  // flasher offers several versions back (it is how a user rolls a device back),
+  // so those dead links would be reachable rather than theoretical.
+  //
+  // One listing per project, not a request per asset: this is the branch's root,
+  // whose entries are the tag directories.
+  let mirroredTags;
+  if (project.webAssetsBranch !== undefined) {
+    try {
+      const entries = await gh(
+        `/repos/${project.repo}/contents?ref=${encodeURIComponent(project.webAssetsBranch)}`,
+      );
+      mirroredTags = new Set(
+        entries.filter((e) => e.type === "dir").map((e) => e.name),
+      );
+    } catch (error) {
+      // Distinguish "no such branch" from "could not ask". A missing branch means
+      // no release is mirrored yet, which is a normal state before the first
+      // release that publishes one. Any other failure leaves mirroredTags
+      // undefined, and webUrl below then emits nothing rather than guessing --
+      // omitting a usable URL degrades the flasher, inventing a dead one breaks it.
+      warnings.push(
+        `${project.id}: could not list ${project.webAssetsBranch} ` +
+          `(${error.message}); no browser-readable URLs will be recorded`,
+      );
+    }
+  }
+
   const resolved = [];
   for (const release of releases) {
     if (release.draft === true) continue;
@@ -371,6 +402,10 @@ async function resolveProject(project) {
       // Signal K plugin fetches server-side and is unaffected by CORS.
       const webUrl = (asset) => {
         if (project.webAssetsBranch === undefined || asset === undefined) {
+          return undefined;
+        }
+        // Only when the mirror actually holds this tag.
+        if (mirroredTags === undefined || !mirroredTags.has(release.tag_name)) {
           return undefined;
         }
         // Encode each component. A tag or asset name may legitimately contain
