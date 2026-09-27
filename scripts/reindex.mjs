@@ -348,12 +348,11 @@ async function resolveProject(project) {
         }
       }
 
-      // A release may carry images for a target the project no longer supports:
-      // the assets are permanent, the support claim is not. `targets` is what the
-      // project says it runs on, so an undeclared target is skipped rather than
-      // indexed -- otherwise removing a target leaves its firmware reachable in
-      // the flasher anyway, which is exactly the case this guards (esp32c5 on
-      // ble-gateway: it builds and scans, then reboots, signalk-espOS/espOS#127).
+      // Release assets outlive a project's support claim: a published release is
+      // immutable, while `targets` is the current answer to what the firmware runs
+      // on. So `targets` decides, and an undeclared target is skipped -- otherwise
+      // dropping one would leave its images reachable in the flasher, which is the
+      // opposite of what dropping it meant.
       if (!project.targets.includes(target)) {
         warnings.push(
           `${context}: ${target} build present in the release but not in the ` +
