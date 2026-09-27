@@ -312,21 +312,34 @@ async function resolveProject(project) {
   //
   // One listing per project, not a request per asset: this is the branch's root,
   // whose entries are the tag directories.
-  let mirroredTags;
+  // Keyed `<tag>/<asset name>`, so a tag that is present but INCOMPLETE cannot
+  // advertise the assets it is missing. Listing the branch root alone would only
+  // prove the directory exists; a mirror is a third party's workflow publishing on
+  // its own schedule, so "the directory is there" does not imply "every asset is".
+  let mirrored;
   if (project.webAssetsBranch !== undefined) {
     try {
-      const entries = await gh(
-        `/repos/${project.repo}/contents?ref=${encodeURIComponent(project.webAssetsBranch)}`,
-      );
-      mirroredTags = new Set(
-        entries.filter((e) => e.type === "dir").map((e) => e.name),
-      );
+      const ref = encodeURIComponent(project.webAssetsBranch);
+      const entries = await gh(`/repos/${project.repo}/contents?ref=${ref}`);
+      mirrored = new Set();
+      for (const dir of entries.filter((e) => e.type === "dir")) {
+        // One request per tag directory. A mirror keeps only the newest few tags,
+        // so this is a handful of calls, and the alternative -- trusting the
+        // directory -- is what puts a download in the flasher that 404s.
+        const files = await gh(
+          `/repos/${project.repo}/contents/${encodeURIComponent(dir.name)}?ref=${ref}`,
+        );
+        for (const f of files.filter((e) => e.type === "file")) {
+          mirrored.add(`${dir.name}/${f.name}`);
+        }
+      }
     } catch (error) {
       // Distinguish "no such branch" from "could not ask". A missing branch means
       // no release is mirrored yet, which is a normal state before the first
-      // release that publishes one. Any other failure leaves mirroredTags
+      // release that publishes one. Any other failure leaves `mirrored`
       // undefined, and webUrl below then emits nothing rather than guessing --
       // omitting a usable URL degrades the flasher, inventing a dead one breaks it.
+      mirrored = undefined;
       warnings.push(
         `${project.id}: could not list ${project.webAssetsBranch} ` +
           `(${error.message}); no browser-readable URLs will be recorded`,
@@ -404,8 +417,11 @@ async function resolveProject(project) {
         if (project.webAssetsBranch === undefined || asset === undefined) {
           return undefined;
         }
-        // Only when the mirror actually holds this tag.
-        if (mirroredTags === undefined || !mirroredTags.has(release.tag_name)) {
+        // Only when the mirror actually holds THIS FILE, not merely its tag.
+        if (
+          mirrored === undefined ||
+          !mirrored.has(`${release.tag_name}/${asset.name}`)
+        ) {
           return undefined;
         }
         // Encode each component. A tag or asset name may legitimately contain
