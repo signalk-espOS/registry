@@ -348,6 +348,20 @@ async function resolveProject(project) {
         }
       }
 
+      // A release may carry images for a target the project no longer supports:
+      // the assets are permanent, the support claim is not. `targets` is what the
+      // project says it runs on, so an undeclared target is skipped rather than
+      // indexed -- otherwise removing a target leaves its firmware reachable in
+      // the flasher anyway, which is exactly the case this guards (esp32c5 on
+      // ble-gateway: it builds and scans, then reboots, signalk-espOS/espOS#127).
+      if (!project.targets.includes(target)) {
+        warnings.push(
+          `${context}: ${target} build present in the release but not in the ` +
+            `project's targets, so it was not indexed`,
+        );
+        continue;
+      }
+
       // A URL a BROWSER may fetch, when the project publishes one.
       //
       // browser_download_url is misnamed for our purposes: GitHub serves
