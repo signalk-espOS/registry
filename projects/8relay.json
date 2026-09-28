@@ -27,5 +27,6 @@
   "assets": {
     "ota": "^signalk-espOS-8relay-v?(?<version>[0-9][^-]*)-ota\\.bin$",
     "merged": "^signalk-espOS-8relay-v?(?<version>[0-9][^-]*)-merged\\.bin$"
-  }
+  },
+  "webAssetsBranch": "release-assets"
 }

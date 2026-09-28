@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "updated": "2026-09-28T18:38:35.180Z",
+  "updated": "2026-09-28T19:32:45.522Z",
   "esposLatest": "0.11.0",
   "projects": [
     {
@@ -33,6 +33,7 @@
         "ota": "^signalk-espOS-8relay-v?(?<version>[0-9][^-]*)-ota\\.bin$",
         "merged": "^signalk-espOS-8relay-v?(?<version>[0-9][^-]*)-merged\\.bin$"
       },
+      "webAssetsBranch": "release-assets",
       "releases": [
         {
           "version": "0.3.0",
@@ -45,8 +46,10 @@
             {
               "target": "esp32s3",
               "otaUrl": "https://github.com/BoatHacks/signalk-espOS-8relay/releases/download/v0.3.0/signalk-espOS-8relay-v0.3.0-ota.bin",
+              "otaWebUrl": "https://raw.githubusercontent.com/BoatHacks/signalk-espOS-8relay/release-assets/v0.3.0/signalk-espOS-8relay-v0.3.0-ota.bin",
               "otaBytes": 1708032,
               "mergedUrl": "https://github.com/BoatHacks/signalk-espOS-8relay/releases/download/v0.3.0/signalk-espOS-8relay-v0.3.0-merged.bin",
+              "mergedWebUrl": "https://raw.githubusercontent.com/BoatHacks/signalk-espOS-8relay/release-assets/v0.3.0/signalk-espOS-8relay-v0.3.0-merged.bin",
               "mergedBytes": 15663104
             }
           ]
@@ -62,8 +65,10 @@
             {
               "target": "esp32s3",
               "otaUrl": "https://github.com/BoatHacks/signalk-espOS-8relay/releases/download/v0.2.0/signalk-espOS-8relay-v0.2.0-ota.bin",
+              "otaWebUrl": "https://raw.githubusercontent.com/BoatHacks/signalk-espOS-8relay/release-assets/v0.2.0/signalk-espOS-8relay-v0.2.0-ota.bin",
               "otaBytes": 1642496,
               "mergedUrl": "https://github.com/BoatHacks/signalk-espOS-8relay/releases/download/v0.2.0/signalk-espOS-8relay-v0.2.0-merged.bin",
+              "mergedWebUrl": "https://raw.githubusercontent.com/BoatHacks/signalk-espOS-8relay/release-assets/v0.2.0/signalk-espOS-8relay-v0.2.0-merged.bin",
               "mergedBytes": 15663104
             }
           ]
@@ -79,8 +84,10 @@
             {
               "target": "esp32s3",
               "otaUrl": "https://github.com/BoatHacks/signalk-espOS-8relay/releases/download/v0.1.0/signalk-espOS-8relay-v0.1.0-ota.bin",
+              "otaWebUrl": "https://raw.githubusercontent.com/BoatHacks/signalk-espOS-8relay/release-assets/v0.1.0/signalk-espOS-8relay-v0.1.0-ota.bin",
               "otaBytes": 1576960,
               "mergedUrl": "https://github.com/BoatHacks/signalk-espOS-8relay/releases/download/v0.1.0/signalk-espOS-8relay-v0.1.0-merged.bin",
+              "mergedWebUrl": "https://raw.githubusercontent.com/BoatHacks/signalk-espOS-8relay/release-assets/v0.1.0/signalk-espOS-8relay-v0.1.0-merged.bin",
               "mergedBytes": 15663104
             }
           ]
