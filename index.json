@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "updated": "2026-09-27T19:30:01.882Z",
-  "esposLatest": "0.10.3",
+  "updated": "2026-09-28T10:55:58.366Z",
+  "esposLatest": "0.11.0",
   "projects": [
     {
       "id": "ble-gateway",
