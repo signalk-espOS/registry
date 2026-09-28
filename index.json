@@ -4,6 +4,38 @@
   "esposLatest": "0.11.0",
   "projects": [
     {
+      "id": "8relay",
+      "app": "signalk-espos-8relay",
+      "name": "8-Relay Switch Bank",
+      "summary": "8-relay, 8-input boat switch bank over Signal K and NMEA 2000",
+      "description": "Firmware for the Waveshare ESP32-S3-ETH-8DI-8RO-C industrial relay board: 8 relays you can switch and 8 isolated inputs you can read, over Signal K (WiFi or Ethernet) and NMEA 2000 (PGN 127502/127501) at the same time. Per relay: name, latching or momentary with auto-off, and a chosen behaviour on Signal K loss or restart. Time-based schedules kept on the board's own real-time clock.",
+      "repo": "BoatHacks/signalk-espOS-8relay",
+      "license": "Apache-2.0",
+      "targets": [
+        "esp32s3"
+      ],
+      "boards": [
+        {
+          "id": "waveshare-esp32-s3-eth-8di-8ro-c",
+          "target": "esp32s3",
+          "name": "Waveshare ESP32-S3-ETH-8DI-8RO-C",
+          "flashMinBytes": 16777216,
+          "notes": "8 MB octal PSRAM (ESP32-S3R8), 16 MB flash, W5500 Ethernet plus WiFi fallback, isolated CAN transceiver for NMEA 2000.",
+          "buyUrl": "https://www.waveshare.com/wiki/ESP32-S3-ETH-8DI-8RO-C",
+          "reportedAs": "Waveshare ESP32-S3-ETH-8DI-8RO-C"
+        }
+      ],
+      "channels": [
+        "stable",
+        "beta"
+      ],
+      "assets": {
+        "ota": "^signalk-espOS-8relay-v?(?<version>[0-9][^-]*)-ota\\.bin$",
+        "merged": "^signalk-espOS-8relay-v?(?<version>[0-9][^-]*)-merged\\.bin$"
+      },
+      "releases": []
+    },
+    {
       "id": "ble-gateway",
       "app": "ble_gateway",
       "name": "BLE Gateway",
