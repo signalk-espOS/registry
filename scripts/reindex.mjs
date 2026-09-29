@@ -18,9 +18,15 @@
 
 import { readdir, readFile, writeFile } from "node:fs/promises";
 import { join } from "node:path";
+import { gh, TOKEN } from "./github.mjs";
 
 const ROOT = new URL("..", import.meta.url).pathname;
-const TOKEN = process.env.GITHUB_TOKEN;
+if (TOKEN === undefined) {
+  console.log(
+    "note: no GITHUB_TOKEN or GH_TOKEN; unauthenticated, 60 requests an hour. " +
+      "It stops rather than write a partial index if it runs out.",
+  );
+}
 
 const KNOWN_TARGETS = [
   "esp32c61",
@@ -36,20 +42,6 @@ const KNOWN_TARGETS = [
 ];
 
 const warnings = [];
-
-async function gh(path) {
-  const headers = { Accept: "application/vnd.github+json" };
-  if (TOKEN !== undefined) headers.Authorization = `Bearer ${TOKEN}`;
-  const response = await fetch(`https://api.github.com${path}`, { headers });
-  if (!response.ok) {
-    /* The status, not just a message: a caller has to tell "no such path"
-     * (routine) from "rate limited" (everything is about to be wrong). */
-    const error = new Error(`GET ${path} -> HTTP ${response.status}`);
-    error.status = response.status;
-    throw error;
-  }
-  return response.json();
-}
 
 /** A target named in an asset filename, or undefined rather than a guess. */
 function targetFromName(name) {
@@ -511,4 +503,17 @@ const withFirmware = projects.filter((p) => (p.releases ?? []).length > 0);
 console.log(
   `index.json: ${projects.length} project(s), ${withFirmware.length} with firmware`,
 );
+/* What each entry resolved to, so a contributor sees their own project's result
+ * without reading JSON: a project with releases but no builds, or builds but no
+ * browser-readable copy, is the usual first surprise. */
+for (const p of projects) {
+  const releases = p.releases ?? [];
+  const builds = releases.flatMap((r) => r.builds ?? []);
+  const web = builds.filter((b) => b.mergedWebUrl !== undefined).length;
+  const espos = releases.filter((r) => r.espos !== undefined).length;
+  console.log(
+    `  ${p.id}: ${releases.length} release(s), ${builds.length} build(s), ` +
+      `${web} flashable in a browser, espOS version known for ${espos}`,
+  );
+}
 for (const warning of warnings) console.log(`  note: ${warning}`);

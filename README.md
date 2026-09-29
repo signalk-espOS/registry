@@ -12,14 +12,28 @@ no rate limit.
 
 ## Adding your firmware
 
-1. Fork this repository.
-2. Add `projects/<your-id>.json`. Copy an existing entry; the fields are
-   described in [`schema/project.schema.json`](schema/project.schema.json).
+1. Publish your firmware as GitHub releases. espOS's reusable
+   [`release-firmware.yml`](https://github.com/signalk-espOS/espOS/blob/main/docs/releasing.md#releasing-a-firmware)
+   builds, attaches and mirrors them in the shape this registry reads.
+2. Fork this repository and add **one file**, `projects/<your-id>.json`. Copy an
+   existing entry; the fields are described in
+   [`schema/project.schema.json`](schema/project.schema.json). Leave
+   `index.json` alone: it is rebuilt after your pull request merges.
 3. Open a pull request titled `add: <your-id>`.
 
-CI checks that the entry is well-formed and that your repository and release
-assets are real. A maintainer reviews new entries; after that you own your own
-file and can update it yourself.
+CI checks the entry and shows what it resolves to -- how many releases and
+builds, and how many a browser can flash. A maintainer reviews new entries.
+Once merged, the index is rebuilt within minutes and your firmware appears in
+the Signal K plugin and the hosted flasher.
+
+To see the same result before opening the pull request (Node 24, and a token,
+because GitHub allows 60 unauthenticated requests an hour):
+
+```sh
+export GH_TOKEN=$(gh auth token)   # or GITHUB_TOKEN
+node scripts/validate.mjs
+node scripts/reindex.mjs           # rewrites index.json locally; do not commit it
+```
 
 ### The field people get wrong
 

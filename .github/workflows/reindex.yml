@@ -1,11 +1,19 @@
 name: Reindex
 
 # Releases appear after a pull request merges, so an index built only at PR
-# time goes stale within a week. This keeps it current.
+# time goes stale within a week. This keeps it current: nightly for new
+# releases, and on every merge that changes an entry or how the index is
+# built, so a new project is listed minutes after its pull request merges.
 on:
   schedule:
     - cron: "17 4 * * *"
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "projects/**"
+      - "scripts/**"
+      - "schema/**"
 
 # The index is pushed, so a cancelled run can leave it half-written: later
 # runs queue behind the one in flight rather than replacing it.
