@@ -14,6 +14,11 @@ on:
       - "projects/**"
       - "scripts/**"
       - "schema/**"
+      # A hand-made index that reached main is replaced at once rather than
+      # served to boats until the nightly run. This workflow's own commit
+      # does not come back here: a push made with the workflow token starts
+      # no workflow.
+      - "index.json"
 
 # The index is pushed, so a cancelled run can leave it half-written: later
 # runs queue behind the one in flight rather than replacing it.
@@ -29,22 +34,39 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
+      # main as it is now, not the commit that triggered this run: another
+      # merge may have landed since, and pushing an index built from an older
+      # tree would be rejected -- or, worse, accepted over a newer one.
       - uses: actions/checkout@v5
+        with:
+          ref: main
       - uses: actions/setup-node@v6
         with:
           node-version: "24"
-      - name: Rebuild index.json
+      - name: Rebuild index.json and commit it when it changed
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: node scripts/reindex.mjs
-      - name: Commit when it changed
         run: |
-          if git diff --quiet index.json; then
-            echo "No change."
-            exit 0
-          fi
+          set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add index.json
-          git commit -m "chore: refresh the firmware index"
-          git push
+          # Rebuilt from scratch each attempt, so a rejected push is answered
+          # by starting over from the new main rather than by merging indexes.
+          for attempt in 1 2 3; do
+            git fetch -q origin main
+            git reset -q --hard origin/main
+            node scripts/reindex.mjs
+            if git diff --quiet index.json; then
+              echo "No change."
+              exit 0
+            fi
+            git add index.json
+            git commit -q -m "chore: refresh the firmware index"
+            if git push -q origin HEAD:main; then
+              echo "index.json updated."
+              exit 0
+            fi
+            echo "::warning::main moved while the index was rebuilt (attempt $attempt); starting over"
+          done
+          echo "::error::main kept moving; the next run will catch up"
+          exit 1

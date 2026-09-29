@@ -21,6 +21,20 @@ jobs:
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v5
+        with:
+          # The merge commit and its first parent, the base: enough to see
+          # whether the pull request touches index.json.
+          fetch-depth: 2
+      # main is served to boats as it is, so an index.json from a pull request
+      # would be live the moment it merges, and a stale or hand-made one stays
+      # there until the next rebuild. reindex.yml writes it after the merge.
+      - name: The pull request leaves index.json to CI
+        if: github.event_name == 'pull_request'
+        run: |
+          if ! git diff --quiet HEAD^1 HEAD -- index.json; then
+            echo "::error::This pull request changes index.json. Drop that change: the index is rebuilt and committed automatically after the merge."
+            exit 1
+          fi
       - uses: actions/setup-node@v6
         with:
           node-version: "24"

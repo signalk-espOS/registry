@@ -397,11 +397,12 @@ reviews:
       mode: warning
     custom_checks:
       - name: index.json left to CI
-        mode: warning
+        mode: error
         instructions: >-
-          Warn if the PR modifies index.json. It is rebuilt and committed by
-          reindex.yml after the merge, so a copy in a PR is redundant and may
-          be stale or hand-made; ask for it to be dropped. Pass otherwise.
+          Fail if the PR modifies index.json. It is rebuilt and committed by
+          reindex.yml after the merge; a copy in a PR would be served to
+          boats the moment it merges and may be stale or hand-made (the
+          validate workflow fails such a PR too). Pass otherwise.
       - name: Entry validates against the full schema
         mode: error
         instructions: >-
