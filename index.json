@@ -1,8 +1,269 @@
 {
   "schema": 1,
-  "updated": "2026-09-28T10:55:58.366Z",
+  "updated": "2026-09-28T19:32:45.522Z",
   "esposLatest": "0.11.0",
   "projects": [
+    {
+      "id": "8relay",
+      "app": "signalk-espos-8relay",
+      "name": "8-Relay Switch Bank",
+      "summary": "8-relay, 8-input boat switch bank over Signal K and NMEA 2000",
+      "description": "Firmware for the Waveshare ESP32-S3-ETH-8DI-8RO-C industrial relay board: 8 relays you can switch and 8 isolated inputs you can read, over Signal K (WiFi or Ethernet) and NMEA 2000 (PGN 127502/127501) at the same time. Per relay: name, latching or momentary with auto-off, and a chosen behaviour on Signal K loss or restart. Time-based schedules kept on the board's own real-time clock.",
+      "repo": "BoatHacks/signalk-espOS-8relay",
+      "license": "Apache-2.0",
+      "targets": [
+        "esp32s3"
+      ],
+      "boards": [
+        {
+          "id": "waveshare-esp32-s3-eth-8di-8ro-c",
+          "target": "esp32s3",
+          "name": "Waveshare ESP32-S3-ETH-8DI-8RO-C",
+          "flashMinBytes": 16777216,
+          "notes": "8 MB octal PSRAM (ESP32-S3R8), 16 MB flash, W5500 Ethernet plus WiFi fallback, isolated CAN transceiver for NMEA 2000.",
+          "buyUrl": "https://www.waveshare.com/wiki/ESP32-S3-ETH-8DI-8RO-C",
+          "reportedAs": "Waveshare ESP32-S3-ETH-8DI-8RO-C"
+        }
+      ],
+      "channels": [
+        "stable",
+        "beta"
+      ],
+      "assets": {
+        "ota": "^signalk-espOS-8relay-v?(?<version>[0-9][^-]*)-ota\\.bin$",
+        "merged": "^signalk-espOS-8relay-v?(?<version>[0-9][^-]*)-merged\\.bin$"
+      },
+      "webAssetsBranch": "release-assets",
+      "releases": [
+        {
+          "version": "0.3.0",
+          "tag": "v0.3.0",
+          "channel": "stable",
+          "publishedAt": "2026-09-28T17:43:23Z",
+          "notes": "Time-based schedules with the board's own real-time clock, and better buzzer diagnostics.",
+          "notesUrl": "https://github.com/BoatHacks/signalk-espOS-8relay/releases/tag/v0.3.0",
+          "builds": [
+            {
+              "target": "esp32s3",
+              "otaUrl": "https://github.com/BoatHacks/signalk-espOS-8relay/releases/download/v0.3.0/signalk-espOS-8relay-v0.3.0-ota.bin",
+              "otaWebUrl": "https://raw.githubusercontent.com/BoatHacks/signalk-espOS-8relay/release-assets/v0.3.0/signalk-espOS-8relay-v0.3.0-ota.bin",
+              "otaBytes": 1708032,
+              "mergedUrl": "https://github.com/BoatHacks/signalk-espOS-8relay/releases/download/v0.3.0/signalk-espOS-8relay-v0.3.0-merged.bin",
+              "mergedWebUrl": "https://raw.githubusercontent.com/BoatHacks/signalk-espOS-8relay/release-assets/v0.3.0/signalk-espOS-8relay-v0.3.0-merged.bin",
+              "mergedBytes": 15663104
+            }
+          ]
+        },
+        {
+          "version": "0.2.0",
+          "tag": "v0.2.0",
+          "channel": "beta",
+          "publishedAt": "2026-09-28T10:07:32Z",
+          "notes": "Input alarms, cycle counters, interlocked pairs and NC wiring, all confirmed on real hardware.",
+          "notesUrl": "https://github.com/BoatHacks/signalk-espOS-8relay/releases/tag/v0.2.0",
+          "builds": [
+            {
+              "target": "esp32s3",
+              "otaUrl": "https://github.com/BoatHacks/signalk-espOS-8relay/releases/download/v0.2.0/signalk-espOS-8relay-v0.2.0-ota.bin",
+              "otaWebUrl": "https://raw.githubusercontent.com/BoatHacks/signalk-espOS-8relay/release-assets/v0.2.0/signalk-espOS-8relay-v0.2.0-ota.bin",
+              "otaBytes": 1642496,
+              "mergedUrl": "https://github.com/BoatHacks/signalk-espOS-8relay/releases/download/v0.2.0/signalk-espOS-8relay-v0.2.0-merged.bin",
+              "mergedWebUrl": "https://raw.githubusercontent.com/BoatHacks/signalk-espOS-8relay/release-assets/v0.2.0/signalk-espOS-8relay-v0.2.0-merged.bin",
+              "mergedBytes": 15663104
+            }
+          ]
+        },
+        {
+          "version": "0.1.0",
+          "tag": "v0.1.0",
+          "channel": "stable",
+          "publishedAt": "2026-09-26T17:08:47Z",
+          "notes": "First release tested end to end on real hardware: relays, inputs, SignalK, NMEA 2000 (bench-tested, not on a boat yet).",
+          "notesUrl": "https://github.com/BoatHacks/signalk-espOS-8relay/releases/tag/v0.1.0",
+          "builds": [
+            {
+              "target": "esp32s3",
+              "otaUrl": "https://github.com/BoatHacks/signalk-espOS-8relay/releases/download/v0.1.0/signalk-espOS-8relay-v0.1.0-ota.bin",
+              "otaWebUrl": "https://raw.githubusercontent.com/BoatHacks/signalk-espOS-8relay/release-assets/v0.1.0/signalk-espOS-8relay-v0.1.0-ota.bin",
+              "otaBytes": 1576960,
+              "mergedUrl": "https://github.com/BoatHacks/signalk-espOS-8relay/releases/download/v0.1.0/signalk-espOS-8relay-v0.1.0-merged.bin",
+              "mergedWebUrl": "https://raw.githubusercontent.com/BoatHacks/signalk-espOS-8relay/release-assets/v0.1.0/signalk-espOS-8relay-v0.1.0-merged.bin",
+              "mergedBytes": 15663104
+            }
+          ]
+        },
+        {
+          "version": "0.0.10",
+          "tag": "v0.0.10",
+          "channel": "beta",
+          "publishedAt": "2026-09-25T22:16:46Z",
+          "notes": "NMEA 2000 could stay off after boot (n2k: could not open the CAN",
+          "notesUrl": "https://github.com/BoatHacks/signalk-espOS-8relay/releases/tag/v0.0.10",
+          "builds": [
+            {
+              "target": "esp32s3",
+              "otaUrl": "https://github.com/BoatHacks/signalk-espOS-8relay/releases/download/v0.0.10/signalk-espOS-8relay-v0.0.10-ota.bin",
+              "otaBytes": 1576960,
+              "mergedUrl": "https://github.com/BoatHacks/signalk-espOS-8relay/releases/download/v0.0.10/signalk-espOS-8relay-v0.0.10-merged.bin",
+              "mergedBytes": 15663104
+            }
+          ]
+        },
+        {
+          "version": "0.0.9",
+          "tag": "v0.0.9",
+          "channel": "beta",
+          "publishedAt": "2026-09-25T21:49:21Z",
+          "notes": "The settings page still failed with ESPERRNOMEM in 0.0.8. The",
+          "notesUrl": "https://github.com/BoatHacks/signalk-espOS-8relay/releases/tag/v0.0.9",
+          "builds": [
+            {
+              "target": "esp32s3",
+              "otaUrl": "https://github.com/BoatHacks/signalk-espOS-8relay/releases/download/v0.0.9/signalk-espOS-8relay-v0.0.9-ota.bin",
+              "otaBytes": 1576960,
+              "mergedUrl": "https://github.com/BoatHacks/signalk-espOS-8relay/releases/download/v0.0.9/signalk-espOS-8relay-v0.0.9-merged.bin",
+              "mergedBytes": 15663104
+            }
+          ]
+        },
+        {
+          "version": "0.0.8",
+          "tag": "v0.0.8",
+          "channel": "beta",
+          "publishedAt": "2026-09-25T21:31:57Z",
+          "notes": "The settings page could fail with ESPERRNOMEM: espOS builds the",
+          "notesUrl": "https://github.com/BoatHacks/signalk-espOS-8relay/releases/tag/v0.0.8",
+          "builds": [
+            {
+              "target": "esp32s3",
+              "otaUrl": "https://github.com/BoatHacks/signalk-espOS-8relay/releases/download/v0.0.8/signalk-espOS-8relay-v0.0.8-ota.bin",
+              "otaBytes": 1576960,
+              "mergedUrl": "https://github.com/BoatHacks/signalk-espOS-8relay/releases/download/v0.0.8/signalk-espOS-8relay-v0.0.8-merged.bin",
+              "mergedBytes": 15663104
+            }
+          ]
+        },
+        {
+          "version": "0.0.7",
+          "tag": "v0.0.7",
+          "channel": "beta",
+          "publishedAt": "2026-09-25T21:06:52Z",
+          "notes": "Update checks out of the box: on its first start the board sets",
+          "notesUrl": "https://github.com/BoatHacks/signalk-espOS-8relay/releases/tag/v0.0.7",
+          "builds": [
+            {
+              "target": "esp32s3",
+              "otaUrl": "https://github.com/BoatHacks/signalk-espOS-8relay/releases/download/v0.0.7/signalk-espOS-8relay-v0.0.7-ota.bin",
+              "otaBytes": 1576960,
+              "mergedUrl": "https://github.com/BoatHacks/signalk-espOS-8relay/releases/download/v0.0.7/signalk-espOS-8relay-v0.0.7-merged.bin",
+              "mergedBytes": 15663104
+            }
+          ]
+        },
+        {
+          "version": "0.0.6",
+          "tag": "v0.0.6",
+          "channel": "beta",
+          "publishedAt": "2026-09-25T20:46:53Z",
+          "notes": "Input link setting per relay (#1): follow (as before) or toggle,",
+          "notesUrl": "https://github.com/BoatHacks/signalk-espOS-8relay/releases/tag/v0.0.6",
+          "builds": [
+            {
+              "target": "esp32s3",
+              "otaUrl": "https://github.com/BoatHacks/signalk-espOS-8relay/releases/download/v0.0.6/signalk-espOS-8relay-v0.0.6-ota.bin",
+              "otaBytes": 1576960,
+              "mergedUrl": "https://github.com/BoatHacks/signalk-espOS-8relay/releases/download/v0.0.6/signalk-espOS-8relay-v0.0.6-merged.bin",
+              "mergedBytes": 15663104
+            }
+          ]
+        },
+        {
+          "version": "0.0.5",
+          "tag": "v0.0.5",
+          "channel": "beta",
+          "publishedAt": "2026-09-25T20:04:48Z",
+          "notes": "SignalK republish interval setting (default 10 s, 0 = off): every",
+          "notesUrl": "https://github.com/BoatHacks/signalk-espOS-8relay/releases/tag/v0.0.5",
+          "builds": [
+            {
+              "target": "esp32s3",
+              "otaUrl": "https://github.com/BoatHacks/signalk-espOS-8relay/releases/download/v0.0.5/signalk-espOS-8relay-v0.0.5-ota.bin",
+              "otaBytes": 1576960,
+              "mergedUrl": "https://github.com/BoatHacks/signalk-espOS-8relay/releases/download/v0.0.5/signalk-espOS-8relay-v0.0.5-merged.bin",
+              "mergedBytes": 15663104
+            }
+          ]
+        },
+        {
+          "version": "0.0.4",
+          "tag": "v0.0.4",
+          "channel": "beta",
+          "publishedAt": "2026-09-25T19:03:05Z",
+          "notes": "Relay page on the device, at /relays: On and Off buttons for each",
+          "notesUrl": "https://github.com/BoatHacks/signalk-espOS-8relay/releases/tag/v0.0.4",
+          "builds": [
+            {
+              "target": "esp32s3",
+              "otaUrl": "https://github.com/BoatHacks/signalk-espOS-8relay/releases/download/v0.0.4/signalk-espOS-8relay-v0.0.4-ota.bin",
+              "otaBytes": 1576960,
+              "mergedUrl": "https://github.com/BoatHacks/signalk-espOS-8relay/releases/download/v0.0.4/signalk-espOS-8relay-v0.0.4-merged.bin",
+              "mergedBytes": 15663104
+            }
+          ]
+        },
+        {
+          "version": "0.0.3",
+          "tag": "v0.0.3",
+          "channel": "beta",
+          "publishedAt": "2026-09-25T17:14:53Z",
+          "notes": "No WiFi, no setup access point, no SignalK connection and no OTA updates:",
+          "notesUrl": "https://github.com/BoatHacks/signalk-espOS-8relay/releases/tag/v0.0.3",
+          "builds": [
+            {
+              "target": "esp32s3",
+              "otaUrl": "https://github.com/BoatHacks/signalk-espOS-8relay/releases/download/v0.0.3/signalk-espOS-8relay-v0.0.3-ota.bin",
+              "otaBytes": 1576960,
+              "mergedUrl": "https://github.com/BoatHacks/signalk-espOS-8relay/releases/download/v0.0.3/signalk-espOS-8relay-v0.0.3-merged.bin",
+              "mergedBytes": 15663104
+            }
+          ]
+        },
+        {
+          "version": "0.0.2",
+          "tag": "v0.0.2",
+          "channel": "beta",
+          "publishedAt": "2026-09-25T15:56:01Z",
+          "notes": "Full Changelog:",
+          "notesUrl": "https://github.com/BoatHacks/signalk-espOS-8relay/releases/tag/v0.0.2",
+          "builds": [
+            {
+              "target": "esp32s3",
+              "otaUrl": "https://github.com/BoatHacks/signalk-espOS-8relay/releases/download/v0.0.2/signalk-espOS-8relay-v0.0.2-ota.bin",
+              "otaBytes": 856064,
+              "mergedUrl": "https://github.com/BoatHacks/signalk-espOS-8relay/releases/download/v0.0.2/signalk-espOS-8relay-v0.0.2-merged.bin",
+              "mergedBytes": 15663104
+            }
+          ]
+        },
+        {
+          "version": "0.0.1",
+          "tag": "v0.0.1",
+          "channel": "beta",
+          "publishedAt": "2026-09-25T15:43:08Z",
+          "notes": "Full Changelog:",
+          "notesUrl": "https://github.com/BoatHacks/signalk-espOS-8relay/releases/tag/v0.0.1",
+          "builds": [
+            {
+              "target": "esp32s3",
+              "otaUrl": "https://github.com/BoatHacks/signalk-espOS-8relay/releases/download/v0.0.1/signalk-espOS-8relay-v0.0.1-ota.bin",
+              "otaBytes": 856064,
+              "mergedUrl": "https://github.com/BoatHacks/signalk-espOS-8relay/releases/download/v0.0.1/signalk-espOS-8relay-v0.0.1-merged.bin",
+              "mergedBytes": 15663104
+            }
+          ]
+        }
+      ]
+    },
     {
       "id": "ble-gateway",
       "app": "ble_gateway",
