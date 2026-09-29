@@ -10,21 +10,13 @@
 
 import { readdir, readFile } from "node:fs/promises";
 import { basename, join } from "node:path";
+import { gh, TOKEN } from "./github.mjs";
 
 const ROOT = new URL("..", import.meta.url).pathname;
-const TOKEN = process.env.GITHUB_TOKEN;
 const errors = [];
 const notes = [];
 
 function fail(file, message) { errors.push(`${file}: ${message}`); }
-
-async function gh(path) {
-  const headers = { Accept: "application/vnd.github+json" };
-  if (TOKEN !== undefined) headers.Authorization = `Bearer ${TOKEN}`;
-  const r = await fetch(`https://api.github.com${path}`, { headers });
-  if (!r.ok) throw new Error(`HTTP ${r.status}`);
-  return r.json();
-}
 
 const schema = JSON.parse(
   await readFile(join(ROOT, "schema/project.schema.json"), "utf8"),
@@ -191,7 +183,13 @@ if (errors.length > 0) {
   process.exit(1);
 }
 console.log(`${files.length} project entr${files.length === 1 ? "y" : "ies"} valid.`);
+if (TOKEN === undefined) {
+  console.log(
+    "Repositories were NOT checked: set GITHUB_TOKEN or GH_TOKEN " +
+      "(GH_TOKEN=$(gh auth token)) to check that each one exists.",
+  );
+}
 console.log(
   "Structural checks only: firmware needs a board to test, so a valid entry " +
-  "means well-formed and reachable, not known-good.",
+  "means well-formed, not known-good.",
 );
