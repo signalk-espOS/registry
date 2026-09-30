@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "updated": "2026-09-29T10:42:11.551Z",
+  "updated": "2026-09-30T10:30:32.091Z",
   "esposLatest": "0.12.1",
   "projects": [
     {
@@ -551,6 +551,37 @@
       "webAssetsBranch": "release-assets",
       "official": true,
       "releases": [
+        {
+          "version": "1.4.1",
+          "tag": "v1.4.1",
+          "espos": "0.12.1",
+          "channel": "stable",
+          "publishedAt": "2026-09-29T23:53:01Z",
+          "notes": "bump espOS to v0.12.0 (#148) (98f701f)",
+          "notesUrl": "https://github.com/dirkwa/espos-p4-cockpit/releases/tag/v1.4.1",
+          "builds": [
+            {
+              "target": "esp32p4",
+              "boardId": "waveshare-p4-touch-7b",
+              "otaUrl": "https://github.com/dirkwa/espos-p4-cockpit/releases/download/v1.4.1/p4_cockpit-v1.4.1-7b-ota.bin",
+              "otaWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-p4-cockpit/release-assets/v1.4.1/p4_cockpit-v1.4.1-7b-ota.bin",
+              "otaBytes": 4460544,
+              "mergedUrl": "https://github.com/dirkwa/espos-p4-cockpit/releases/download/v1.4.1/p4_cockpit-v1.4.1-7b-merged.bin",
+              "mergedWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-p4-cockpit/release-assets/v1.4.1/p4_cockpit-v1.4.1-7b-merged.bin",
+              "mergedBytes": 15036742
+            },
+            {
+              "target": "esp32p4",
+              "boardId": "waveshare-p4-touch-x-7",
+              "otaUrl": "https://github.com/dirkwa/espos-p4-cockpit/releases/download/v1.4.1/p4_cockpit-v1.4.1-x7-ota.bin",
+              "otaWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-p4-cockpit/release-assets/v1.4.1/p4_cockpit-v1.4.1-x7-ota.bin",
+              "otaBytes": 4526080,
+              "mergedUrl": "https://github.com/dirkwa/espos-p4-cockpit/releases/download/v1.4.1/p4_cockpit-v1.4.1-x7-merged.bin",
+              "mergedWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-p4-cockpit/release-assets/v1.4.1/p4_cockpit-v1.4.1-x7-merged.bin",
+              "mergedBytes": 15036742
+            }
+          ]
+        },
         {
           "version": "1.4.0",
           "tag": "v1.4.0",
