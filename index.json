@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "updated": "2026-10-01T10:58:25.247Z",
+  "updated": "2026-10-01T13:50:26.806Z",
   "esposLatest": "0.12.1",
   "projects": [
     {
@@ -35,6 +35,25 @@
       },
       "webAssetsBranch": "release-assets",
       "releases": [
+        {
+          "version": "0.4.0",
+          "tag": "v0.4.0",
+          "channel": "stable",
+          "publishedAt": "2026-10-01T13:38:24Z",
+          "notes": "Input alarms on NMEA 2000 and the buzzer, setting the clock by hand, espOS 0.12.1 and review fixes.",
+          "notesUrl": "https://github.com/BoatHacks/signalk-espOS-8relay/releases/tag/v0.4.0",
+          "builds": [
+            {
+              "target": "esp32s3",
+              "otaUrl": "https://github.com/BoatHacks/signalk-espOS-8relay/releases/download/v0.4.0/signalk-espOS-8relay-v0.4.0-ota.bin",
+              "otaWebUrl": "https://raw.githubusercontent.com/BoatHacks/signalk-espOS-8relay/release-assets/v0.4.0/signalk-espOS-8relay-v0.4.0-ota.bin",
+              "otaBytes": 1708032,
+              "mergedUrl": "https://github.com/BoatHacks/signalk-espOS-8relay/releases/download/v0.4.0/signalk-espOS-8relay-v0.4.0-merged.bin",
+              "mergedWebUrl": "https://raw.githubusercontent.com/BoatHacks/signalk-espOS-8relay/release-assets/v0.4.0/signalk-espOS-8relay-v0.4.0-merged.bin",
+              "mergedBytes": 15663104
+            }
+          ]
+        },
         {
           "version": "0.3.0",
           "tag": "v0.3.0",
@@ -84,10 +103,8 @@
             {
               "target": "esp32s3",
               "otaUrl": "https://github.com/BoatHacks/signalk-espOS-8relay/releases/download/v0.1.0/signalk-espOS-8relay-v0.1.0-ota.bin",
-              "otaWebUrl": "https://raw.githubusercontent.com/BoatHacks/signalk-espOS-8relay/release-assets/v0.1.0/signalk-espOS-8relay-v0.1.0-ota.bin",
               "otaBytes": 1576960,
               "mergedUrl": "https://github.com/BoatHacks/signalk-espOS-8relay/releases/download/v0.1.0/signalk-espOS-8relay-v0.1.0-merged.bin",
-              "mergedWebUrl": "https://raw.githubusercontent.com/BoatHacks/signalk-espOS-8relay/release-assets/v0.1.0/signalk-espOS-8relay-v0.1.0-merged.bin",
               "mergedBytes": 15663104
             }
           ]
