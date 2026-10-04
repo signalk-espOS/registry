@@ -92,6 +92,11 @@ for (const file of files) {
     }
   }
 
+  // Compared verbatim with what the device reports, so any other spelling
+  // (upper case, a full digest, a key file) would read as a key change.
+  if (entry.signingKeyId !== undefined && !/^[0-9a-f]{16}$/.test(entry.signingKeyId)) {
+    fail(file, "signingKeyId must be 16 lower-case hex characters (espsecure signature-info-v2)");
+  }
   if (entry.signed === false) {
     notes.push(`${file}: marked unsigned — those builds accept no updates afterwards`);
   }
