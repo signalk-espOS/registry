@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "updated": "2026-10-04T10:35:41.566Z",
+  "updated": "2026-10-04T20:47:11.871Z",
   "esposLatest": "0.15.0",
   "projects": [
     {
@@ -11,6 +11,7 @@
       "description": "Firmware for the Waveshare ESP32-S3-ETH-8DI-8RO-C industrial relay board: 8 relays you can switch and 8 isolated inputs you can read, over Signal K (WiFi or Ethernet) and NMEA 2000 (PGN 127502/127501) at the same time. Per relay: name, latching or momentary with auto-off, and a chosen behaviour on Signal K loss or restart. Time-based schedules kept on the board's own real-time clock.",
       "repo": "BoatHacks/signalk-espOS-8relay",
       "license": "Apache-2.0",
+      "signingKeyId": "c21a11df97bc7699",
       "targets": [
         "esp32s3"
       ],
@@ -48,9 +49,11 @@
               "otaUrl": "https://github.com/BoatHacks/signalk-espOS-8relay/releases/download/v0.4.0/signalk-espOS-8relay-v0.4.0-ota.bin",
               "otaWebUrl": "https://raw.githubusercontent.com/BoatHacks/signalk-espOS-8relay/release-assets/v0.4.0/signalk-espOS-8relay-v0.4.0-ota.bin",
               "otaBytes": 1708032,
+              "otaSha256": "75bbdb2349d0b598102b3d7246c9402bde60f306e14afbed98d86e06fa95b88a",
               "mergedUrl": "https://github.com/BoatHacks/signalk-espOS-8relay/releases/download/v0.4.0/signalk-espOS-8relay-v0.4.0-merged.bin",
               "mergedWebUrl": "https://raw.githubusercontent.com/BoatHacks/signalk-espOS-8relay/release-assets/v0.4.0/signalk-espOS-8relay-v0.4.0-merged.bin",
-              "mergedBytes": 15663104
+              "mergedBytes": 15663104,
+              "mergedSha256": "a3be2a680d1e907f6b65117139f133a6246d9216f64aedea40c8f19dad479ef6"
             }
           ]
         },
@@ -67,9 +70,11 @@
               "otaUrl": "https://github.com/BoatHacks/signalk-espOS-8relay/releases/download/v0.3.0/signalk-espOS-8relay-v0.3.0-ota.bin",
               "otaWebUrl": "https://raw.githubusercontent.com/BoatHacks/signalk-espOS-8relay/release-assets/v0.3.0/signalk-espOS-8relay-v0.3.0-ota.bin",
               "otaBytes": 1708032,
+              "otaSha256": "088198176069296cacd5cf49070a3a5d4c199d91269627647ba7b2e61009daf0",
               "mergedUrl": "https://github.com/BoatHacks/signalk-espOS-8relay/releases/download/v0.3.0/signalk-espOS-8relay-v0.3.0-merged.bin",
               "mergedWebUrl": "https://raw.githubusercontent.com/BoatHacks/signalk-espOS-8relay/release-assets/v0.3.0/signalk-espOS-8relay-v0.3.0-merged.bin",
-              "mergedBytes": 15663104
+              "mergedBytes": 15663104,
+              "mergedSha256": "0868f4806ca1316ae2e1d7ed56327cd1abea3f3adbd0b3afe4916f85f571bef2"
             }
           ]
         },
@@ -86,9 +91,11 @@
               "otaUrl": "https://github.com/BoatHacks/signalk-espOS-8relay/releases/download/v0.2.0/signalk-espOS-8relay-v0.2.0-ota.bin",
               "otaWebUrl": "https://raw.githubusercontent.com/BoatHacks/signalk-espOS-8relay/release-assets/v0.2.0/signalk-espOS-8relay-v0.2.0-ota.bin",
               "otaBytes": 1642496,
+              "otaSha256": "879f3f18d8d14fd832e986f947c1f009b7d3ef6867ad56cdabf8ae6f1d4f715f",
               "mergedUrl": "https://github.com/BoatHacks/signalk-espOS-8relay/releases/download/v0.2.0/signalk-espOS-8relay-v0.2.0-merged.bin",
               "mergedWebUrl": "https://raw.githubusercontent.com/BoatHacks/signalk-espOS-8relay/release-assets/v0.2.0/signalk-espOS-8relay-v0.2.0-merged.bin",
-              "mergedBytes": 15663104
+              "mergedBytes": 15663104,
+              "mergedSha256": "c57682142120a30c478e6ac469a269604cc7aab66ecffc75c3ff14f4c83d7a3d"
             }
           ]
         },
@@ -104,8 +111,10 @@
               "target": "esp32s3",
               "otaUrl": "https://github.com/BoatHacks/signalk-espOS-8relay/releases/download/v0.1.0/signalk-espOS-8relay-v0.1.0-ota.bin",
               "otaBytes": 1576960,
+              "otaSha256": "b496904c0584269c80650a9df8e975a9832102423c2472c21aedcf5a22e465ae",
               "mergedUrl": "https://github.com/BoatHacks/signalk-espOS-8relay/releases/download/v0.1.0/signalk-espOS-8relay-v0.1.0-merged.bin",
-              "mergedBytes": 15663104
+              "mergedBytes": 15663104,
+              "mergedSha256": "a3b13ff5820de5696e33189eae2f5d8864ae2d1fa1729f9ad6691143098c4794"
             }
           ]
         },
@@ -121,8 +130,10 @@
               "target": "esp32s3",
               "otaUrl": "https://github.com/BoatHacks/signalk-espOS-8relay/releases/download/v0.0.10/signalk-espOS-8relay-v0.0.10-ota.bin",
               "otaBytes": 1576960,
+              "otaSha256": "898aab29ccc13f7a659a12d712aab0dede1f6af3bc57440a53d55cfc2bed4435",
               "mergedUrl": "https://github.com/BoatHacks/signalk-espOS-8relay/releases/download/v0.0.10/signalk-espOS-8relay-v0.0.10-merged.bin",
-              "mergedBytes": 15663104
+              "mergedBytes": 15663104,
+              "mergedSha256": "0754113aabc379c9dea8ffa5c0f8c12c774c4d7b7852a75b7076992a75d1b051"
             }
           ]
         },
@@ -138,8 +149,10 @@
               "target": "esp32s3",
               "otaUrl": "https://github.com/BoatHacks/signalk-espOS-8relay/releases/download/v0.0.9/signalk-espOS-8relay-v0.0.9-ota.bin",
               "otaBytes": 1576960,
+              "otaSha256": "05b6a893fb21b99bb1232d76cfc50c5765d5525c1bd9b9ee7193a1a0b33a8b1d",
               "mergedUrl": "https://github.com/BoatHacks/signalk-espOS-8relay/releases/download/v0.0.9/signalk-espOS-8relay-v0.0.9-merged.bin",
-              "mergedBytes": 15663104
+              "mergedBytes": 15663104,
+              "mergedSha256": "314b78e240cbe118c8521ba6779b5a91d1f798b2b84cf8a4eac6f219d816e435"
             }
           ]
         },
@@ -155,8 +168,10 @@
               "target": "esp32s3",
               "otaUrl": "https://github.com/BoatHacks/signalk-espOS-8relay/releases/download/v0.0.8/signalk-espOS-8relay-v0.0.8-ota.bin",
               "otaBytes": 1576960,
+              "otaSha256": "c42ebaa7fba840b3851bbf51b2981ee6f689d8441af9f5cbf4e668dd9777bfb4",
               "mergedUrl": "https://github.com/BoatHacks/signalk-espOS-8relay/releases/download/v0.0.8/signalk-espOS-8relay-v0.0.8-merged.bin",
-              "mergedBytes": 15663104
+              "mergedBytes": 15663104,
+              "mergedSha256": "74faa7df79f69e583443fc61a3b568d847954d57e63c16ee4bd0a91a31c292b9"
             }
           ]
         },
@@ -172,8 +187,10 @@
               "target": "esp32s3",
               "otaUrl": "https://github.com/BoatHacks/signalk-espOS-8relay/releases/download/v0.0.7/signalk-espOS-8relay-v0.0.7-ota.bin",
               "otaBytes": 1576960,
+              "otaSha256": "a54f8b43b76333175f60ac35a6ddbf0e8b79adbd825b0b0c727625d915491e67",
               "mergedUrl": "https://github.com/BoatHacks/signalk-espOS-8relay/releases/download/v0.0.7/signalk-espOS-8relay-v0.0.7-merged.bin",
-              "mergedBytes": 15663104
+              "mergedBytes": 15663104,
+              "mergedSha256": "43b49c2b9f7f9e99eaa12ce44b7f63d3ecb8ba686309c64f8c8968c73e89915e"
             }
           ]
         },
@@ -189,8 +206,10 @@
               "target": "esp32s3",
               "otaUrl": "https://github.com/BoatHacks/signalk-espOS-8relay/releases/download/v0.0.6/signalk-espOS-8relay-v0.0.6-ota.bin",
               "otaBytes": 1576960,
+              "otaSha256": "876531cf9bcd7a2464bef0c5d40061262992dde08361987525f0f258a1ccaa7a",
               "mergedUrl": "https://github.com/BoatHacks/signalk-espOS-8relay/releases/download/v0.0.6/signalk-espOS-8relay-v0.0.6-merged.bin",
-              "mergedBytes": 15663104
+              "mergedBytes": 15663104,
+              "mergedSha256": "90702fc9604f22cb8315feb753fb764edecbe8263c6e0e640b74f21d0c8c0618"
             }
           ]
         },
@@ -206,8 +225,10 @@
               "target": "esp32s3",
               "otaUrl": "https://github.com/BoatHacks/signalk-espOS-8relay/releases/download/v0.0.5/signalk-espOS-8relay-v0.0.5-ota.bin",
               "otaBytes": 1576960,
+              "otaSha256": "ecc45790c00b785cabc1bb4c4cd4855ab1aeac96027396ad90c17acc096678c4",
               "mergedUrl": "https://github.com/BoatHacks/signalk-espOS-8relay/releases/download/v0.0.5/signalk-espOS-8relay-v0.0.5-merged.bin",
-              "mergedBytes": 15663104
+              "mergedBytes": 15663104,
+              "mergedSha256": "8015b9fdac19476ae79f9e015c9f12367c68db0e2f629ec8f25ab6baae34be17"
             }
           ]
         },
@@ -223,8 +244,10 @@
               "target": "esp32s3",
               "otaUrl": "https://github.com/BoatHacks/signalk-espOS-8relay/releases/download/v0.0.4/signalk-espOS-8relay-v0.0.4-ota.bin",
               "otaBytes": 1576960,
+              "otaSha256": "2f23c1635945801c4dc74cf5120faaf474f30c6a9f85f44a746b8ac1118ae144",
               "mergedUrl": "https://github.com/BoatHacks/signalk-espOS-8relay/releases/download/v0.0.4/signalk-espOS-8relay-v0.0.4-merged.bin",
-              "mergedBytes": 15663104
+              "mergedBytes": 15663104,
+              "mergedSha256": "8a11d7197e905138207372b0012b006676a168e9c74fd27380aaf246ee4ce34d"
             }
           ]
         },
@@ -240,8 +263,10 @@
               "target": "esp32s3",
               "otaUrl": "https://github.com/BoatHacks/signalk-espOS-8relay/releases/download/v0.0.3/signalk-espOS-8relay-v0.0.3-ota.bin",
               "otaBytes": 1576960,
+              "otaSha256": "331aa0ec138eb3e2b39f1abf35a0e5dec3ef4547acaaa21459dcfb44b5af30a4",
               "mergedUrl": "https://github.com/BoatHacks/signalk-espOS-8relay/releases/download/v0.0.3/signalk-espOS-8relay-v0.0.3-merged.bin",
-              "mergedBytes": 15663104
+              "mergedBytes": 15663104,
+              "mergedSha256": "2dcd47ce121caa382fedabf41f0cc3ca6ad91c25fdc3b5eed4996632a51792a7"
             }
           ]
         },
@@ -257,8 +282,10 @@
               "target": "esp32s3",
               "otaUrl": "https://github.com/BoatHacks/signalk-espOS-8relay/releases/download/v0.0.2/signalk-espOS-8relay-v0.0.2-ota.bin",
               "otaBytes": 856064,
+              "otaSha256": "e0a83e8396e0895eef9286dbe9bdce4b12d009a1a7cf65bbf3b799f075f7cf57",
               "mergedUrl": "https://github.com/BoatHacks/signalk-espOS-8relay/releases/download/v0.0.2/signalk-espOS-8relay-v0.0.2-merged.bin",
-              "mergedBytes": 15663104
+              "mergedBytes": 15663104,
+              "mergedSha256": "510d1401418bb1814b984e894d65d5c29351888b78f2be4beb7c8cfc6d969346"
             }
           ]
         },
@@ -274,8 +301,10 @@
               "target": "esp32s3",
               "otaUrl": "https://github.com/BoatHacks/signalk-espOS-8relay/releases/download/v0.0.1/signalk-espOS-8relay-v0.0.1-ota.bin",
               "otaBytes": 856064,
+              "otaSha256": "6f60736600617feac8f342d5614233a72025bd88e23e147e2198bcbcbc43907b",
               "mergedUrl": "https://github.com/BoatHacks/signalk-espOS-8relay/releases/download/v0.0.1/signalk-espOS-8relay-v0.0.1-merged.bin",
-              "mergedBytes": 15663104
+              "mergedBytes": 15663104,
+              "mergedSha256": "a2a0204b70e775422f1e1b8e97e34bd4f11a6cf3c7802ebbb78df75771d53296"
             }
           ]
         }
@@ -289,6 +318,7 @@
       "description": "Scans for Bluetooth Low Energy sensors — temperature, humidity, battery monitors — and forwards their readings to a Signal K server.\n\nRuns on the ESP32-P4 (BLE via its ESP32-C6 co-processor, which is what two gateways here use in daily service) and on the ESP32, C3, S3 and C6.\n\nNot the ESP32-C5: it builds and scans, then reboots after about 30 seconds. BLE plus WiFi plus the Signal K client needs ~152 KB of its ~176 KB of internal RAM, the HTTP posts start failing and the health watchdog restarts the board. Its 8 MB of PSRAM does not help — what remains is task stacks and DMA buffers, which cannot live in external RAM. A C5 is a good WiFi/Signal K board, but it is not a BLE bridge.",
       "repo": "dirkwa/espos-ble-gateway",
       "license": "Apache-2.0",
+      "signingKeyId": "b3381b48b9cc9941",
       "targets": [
         "esp32p4",
         "esp32",
@@ -355,9 +385,11 @@
               "otaUrl": "https://github.com/dirkwa/espos-ble-gateway/releases/download/v1.0.0/ble-gateway-esp32-v1.0.0-ota.bin",
               "otaWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-ble-gateway/release-assets/v1.0.0/ble-gateway-esp32-v1.0.0-ota.bin",
               "otaBytes": 1839104,
+              "otaSha256": "60f79fbd5e0080649381ddb0705796d9d3040c6d54150e7bd60962883fb4d8b4",
               "mergedUrl": "https://github.com/dirkwa/espos-ble-gateway/releases/download/v1.0.0/ble-gateway-esp32-v1.0.0-merged.bin",
               "mergedWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-ble-gateway/release-assets/v1.0.0/ble-gateway-esp32-v1.0.0-merged.bin",
-              "mergedBytes": 6225920
+              "mergedBytes": 6225920,
+              "mergedSha256": "b16534ca54459df82c0b7a9d280213fcca2f15ed543c82d679b3b5025389a1bc"
             },
             {
               "target": "esp32c3",
@@ -365,9 +397,11 @@
               "otaUrl": "https://github.com/dirkwa/espos-ble-gateway/releases/download/v1.0.0/ble-gateway-esp32c3-v1.0.0-ota.bin",
               "otaWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-ble-gateway/release-assets/v1.0.0/ble-gateway-esp32c3-v1.0.0-ota.bin",
               "otaBytes": 1970176,
+              "otaSha256": "8cc74075351cf1940f58a611c5bbc9f7658217bc144d5d98e88200e908c10b41",
               "mergedUrl": "https://github.com/dirkwa/espos-ble-gateway/releases/download/v1.0.0/ble-gateway-esp32c3-v1.0.0-merged.bin",
               "mergedWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-ble-gateway/release-assets/v1.0.0/ble-gateway-esp32c3-v1.0.0-merged.bin",
-              "mergedBytes": 6225920
+              "mergedBytes": 6225920,
+              "mergedSha256": "0209c4051db2507b4fa378d81762ac5839f921363cc711d23169b5782cd5d972"
             },
             {
               "target": "esp32c6",
@@ -375,9 +409,11 @@
               "otaUrl": "https://github.com/dirkwa/espos-ble-gateway/releases/download/v1.0.0/ble-gateway-esp32c6-v1.0.0-ota.bin",
               "otaWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-ble-gateway/release-assets/v1.0.0/ble-gateway-esp32c6-v1.0.0-ota.bin",
               "otaBytes": 2232320,
+              "otaSha256": "f17078648228003f2e73b4ed86a43ab5c9111fc936b9287bd1523a4ff203c607",
               "mergedUrl": "https://github.com/dirkwa/espos-ble-gateway/releases/download/v1.0.0/ble-gateway-esp32c6-v1.0.0-merged.bin",
               "mergedWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-ble-gateway/release-assets/v1.0.0/ble-gateway-esp32c6-v1.0.0-merged.bin",
-              "mergedBytes": 6225920
+              "mergedBytes": 6225920,
+              "mergedSha256": "bdf3d8a92ab93b923b83e655c8b2a372dc5cf99e8de90c88c187324ea87e1047"
             },
             {
               "target": "esp32p4",
@@ -385,9 +421,11 @@
               "otaUrl": "https://github.com/dirkwa/espos-ble-gateway/releases/download/v1.0.0/ble-gateway-esp32p4-v1.0.0-ota.bin",
               "otaWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-ble-gateway/release-assets/v1.0.0/ble-gateway-esp32p4-v1.0.0-ota.bin",
               "otaBytes": 1839104,
+              "otaSha256": "3b5a9e13f16372ae29bec34494af24293bdddeeb9686964d03c70ba037fbc566",
               "mergedUrl": "https://github.com/dirkwa/espos-ble-gateway/releases/download/v1.0.0/ble-gateway-esp32p4-v1.0.0-merged.bin",
               "mergedWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-ble-gateway/release-assets/v1.0.0/ble-gateway-esp32p4-v1.0.0-merged.bin",
-              "mergedBytes": 6225920
+              "mergedBytes": 6225920,
+              "mergedSha256": "08a245ac1da823e322e50780ce18d69b57ba8cd6e2bcf7e4f7c911f154c55027"
             },
             {
               "target": "esp32s3",
@@ -395,9 +433,11 @@
               "otaUrl": "https://github.com/dirkwa/espos-ble-gateway/releases/download/v1.0.0/ble-gateway-esp32s3-v1.0.0-ota.bin",
               "otaWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-ble-gateway/release-assets/v1.0.0/ble-gateway-esp32s3-v1.0.0-ota.bin",
               "otaBytes": 1773568,
+              "otaSha256": "f79471dfb53f8ced7457e34ee8720e698af9bfc654d3ffaa0d0520db9f2e2757",
               "mergedUrl": "https://github.com/dirkwa/espos-ble-gateway/releases/download/v1.0.0/ble-gateway-esp32s3-v1.0.0-merged.bin",
               "mergedWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-ble-gateway/release-assets/v1.0.0/ble-gateway-esp32s3-v1.0.0-merged.bin",
-              "mergedBytes": 6225920
+              "mergedBytes": 6225920,
+              "mergedSha256": "5fd7b9945cde297f3fd918951aacb6cb403218ef5b0331801c4dfd366a363df5"
             }
           ]
         },
@@ -416,9 +456,11 @@
               "otaUrl": "https://github.com/dirkwa/espos-ble-gateway/releases/download/v0.3.2/ble-gateway-esp32-v0.3.2-ota.bin",
               "otaWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-ble-gateway/release-assets/v0.3.2/ble-gateway-esp32-v0.3.2-ota.bin",
               "otaBytes": 1839104,
+              "otaSha256": "2616de9e478dd4224918cbc62f97f61d82581a447de77242025715ccdc51a29c",
               "mergedUrl": "https://github.com/dirkwa/espos-ble-gateway/releases/download/v0.3.2/ble-gateway-esp32-v0.3.2-merged.bin",
               "mergedWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-ble-gateway/release-assets/v0.3.2/ble-gateway-esp32-v0.3.2-merged.bin",
-              "mergedBytes": 6225920
+              "mergedBytes": 6225920,
+              "mergedSha256": "1be3ed3baa9f903ad26d2adfea6bd41ac86b140b3e250198d003bb39e9d28e76"
             },
             {
               "target": "esp32c3",
@@ -426,9 +468,11 @@
               "otaUrl": "https://github.com/dirkwa/espos-ble-gateway/releases/download/v0.3.2/ble-gateway-esp32c3-v0.3.2-ota.bin",
               "otaWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-ble-gateway/release-assets/v0.3.2/ble-gateway-esp32c3-v0.3.2-ota.bin",
               "otaBytes": 1970176,
+              "otaSha256": "997c524bbdd08c241133249d56aa0f4924907378df8dd83f68343e34348adb6c",
               "mergedUrl": "https://github.com/dirkwa/espos-ble-gateway/releases/download/v0.3.2/ble-gateway-esp32c3-v0.3.2-merged.bin",
               "mergedWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-ble-gateway/release-assets/v0.3.2/ble-gateway-esp32c3-v0.3.2-merged.bin",
-              "mergedBytes": 6225920
+              "mergedBytes": 6225920,
+              "mergedSha256": "ca62261d8b6ec66c985514a76d923fe2890ddfe82fefc55a0bf77e3d886ba8c4"
             },
             {
               "target": "esp32c6",
@@ -436,9 +480,11 @@
               "otaUrl": "https://github.com/dirkwa/espos-ble-gateway/releases/download/v0.3.2/ble-gateway-esp32c6-v0.3.2-ota.bin",
               "otaWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-ble-gateway/release-assets/v0.3.2/ble-gateway-esp32c6-v0.3.2-ota.bin",
               "otaBytes": 2232320,
+              "otaSha256": "b9bdeb5ee698c04b8d24a35306313da9df719cef4323c0e1735a90e08e1abf78",
               "mergedUrl": "https://github.com/dirkwa/espos-ble-gateway/releases/download/v0.3.2/ble-gateway-esp32c6-v0.3.2-merged.bin",
               "mergedWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-ble-gateway/release-assets/v0.3.2/ble-gateway-esp32c6-v0.3.2-merged.bin",
-              "mergedBytes": 6225920
+              "mergedBytes": 6225920,
+              "mergedSha256": "da3e881ebde7b28a4fbde12e1e1e325bd5adef004c0a0de2c56198db18deca57"
             },
             {
               "target": "esp32p4",
@@ -446,9 +492,11 @@
               "otaUrl": "https://github.com/dirkwa/espos-ble-gateway/releases/download/v0.3.2/ble-gateway-esp32p4-v0.3.2-ota.bin",
               "otaWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-ble-gateway/release-assets/v0.3.2/ble-gateway-esp32p4-v0.3.2-ota.bin",
               "otaBytes": 1839104,
+              "otaSha256": "9da461e25500645c715b97f8bfd4ca850feda4bf21f52251d8e43dc309153b78",
               "mergedUrl": "https://github.com/dirkwa/espos-ble-gateway/releases/download/v0.3.2/ble-gateway-esp32p4-v0.3.2-merged.bin",
               "mergedWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-ble-gateway/release-assets/v0.3.2/ble-gateway-esp32p4-v0.3.2-merged.bin",
-              "mergedBytes": 6225920
+              "mergedBytes": 6225920,
+              "mergedSha256": "c9f4738a27941b72bf721aa6026a7c2c43df1f41ff4d28ecb1535a36daa359e9"
             },
             {
               "target": "esp32s3",
@@ -456,9 +504,11 @@
               "otaUrl": "https://github.com/dirkwa/espos-ble-gateway/releases/download/v0.3.2/ble-gateway-esp32s3-v0.3.2-ota.bin",
               "otaWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-ble-gateway/release-assets/v0.3.2/ble-gateway-esp32s3-v0.3.2-ota.bin",
               "otaBytes": 1773568,
+              "otaSha256": "2260a0192b4707241597d34cd6628f6a2834c9a51aba92c7cd47c6e9ad0374a8",
               "mergedUrl": "https://github.com/dirkwa/espos-ble-gateway/releases/download/v0.3.2/ble-gateway-esp32s3-v0.3.2-merged.bin",
               "mergedWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-ble-gateway/release-assets/v0.3.2/ble-gateway-esp32s3-v0.3.2-merged.bin",
-              "mergedBytes": 6225920
+              "mergedBytes": 6225920,
+              "mergedSha256": "13257e2bcfa9ddebc5634a531e782ef902f2dfa980113945230fa7c61cddc167"
             }
           ]
         },
@@ -477,9 +527,11 @@
               "otaUrl": "https://github.com/dirkwa/espos-ble-gateway/releases/download/v0.3.1/ble-gateway-esp32-v0.3.1-ota.bin",
               "otaWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-ble-gateway/release-assets/v0.3.1/ble-gateway-esp32-v0.3.1-ota.bin",
               "otaBytes": 1839104,
+              "otaSha256": "c0e6521efc9529d3ef031343cc91d46fa5a9a9c65878e5b13516930247021efc",
               "mergedUrl": "https://github.com/dirkwa/espos-ble-gateway/releases/download/v0.3.1/ble-gateway-esp32-v0.3.1-merged.bin",
               "mergedWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-ble-gateway/release-assets/v0.3.1/ble-gateway-esp32-v0.3.1-merged.bin",
-              "mergedBytes": 6225920
+              "mergedBytes": 6225920,
+              "mergedSha256": "03de507e1ac09cc12cb0c47f457a594115eb0d9211af731a0096353420601cae"
             },
             {
               "target": "esp32c3",
@@ -487,9 +539,11 @@
               "otaUrl": "https://github.com/dirkwa/espos-ble-gateway/releases/download/v0.3.1/ble-gateway-esp32c3-v0.3.1-ota.bin",
               "otaWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-ble-gateway/release-assets/v0.3.1/ble-gateway-esp32c3-v0.3.1-ota.bin",
               "otaBytes": 1970176,
+              "otaSha256": "e037eb239f9ba64a33b30fd9ee2246f1f8aafc365ace3666fa633593874273f4",
               "mergedUrl": "https://github.com/dirkwa/espos-ble-gateway/releases/download/v0.3.1/ble-gateway-esp32c3-v0.3.1-merged.bin",
               "mergedWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-ble-gateway/release-assets/v0.3.1/ble-gateway-esp32c3-v0.3.1-merged.bin",
-              "mergedBytes": 6225920
+              "mergedBytes": 6225920,
+              "mergedSha256": "a2f0d455de441e10e39655ab33e1ea35c6d94e5efffadf75dabeff04cb9df359"
             },
             {
               "target": "esp32c6",
@@ -497,9 +551,11 @@
               "otaUrl": "https://github.com/dirkwa/espos-ble-gateway/releases/download/v0.3.1/ble-gateway-esp32c6-v0.3.1-ota.bin",
               "otaWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-ble-gateway/release-assets/v0.3.1/ble-gateway-esp32c6-v0.3.1-ota.bin",
               "otaBytes": 2232320,
+              "otaSha256": "4758ff1592cda04ea44d631edc4c315658eeddeb0798764c72858c395b10e60f",
               "mergedUrl": "https://github.com/dirkwa/espos-ble-gateway/releases/download/v0.3.1/ble-gateway-esp32c6-v0.3.1-merged.bin",
               "mergedWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-ble-gateway/release-assets/v0.3.1/ble-gateway-esp32c6-v0.3.1-merged.bin",
-              "mergedBytes": 6225920
+              "mergedBytes": 6225920,
+              "mergedSha256": "39ab1c14f27a8a865252ecb1279fad025d866789ac04188605051cfda86269e8"
             },
             {
               "target": "esp32p4",
@@ -507,9 +563,11 @@
               "otaUrl": "https://github.com/dirkwa/espos-ble-gateway/releases/download/v0.3.1/ble-gateway-esp32p4-v0.3.1-ota.bin",
               "otaWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-ble-gateway/release-assets/v0.3.1/ble-gateway-esp32p4-v0.3.1-ota.bin",
               "otaBytes": 1839104,
+              "otaSha256": "418354e0735f55e81ae884a39f11875377a8be5b6db8c3c2237f40e2f15800e7",
               "mergedUrl": "https://github.com/dirkwa/espos-ble-gateway/releases/download/v0.3.1/ble-gateway-esp32p4-v0.3.1-merged.bin",
               "mergedWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-ble-gateway/release-assets/v0.3.1/ble-gateway-esp32p4-v0.3.1-merged.bin",
-              "mergedBytes": 6225920
+              "mergedBytes": 6225920,
+              "mergedSha256": "eea5930b37f8c70d4dabbe819a41060668c0385b23d66ba5a9915c251c49795d"
             },
             {
               "target": "esp32s3",
@@ -517,9 +575,11 @@
               "otaUrl": "https://github.com/dirkwa/espos-ble-gateway/releases/download/v0.3.1/ble-gateway-esp32s3-v0.3.1-ota.bin",
               "otaWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-ble-gateway/release-assets/v0.3.1/ble-gateway-esp32s3-v0.3.1-ota.bin",
               "otaBytes": 1773568,
+              "otaSha256": "03ccbfd6c621ef30097e7cdad4e7f1448dc0bb733670c72da0b525b26c7f7a15",
               "mergedUrl": "https://github.com/dirkwa/espos-ble-gateway/releases/download/v0.3.1/ble-gateway-esp32s3-v0.3.1-merged.bin",
               "mergedWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-ble-gateway/release-assets/v0.3.1/ble-gateway-esp32s3-v0.3.1-merged.bin",
-              "mergedBytes": 6225920
+              "mergedBytes": 6225920,
+              "mergedSha256": "6116c550628ac85b6e7970bca564d5596dad9ded9332d74785b24457bd96b8d4"
             }
           ]
         },
@@ -538,9 +598,11 @@
               "otaUrl": "https://github.com/dirkwa/espos-ble-gateway/releases/download/v0.3.0/ble-gateway-esp32-v0.3.0-ota.bin",
               "otaWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-ble-gateway/release-assets/v0.3.0/ble-gateway-esp32-v0.3.0-ota.bin",
               "otaBytes": 1839104,
+              "otaSha256": "979be41c7dd75ff7141ee900e063dec23a5ef1748ff4f7b17f05a106a6214c41",
               "mergedUrl": "https://github.com/dirkwa/espos-ble-gateway/releases/download/v0.3.0/ble-gateway-esp32-v0.3.0-merged.bin",
               "mergedWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-ble-gateway/release-assets/v0.3.0/ble-gateway-esp32-v0.3.0-merged.bin",
-              "mergedBytes": 6225920
+              "mergedBytes": 6225920,
+              "mergedSha256": "ccb2f8b431313289399f5b9f90c249e373b6f049cbce9ffe2cb00617ef566dfb"
             },
             {
               "target": "esp32c3",
@@ -548,9 +610,11 @@
               "otaUrl": "https://github.com/dirkwa/espos-ble-gateway/releases/download/v0.3.0/ble-gateway-esp32c3-v0.3.0-ota.bin",
               "otaWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-ble-gateway/release-assets/v0.3.0/ble-gateway-esp32c3-v0.3.0-ota.bin",
               "otaBytes": 1970176,
+              "otaSha256": "a3adb7d87c0e423120749f40051af8437978332121b4813244fdfdd3e36d32a1",
               "mergedUrl": "https://github.com/dirkwa/espos-ble-gateway/releases/download/v0.3.0/ble-gateway-esp32c3-v0.3.0-merged.bin",
               "mergedWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-ble-gateway/release-assets/v0.3.0/ble-gateway-esp32c3-v0.3.0-merged.bin",
-              "mergedBytes": 6225920
+              "mergedBytes": 6225920,
+              "mergedSha256": "3defc2f6629a2dd508ff39dca0ddab18b3f2b0bc9e08a4cdf9acb177d824a328"
             },
             {
               "target": "esp32c6",
@@ -558,9 +622,11 @@
               "otaUrl": "https://github.com/dirkwa/espos-ble-gateway/releases/download/v0.3.0/ble-gateway-esp32c6-v0.3.0-ota.bin",
               "otaWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-ble-gateway/release-assets/v0.3.0/ble-gateway-esp32c6-v0.3.0-ota.bin",
               "otaBytes": 2232320,
+              "otaSha256": "b211c5c990f5e8bda28e47567c9a8498e4bc8aa82e5a02e98004667b11a569cf",
               "mergedUrl": "https://github.com/dirkwa/espos-ble-gateway/releases/download/v0.3.0/ble-gateway-esp32c6-v0.3.0-merged.bin",
               "mergedWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-ble-gateway/release-assets/v0.3.0/ble-gateway-esp32c6-v0.3.0-merged.bin",
-              "mergedBytes": 6225920
+              "mergedBytes": 6225920,
+              "mergedSha256": "6058268e9592102bea3e738590d4dee14fc3daf12f1b223d3d84908105b4482f"
             },
             {
               "target": "esp32p4",
@@ -568,9 +634,11 @@
               "otaUrl": "https://github.com/dirkwa/espos-ble-gateway/releases/download/v0.3.0/ble-gateway-esp32p4-v0.3.0-ota.bin",
               "otaWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-ble-gateway/release-assets/v0.3.0/ble-gateway-esp32p4-v0.3.0-ota.bin",
               "otaBytes": 1839104,
+              "otaSha256": "24d6d32d5dd14f17bf7f7fd1ca161d53f320120140d70468ad400a1e607de67b",
               "mergedUrl": "https://github.com/dirkwa/espos-ble-gateway/releases/download/v0.3.0/ble-gateway-esp32p4-v0.3.0-merged.bin",
               "mergedWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-ble-gateway/release-assets/v0.3.0/ble-gateway-esp32p4-v0.3.0-merged.bin",
-              "mergedBytes": 6225920
+              "mergedBytes": 6225920,
+              "mergedSha256": "0ae1ad0abc234a21ffe7d8055b9f39acd1b991ef97a4e5d7ca87bf5789211244"
             },
             {
               "target": "esp32s3",
@@ -578,9 +646,11 @@
               "otaUrl": "https://github.com/dirkwa/espos-ble-gateway/releases/download/v0.3.0/ble-gateway-esp32s3-v0.3.0-ota.bin",
               "otaWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-ble-gateway/release-assets/v0.3.0/ble-gateway-esp32s3-v0.3.0-ota.bin",
               "otaBytes": 1773568,
+              "otaSha256": "d5ded16153e6f6b9207bbc7b1e108c9197aa0a5472c5b809974768520715584b",
               "mergedUrl": "https://github.com/dirkwa/espos-ble-gateway/releases/download/v0.3.0/ble-gateway-esp32s3-v0.3.0-merged.bin",
               "mergedWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-ble-gateway/release-assets/v0.3.0/ble-gateway-esp32s3-v0.3.0-merged.bin",
-              "mergedBytes": 6225920
+              "mergedBytes": 6225920,
+              "mergedSha256": "aff5e9dbc4a046a7745be738d1057e9c5b9f85c548b67dcf2e8e5c3a41e85321"
             }
           ]
         }
@@ -594,6 +664,7 @@
       "description": "A configurable instrument panel: gauges, arcs, anchor watch and digital switching, laid out in the Signal K HMI designer and rendered on the panel. Also does voice control and NMEA 2000 over CAN.",
       "repo": "dirkwa/espos-p4-cockpit",
       "license": "Apache-2.0",
+      "signingKeyId": "b3381b48b9cc9941",
       "targets": [
         "esp32p4"
       ],
@@ -644,9 +715,11 @@
               "otaUrl": "https://github.com/dirkwa/espos-p4-cockpit/releases/download/v1.5.0/p4_cockpit-v1.5.0-7b-ota.bin",
               "otaWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-p4-cockpit/release-assets/v1.5.0/p4_cockpit-v1.5.0-7b-ota.bin",
               "otaBytes": 4395008,
+              "otaSha256": "836827fe7bcf799ee9c6b575ca92d35b4e0c57528e5982e4ca7760430f579876",
               "mergedUrl": "https://github.com/dirkwa/espos-p4-cockpit/releases/download/v1.5.0/p4_cockpit-v1.5.0-7b-merged.bin",
               "mergedWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-p4-cockpit/release-assets/v1.5.0/p4_cockpit-v1.5.0-7b-merged.bin",
-              "mergedBytes": 15036742
+              "mergedBytes": 15036742,
+              "mergedSha256": "3578850fc272a4df254c2dae0129eadcf2692a448a5b5712619f926f1bfd2ae8"
             },
             {
               "target": "esp32p4",
@@ -654,9 +727,11 @@
               "otaUrl": "https://github.com/dirkwa/espos-p4-cockpit/releases/download/v1.5.0/p4_cockpit-v1.5.0-x7-ota.bin",
               "otaWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-p4-cockpit/release-assets/v1.5.0/p4_cockpit-v1.5.0-x7-ota.bin",
               "otaBytes": 4460544,
+              "otaSha256": "86799369f0d30d065057bf76a6a6387c912b90fbfd3a5b2dcde4e5034d411c1d",
               "mergedUrl": "https://github.com/dirkwa/espos-p4-cockpit/releases/download/v1.5.0/p4_cockpit-v1.5.0-x7-merged.bin",
               "mergedWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-p4-cockpit/release-assets/v1.5.0/p4_cockpit-v1.5.0-x7-merged.bin",
-              "mergedBytes": 15036742
+              "mergedBytes": 15036742,
+              "mergedSha256": "60c0d38bb459efda1c3aac3006f43e49c7b29418969dd56120ce10ff8170c3e1"
             }
           ]
         },
@@ -675,9 +750,11 @@
               "otaUrl": "https://github.com/dirkwa/espos-p4-cockpit/releases/download/v1.4.1/p4_cockpit-v1.4.1-7b-ota.bin",
               "otaWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-p4-cockpit/release-assets/v1.4.1/p4_cockpit-v1.4.1-7b-ota.bin",
               "otaBytes": 4460544,
+              "otaSha256": "1f620f9197800ba243bcda8c5879cfd9d136f679658ede816c86416e39228773",
               "mergedUrl": "https://github.com/dirkwa/espos-p4-cockpit/releases/download/v1.4.1/p4_cockpit-v1.4.1-7b-merged.bin",
               "mergedWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-p4-cockpit/release-assets/v1.4.1/p4_cockpit-v1.4.1-7b-merged.bin",
-              "mergedBytes": 15036742
+              "mergedBytes": 15036742,
+              "mergedSha256": "18a7f11d1b345cc1a7176fb187dc350a034df72d5f980cb34dddba6dbedea955"
             },
             {
               "target": "esp32p4",
@@ -685,9 +762,11 @@
               "otaUrl": "https://github.com/dirkwa/espos-p4-cockpit/releases/download/v1.4.1/p4_cockpit-v1.4.1-x7-ota.bin",
               "otaWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-p4-cockpit/release-assets/v1.4.1/p4_cockpit-v1.4.1-x7-ota.bin",
               "otaBytes": 4526080,
+              "otaSha256": "e9a7039a0276db222daec09b09437525619bc509633e19f4c4794647d1af87c4",
               "mergedUrl": "https://github.com/dirkwa/espos-p4-cockpit/releases/download/v1.4.1/p4_cockpit-v1.4.1-x7-merged.bin",
               "mergedWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-p4-cockpit/release-assets/v1.4.1/p4_cockpit-v1.4.1-x7-merged.bin",
-              "mergedBytes": 15036742
+              "mergedBytes": 15036742,
+              "mergedSha256": "0fd014ca749e7ac42d01ad0900930ae17bf56b558b63516e546dfe49c8d912c0"
             }
           ]
         },
@@ -706,9 +785,11 @@
               "otaUrl": "https://github.com/dirkwa/espos-p4-cockpit/releases/download/v1.4.0/p4_cockpit-v1.4.0-7b-ota.bin",
               "otaWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-p4-cockpit/release-assets/v1.4.0/p4_cockpit-v1.4.0-7b-ota.bin",
               "otaBytes": 4460544,
+              "otaSha256": "362287967895a86c351058f63df8fb681a8dd1fa009f6e8f03f355de9aa6e570",
               "mergedUrl": "https://github.com/dirkwa/espos-p4-cockpit/releases/download/v1.4.0/p4_cockpit-v1.4.0-7b-merged.bin",
               "mergedWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-p4-cockpit/release-assets/v1.4.0/p4_cockpit-v1.4.0-7b-merged.bin",
-              "mergedBytes": 15036742
+              "mergedBytes": 15036742,
+              "mergedSha256": "2d2ddc3cbabd964426f531bf25bd7e81d2e18df6df116d36835b682512fe6fc5"
             },
             {
               "target": "esp32p4",
@@ -716,9 +797,11 @@
               "otaUrl": "https://github.com/dirkwa/espos-p4-cockpit/releases/download/v1.4.0/p4_cockpit-v1.4.0-x7-ota.bin",
               "otaWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-p4-cockpit/release-assets/v1.4.0/p4_cockpit-v1.4.0-x7-ota.bin",
               "otaBytes": 4526080,
+              "otaSha256": "f960c11b49d32e11d3f79edadacf87b17f56707220fa321c34b856d6f08472f8",
               "mergedUrl": "https://github.com/dirkwa/espos-p4-cockpit/releases/download/v1.4.0/p4_cockpit-v1.4.0-x7-merged.bin",
               "mergedWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-p4-cockpit/release-assets/v1.4.0/p4_cockpit-v1.4.0-x7-merged.bin",
-              "mergedBytes": 15036742
+              "mergedBytes": 15036742,
+              "mergedSha256": "079e89651ca922cd6c9b4aba0b5ffa07c8fc02cd1d48636a38bf8cea01199473"
             }
           ]
         },
@@ -736,16 +819,20 @@
               "boardId": "waveshare-p4-touch-7b",
               "otaUrl": "https://github.com/dirkwa/espos-p4-cockpit/releases/download/v1.3.2/p4_cockpit-v1.3.2-7b-ota.bin",
               "otaBytes": 4460544,
+              "otaSha256": "4cef1089f971edcbca1fd490abd73a9917910d6e05091b850b7129a9d2c70fa3",
               "mergedUrl": "https://github.com/dirkwa/espos-p4-cockpit/releases/download/v1.3.2/p4_cockpit-v1.3.2-7b-merged.bin",
-              "mergedBytes": 15036742
+              "mergedBytes": 15036742,
+              "mergedSha256": "ef7e97a255b6aa60dd595bae783de282fc9a891e7451a729fa5ab455617d2123"
             },
             {
               "target": "esp32p4",
               "boardId": "waveshare-p4-touch-x-7",
               "otaUrl": "https://github.com/dirkwa/espos-p4-cockpit/releases/download/v1.3.2/p4_cockpit-v1.3.2-x7-ota.bin",
               "otaBytes": 4526080,
+              "otaSha256": "ce0de34fba5377c0b9abf7897ecb013946389dc4816ec212ea24f8374cc87e76",
               "mergedUrl": "https://github.com/dirkwa/espos-p4-cockpit/releases/download/v1.3.2/p4_cockpit-v1.3.2-x7-merged.bin",
-              "mergedBytes": 15036742
+              "mergedBytes": 15036742,
+              "mergedSha256": "d0db8e56e11d063e4b3ede060beab1dfa14ecd501de2043f51d1454bb9569de6"
             }
           ]
         },
@@ -763,16 +850,20 @@
               "boardId": "waveshare-p4-touch-7b",
               "otaUrl": "https://github.com/dirkwa/espos-p4-cockpit/releases/download/v1.3.1/p4_cockpit-v1.3.1-7b-ota.bin",
               "otaBytes": 4460544,
+              "otaSha256": "4047b86579a695cef5f7927d2eca400d140c8367b765ba47b1badd22be413ffc",
               "mergedUrl": "https://github.com/dirkwa/espos-p4-cockpit/releases/download/v1.3.1/p4_cockpit-v1.3.1-7b-merged.bin",
-              "mergedBytes": 15036742
+              "mergedBytes": 15036742,
+              "mergedSha256": "26456064c5fdeed591e017eabcc539e42e1cf6f6599b15d04d4572c2ef8433f8"
             },
             {
               "target": "esp32p4",
               "boardId": "waveshare-p4-touch-x-7",
               "otaUrl": "https://github.com/dirkwa/espos-p4-cockpit/releases/download/v1.3.1/p4_cockpit-v1.3.1-x7-ota.bin",
               "otaBytes": 4526080,
+              "otaSha256": "f917cfa845274f331c5abfad50ef91c1fbf65dfeb16fcf8883ac02801ca1eabb",
               "mergedUrl": "https://github.com/dirkwa/espos-p4-cockpit/releases/download/v1.3.1/p4_cockpit-v1.3.1-x7-merged.bin",
-              "mergedBytes": 15036742
+              "mergedBytes": 15036742,
+              "mergedSha256": "9de4391b45e825802da4980b6d67d06963bcb783c3473847d30f605cc240509b"
             }
           ]
         },
@@ -790,16 +881,20 @@
               "boardId": "waveshare-p4-touch-7b",
               "otaUrl": "https://github.com/dirkwa/espos-p4-cockpit/releases/download/v1.3.0/p4_cockpit-v1.3.0-7b-ota.bin",
               "otaBytes": 4460544,
+              "otaSha256": "fdd253a54e3654a7ae2a68c2b865b08f807b26b2687f826b3777583bbdf8cf31",
               "mergedUrl": "https://github.com/dirkwa/espos-p4-cockpit/releases/download/v1.3.0/p4_cockpit-v1.3.0-7b-merged.bin",
-              "mergedBytes": 15036742
+              "mergedBytes": 15036742,
+              "mergedSha256": "3532066e3cbaeb0dc42158815c0b54354879ff084f0e011cd107641894ca3a61"
             },
             {
               "target": "esp32p4",
               "boardId": "waveshare-p4-touch-x-7",
               "otaUrl": "https://github.com/dirkwa/espos-p4-cockpit/releases/download/v1.3.0/p4_cockpit-v1.3.0-x7-ota.bin",
               "otaBytes": 4526080,
+              "otaSha256": "97cb596a4da00a7e05e22533fa472ca11b4d5994f665558b92141b4c23e456fe",
               "mergedUrl": "https://github.com/dirkwa/espos-p4-cockpit/releases/download/v1.3.0/p4_cockpit-v1.3.0-x7-merged.bin",
-              "mergedBytes": 15036742
+              "mergedBytes": 15036742,
+              "mergedSha256": "4a46a41f833b23c5e7196f1927e715d1214dddbe63c7383009e4054c2d1a0040"
             }
           ]
         },
@@ -815,8 +910,10 @@
               "target": "esp32p4",
               "otaUrl": "https://github.com/dirkwa/espos-p4-cockpit/releases/download/v1.2.0/p4_cockpit-v1.2.0-ota.bin",
               "otaBytes": 4460544,
+              "otaSha256": "3228c09d45c400e6a647c7be0325a627b8f3711dd76e93686282fcb9ef73d41f",
               "mergedUrl": "https://github.com/dirkwa/espos-p4-cockpit/releases/download/v1.2.0/p4_cockpit-v1.2.0-merged.bin",
-              "mergedBytes": 15036742
+              "mergedBytes": 15036742,
+              "mergedSha256": "9f4a1df43623839e4a77b35c63b5cf6b159f10863cd524cbc58a6ac87bdeeed6"
             }
           ]
         },
@@ -833,8 +930,10 @@
               "target": "esp32p4",
               "otaUrl": "https://github.com/dirkwa/espos-p4-cockpit/releases/download/v1.1.0/p4_cockpit-v1.1.0-ota.bin",
               "otaBytes": 4395008,
+              "otaSha256": "6e94822cef90656a23c04612bec6050922dfead043c9a1637b90faba95b19124",
               "mergedUrl": "https://github.com/dirkwa/espos-p4-cockpit/releases/download/v1.1.0/p4_cockpit-v1.1.0-merged.bin",
-              "mergedBytes": 15036742
+              "mergedBytes": 15036742,
+              "mergedSha256": "59a498334afb37a824c207d36ad8d0c9deb4403d31d4fd0e6d3f75db7c216a01"
             }
           ]
         }
