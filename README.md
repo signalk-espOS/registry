@@ -152,8 +152,9 @@ with now. After a key change, devices still on the old key are shown as
 needing USB even for older releases signed with it.
 
 Each build also carries `otaSha256` and `mergedSha256`, taken from the digest
-GitHub records for the asset. The plugin passes the OTA checksum on to the
-device, which checks it before writing.
+GitHub records for the asset. The plugin checks the mirrored OTA image
+against `otaSha256` and copies it into the manifest, where espOS shows it but
+does not verify it: the image's signature is what the device trusts.
 
 ## What a valid entry does and does not mean
 
