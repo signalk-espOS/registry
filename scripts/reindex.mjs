@@ -43,6 +43,18 @@ const KNOWN_TARGETS = [
 
 const warnings = [];
 
+/**
+ * The asset's SHA-256 as lowercase hex, from the digest GitHub computes at
+ * upload. The device verifies a manifest's sha256 before it writes a byte, so
+ * this is the checksum the plugin forwards. Older assets carry no digest, and
+ * an absent checksum is better than one computed from a second download that
+ * might not be the same file.
+ */
+function sha256Of(asset) {
+  const m = /^sha256:([0-9a-f]{64})$/i.exec(String(asset?.digest ?? ""));
+  return m === null ? undefined : m[1].toLowerCase();
+}
+
 /** A target named in an asset filename, or undefined rather than a guess. */
 function targetFromName(name) {
   const lower = name.toLowerCase();
@@ -364,6 +376,14 @@ async function resolveProject(project) {
       [...otas, ...mergeds].map((h) => boardSegmentKey(h.board)),
     );
     const builds = [];
+    // Consumers read `unsigned` per build and nothing else, so a project-wide
+    // `signed: false` has to reach every build here. A release CI made without
+    // the key marks its own notes ("Unsigned build:" from espOS's workflow,
+    // "Unsigned build —" from the cockpit's), which catches a signed project's
+    // one-off throwaway-key release too.
+    const unsigned =
+      project.signed === false ||
+      String(release.body ?? "").includes("**Unsigned build");
     for (const key of keys) {
       const seg = key === NO_BOARD ? undefined : key;
       const ota = otas.find((h) => boardSegmentKey(h.board) === key)?.asset;
@@ -439,9 +459,12 @@ async function resolveProject(project) {
         otaUrl: ota?.browser_download_url,
         otaWebUrl: webUrl(ota),
         otaBytes: ota?.size,
+        otaSha256: sha256Of(ota),
         mergedUrl: merged?.browser_download_url,
         mergedWebUrl: webUrl(merged),
         mergedBytes: merged?.size,
+        mergedSha256: sha256Of(merged),
+        ...(unsigned ? { unsigned: true } : {}),
       });
     }
     if (builds.length === 0) continue;

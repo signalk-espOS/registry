@@ -6,6 +6,7 @@
   "description": "A configurable instrument panel: gauges, arcs, anchor watch and digital switching, laid out in the Signal K HMI designer and rendered on the panel. Also does voice control and NMEA 2000 over CAN.",
   "repo": "dirkwa/espos-p4-cockpit",
   "license": "Apache-2.0",
+  "signingKeyId": "b3381b48b9cc9941",
   "targets": [
     "esp32p4"
   ],

@@ -6,6 +6,7 @@
   "description": "Firmware for the Waveshare ESP32-S3-ETH-8DI-8RO-C industrial relay board: 8 relays you can switch and 8 isolated inputs you can read, over Signal K (WiFi or Ethernet) and NMEA 2000 (PGN 127502/127501) at the same time. Per relay: name, latching or momentary with auto-off, and a chosen behaviour on Signal K loss or restart. Time-based schedules kept on the board's own real-time clock.",
   "repo": "BoatHacks/signalk-espOS-8relay",
   "license": "Apache-2.0",
+  "signingKeyId": "c21a11df97bc7699",
   "targets": [
     "esp32s3"
   ],
