@@ -124,22 +124,32 @@ A device accepts only firmware signed with the key it was flashed with. So:
 
 - moving a device to firmware signed with another key needs a USB cable, not an
   over-the-air update;
-- a release built with a throwaway key (`signed: false`, or a release whose notes
-  say "Unsigned build") will flash but accept no updates afterwards. Every build
-  of it is indexed with `"unsigned": true`, and the plugin says so;
+- a release built with a throwaway key (`signed: false`) will flash but accept
+  no updates afterwards. Every build of it is indexed with `"unsigned": true`,
+  and the plugin says so;
 - changing your signing key strands every device already in the field. Record
   it as `signingKeyId` so that change is visible rather than silent.
 
 `signingKeyId` is the first 16 hex characters of the key's Secure Boot V2
-public-key digest. A device running an espOS release after 0.15.0 reports the same value
-as `running.key_fp` in `GET /api/v1/ota/status`, so the plugin can see that an
-update would be refused before sending it. Read it from any of your released
-images, or from the key itself:
+public-key digest, in lower case with no spaces. A device on an espOS release
+after 0.15.0 reports the same value as `running.key_fp` in
+`GET /api/v1/ota/status` (espOS's default signed-update setting; an original
+ESP32 needs chip revision 3), so the plugin can see that an update would be
+refused before sending it. Read it from any of your released images, or from
+the key itself:
 
 ```sh
-espsecure signature-info-v2 my-firmware-esp32c6-v1.0.0-ota.bin   # "Public key digest for block 0: b3 38 1b 48 …"
+# the first 8 bytes of "Public key digest for block 0: b3 38 1b 48 b9 cc 99 41 …"
+espsecure signature-info-v2 my-firmware-esp32c6-v1.0.0-ota.bin \
+  | grep -m1 'Public key digest' | cut -d: -f2 | tr -d ' ' | cut -c1-16
+# or from the key file
 espsecure digest-sbv2-public-key --keyfile signing_key.pem -o digest.bin
+od -An -tx1 digest.bin | tr -d ' \n' | cut -c1-16
 ```
+
+The id covers every release of the project, so it records the key you sign
+with now. After a key change, devices still on the old key are shown as
+needing USB even for older releases signed with it.
 
 Each build also carries `otaSha256` and `mergedSha256`, taken from the digest
 GitHub records for the asset. The plugin passes the OTA checksum on to the
