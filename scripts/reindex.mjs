@@ -376,14 +376,10 @@ async function resolveProject(project) {
       [...otas, ...mergeds].map((h) => boardSegmentKey(h.board)),
     );
     const builds = [];
-    // Consumers read `unsigned` per build and nothing else, so a project-wide
-    // `signed: false` has to reach every build here. A release CI made without
-    // the key marks its own notes ("Unsigned build:" from espOS's workflow,
-    // "Unsigned build —" from the cockpit's), which catches a signed project's
-    // one-off throwaway-key release too.
-    const unsigned =
-      project.signed === false ||
-      String(release.body ?? "").includes("**Unsigned build");
+    // Consumers decide "USB only" per build, so a project-wide `signed: false`
+    // is copied onto every build. Release notes are deliberately not read for
+    // this: their "Unsigned build" warning survives a signed re-release.
+    const unsigned = project.signed === false;
     for (const key of keys) {
       const seg = key === NO_BOARD ? undefined : key;
       const ota = otas.find((h) => boardSegmentKey(h.board) === key)?.asset;
