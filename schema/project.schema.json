@@ -149,6 +149,8 @@
     "signingKeyId": {
       "type": "string",
       "description": "Stable identity of the signing key these releases use: the first 16 hex characters of the key's Secure Boot V2 public-key digest (`espsecure signature-info-v2 <image>.bin`), which a device on an espOS release after 0.15.0 reports as running.key_fp. A device only accepts firmware signed with the key it was flashed with, so changing this strands every device already in the field.",
+      "minLength": 16,
+      "maxLength": 16,
       "pattern": "^[0-9a-f]{16}$"
     },
     "signed": {
