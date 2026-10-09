@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "updated": "2026-10-09T11:20:32.157Z",
+  "updated": "2026-10-09T22:16:48.254Z",
   "esposLatest": "0.16.0",
   "projects": [
     {
@@ -315,7 +315,7 @@
       "app": "ble_gateway",
       "name": "BLE Gateway",
       "summary": "Bridges Bluetooth sensors into Signal K",
-      "description": "Scans for Bluetooth Low Energy sensors — temperature, humidity, battery monitors — and forwards their readings to a Signal K server.\n\nRuns on the ESP32-P4 (BLE via its ESP32-C6 co-processor, which is what two gateways here use in daily service) and on the ESP32, C3, S3 and C6.\n\nNot the ESP32-C5: it builds and scans, then reboots after about 30 seconds. BLE plus WiFi plus the Signal K client needs ~152 KB of its ~176 KB of internal RAM, the HTTP posts start failing and the health watchdog restarts the board. Its 8 MB of PSRAM does not help — what remains is task stacks and DMA buffers, which cannot live in external RAM. A C5 is a good WiFi/Signal K board, but it is not a BLE bridge.",
+      "description": "Scans for Bluetooth Low Energy sensors — temperature, humidity, battery monitors — and forwards their readings to a Signal K server.\n\nRuns on the Waveshare ESP32-P4 boards (BLE via their ESP32-C6 co-processor, which is what two gateways here use in daily service; the PoE-ETH on its cable, the Touch-LCD boards on WiFi) and on the ESP32, C3, S3 and C6.\n\nNot the ESP32-C5: it builds and scans, then reboots after about 30 seconds. BLE plus WiFi plus the Signal K client needs ~152 KB of its ~176 KB of internal RAM, the HTTP posts start failing and the health watchdog restarts the board. Its 8 MB of PSRAM does not help — what remains is task stacks and DMA buffers, which cannot live in external RAM. A C5 is a good WiFi/Signal K board, but it is not a BLE bridge.",
       "repo": "dirkwa/espos-ble-gateway",
       "license": "Apache-2.0",
       "signingKeyId": "b3381b48b9cc9941",
@@ -355,8 +355,8 @@
         {
           "id": "waveshare-p4-poe",
           "target": "esp32p4",
-          "name": "Waveshare ESP32-P4-WIFI6-POE-ETH",
-          "notes": "Never connect USB and Ethernet at the same time: powering the board from USB and PoE together damages it.",
+          "name": "Waveshare ESP32-P4: POE-ETH, Touch-LCD-7B or Touch-LCD-X",
+          "notes": "One image for all three boards: the PoE-ETH runs on its cable, the Touch-LCD boards on WiFi with the screen left dark. Releases up to 1.0.0 have WiFi off and only work on the PoE-ETH. On the PoE-ETH, never connect USB and Ethernet at the same time: powering the board from USB and PoE together damages it.",
           "assetSegment": "esp32p4"
         }
       ],
