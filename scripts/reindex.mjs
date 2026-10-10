@@ -524,11 +524,15 @@ const previous = await readFile(join(ROOT, "index.json"), "utf8")
   .then((text) => JSON.parse(text))
   .catch(() => undefined);
 const DAY_MS = 24 * 3600 * 1000;
+/* NaN for a missing or unreadable timestamp, which fails both bounds. A
+ * future one (a hand-made index, a skewed clock) fails the first: kept, it
+ * would hold back the daily commit until it was a day in the past. */
+const age = Date.now() - Date.parse(previous?.updated);
 const keepUpdated =
   previous !== undefined &&
   previous.schema === 1 &&
-  typeof previous.updated === "string" &&
-  Date.now() - Date.parse(previous.updated) < DAY_MS &&
+  age >= 0 &&
+  age < DAY_MS &&
   JSON.stringify({ ...previous, schema: undefined, updated: undefined }) ===
     JSON.stringify(body);
 const index = {
