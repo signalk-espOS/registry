@@ -5,7 +5,7 @@
  * The plugin reads the generated index and nothing else, so it makes exactly
  * one unauthenticated request to raw.githubusercontent.com — no GitHub API, no
  * token, no rate limit on a boat. Resolving releases is this script's job, run
- * nightly and on merge.
+ * hourly and on merge.
  *
  * Asset naming is not assumed. The cockpit publishes
  * `p4_cockpit-v1.2.0-ota.bin` with no target segment, and its older releases
@@ -510,11 +510,31 @@ const esposLatest = (() => {
   return names[names.length - 1];
 })();
 
-const index = {
-  schema: 1,
-  updated: new Date().toISOString(),
+const body = {
   ...(esposLatest === undefined ? {} : { esposLatest }),
   projects,
+};
+/* `updated` says when the content last changed, give or take a day. The
+ * workflow runs hourly and commits only a changed file; a fresh timestamp on
+ * every run would commit 24 times a day and make every boat re-download an
+ * identical index. It still moves once a day with nothing new: GitHub turns
+ * off a schedule after 60 days without a commit, and this daily commit is
+ * what keeps the hourly run alive through a quiet spell. */
+const previous = await readFile(join(ROOT, "index.json"), "utf8")
+  .then((text) => JSON.parse(text))
+  .catch(() => undefined);
+const DAY_MS = 24 * 3600 * 1000;
+const keepUpdated =
+  previous !== undefined &&
+  previous.schema === 1 &&
+  typeof previous.updated === "string" &&
+  Date.now() - Date.parse(previous.updated) < DAY_MS &&
+  JSON.stringify({ ...previous, schema: undefined, updated: undefined }) ===
+    JSON.stringify(body);
+const index = {
+  schema: 1,
+  updated: keepUpdated ? previous.updated : new Date().toISOString(),
+  ...body,
 };
 await writeFile(join(ROOT, "index.json"), JSON.stringify(index, null, 2) + "\n");
 

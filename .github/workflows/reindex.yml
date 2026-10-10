@@ -1,12 +1,17 @@
 name: Reindex
 
 # Releases appear after a pull request merges, so an index built only at PR
-# time goes stale within a week. This keeps it current: nightly for new
+# time goes stale within a week. This keeps it current: hourly for new
 # releases, and on every merge that changes an entry or how the index is
 # built, so a new project is listed minutes after its pull request merges.
+#
+# Hourly, not nightly: the manager caches the index on top of this, so a
+# nightly run left a fresh release unseen for up to a day and a half, with
+# boats told they were up to date. With nothing new, a run commits at most
+# once a day (scripts/reindex.mjs says why).
 on:
   schedule:
-    - cron: "17 4 * * *"
+    - cron: "17 * * * *"
   workflow_dispatch:
   push:
     branches: [main]
@@ -15,7 +20,7 @@ on:
       - "scripts/**"
       - "schema/**"
       # A hand-made index that reached main is replaced at once rather than
-      # served to boats until the nightly run. This workflow's own commit
+      # served to boats until the next scheduled run. This workflow's own commit
       # does not come back here: a push made with the workflow token starts
       # no workflow.
       - "index.json"
