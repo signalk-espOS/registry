@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "updated": "2026-10-10T22:03:47.254Z",
+  "updated": "2026-10-11T00:15:39.452Z",
   "esposLatest": "0.16.1",
   "projects": [
     {
@@ -894,6 +894,41 @@
       "official": true,
       "releases": [
         {
+          "version": "1.5.2",
+          "tag": "v1.5.2",
+          "espos": "0.16.1",
+          "channel": "stable",
+          "publishedAt": "2026-10-10T22:03:35Z",
+          "notes": "bump espOS to v0.16.1 (#163) (edee521)",
+          "notesUrl": "https://github.com/dirkwa/espos-p4-cockpit/releases/tag/v1.5.2",
+          "builds": [
+            {
+              "target": "esp32p4",
+              "boardId": "waveshare-p4-touch-7b",
+              "otaUrl": "https://github.com/dirkwa/espos-p4-cockpit/releases/download/v1.5.2/p4_cockpit-v1.5.2-7b-ota.bin",
+              "otaWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-p4-cockpit/release-assets/v1.5.2/p4_cockpit-v1.5.2-7b-ota.bin",
+              "otaBytes": 2887680,
+              "otaSha256": "2e17fc57457cd703879b5370a2f36fd8be244859ea72c49f9fc6440e4ecfac29",
+              "mergedUrl": "https://github.com/dirkwa/espos-p4-cockpit/releases/download/v1.5.2/p4_cockpit-v1.5.2-7b-merged.bin",
+              "mergedWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-p4-cockpit/release-assets/v1.5.2/p4_cockpit-v1.5.2-7b-merged.bin",
+              "mergedBytes": 15036742,
+              "mergedSha256": "ef2fb41bc8480ef75708271c9891761c681f6d2e3f25d8eded2b6b85446fe052"
+            },
+            {
+              "target": "esp32p4",
+              "boardId": "waveshare-p4-touch-x-7",
+              "otaUrl": "https://github.com/dirkwa/espos-p4-cockpit/releases/download/v1.5.2/p4_cockpit-v1.5.2-x7-ota.bin",
+              "otaWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-p4-cockpit/release-assets/v1.5.2/p4_cockpit-v1.5.2-x7-ota.bin",
+              "otaBytes": 2953216,
+              "otaSha256": "9ff4a59a81a670f338a217fd790dd985a5b6211e904cd3f55452463ae371dc1e",
+              "mergedUrl": "https://github.com/dirkwa/espos-p4-cockpit/releases/download/v1.5.2/p4_cockpit-v1.5.2-x7-merged.bin",
+              "mergedWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-p4-cockpit/release-assets/v1.5.2/p4_cockpit-v1.5.2-x7-merged.bin",
+              "mergedBytes": 15036742,
+              "mergedSha256": "195dd57010fe363d22326ae30a9b2ed02d4aa5ab601d6bcb15fa324f855667c0"
+            }
+          ]
+        },
+        {
           "version": "1.5.1",
           "tag": "v1.5.1",
           "espos": "0.16.0",
@@ -976,11 +1011,9 @@
               "target": "esp32p4",
               "boardId": "waveshare-p4-touch-7b",
               "otaUrl": "https://github.com/dirkwa/espos-p4-cockpit/releases/download/v1.4.1/p4_cockpit-v1.4.1-7b-ota.bin",
-              "otaWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-p4-cockpit/release-assets/v1.4.1/p4_cockpit-v1.4.1-7b-ota.bin",
               "otaBytes": 4460544,
               "otaSha256": "1f620f9197800ba243bcda8c5879cfd9d136f679658ede816c86416e39228773",
               "mergedUrl": "https://github.com/dirkwa/espos-p4-cockpit/releases/download/v1.4.1/p4_cockpit-v1.4.1-7b-merged.bin",
-              "mergedWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-p4-cockpit/release-assets/v1.4.1/p4_cockpit-v1.4.1-7b-merged.bin",
               "mergedBytes": 15036742,
               "mergedSha256": "18a7f11d1b345cc1a7176fb187dc350a034df72d5f980cb34dddba6dbedea955"
             },
@@ -988,11 +1021,9 @@
               "target": "esp32p4",
               "boardId": "waveshare-p4-touch-x-7",
               "otaUrl": "https://github.com/dirkwa/espos-p4-cockpit/releases/download/v1.4.1/p4_cockpit-v1.4.1-x7-ota.bin",
-              "otaWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-p4-cockpit/release-assets/v1.4.1/p4_cockpit-v1.4.1-x7-ota.bin",
               "otaBytes": 4526080,
               "otaSha256": "e9a7039a0276db222daec09b09437525619bc509633e19f4c4794647d1af87c4",
               "mergedUrl": "https://github.com/dirkwa/espos-p4-cockpit/releases/download/v1.4.1/p4_cockpit-v1.4.1-x7-merged.bin",
-              "mergedWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-p4-cockpit/release-assets/v1.4.1/p4_cockpit-v1.4.1-x7-merged.bin",
               "mergedBytes": 15036742,
               "mergedSha256": "0fd014ca749e7ac42d01ad0900930ae17bf56b558b63516e546dfe49c8d912c0"
             }
