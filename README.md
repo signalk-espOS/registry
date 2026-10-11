@@ -32,13 +32,17 @@ Once merged, the index is rebuilt within minutes and your firmware appears in
 the Signal K plugin and the hosted flasher.
 
 Later releases are picked up by an hourly rebuild, which GitHub can run hours
-late. To have a release show at once, end your release workflow by sending this
-repository a `firmware-released` event, with a token that may write its
-contents:
+late. An official project's release workflow has its release show at once by
+sending this repository a `firmware-released` event:
 
 ```sh
 gh api -X POST repos/signalk-espOS/registry/dispatches -f event_type=firmware-released
 ```
+
+That takes a token that may write this repository's contents, which official
+projects get from the organisation's release App. Other projects cannot send
+it: their releases arrive with the hourly rebuild, or sooner when a maintainer
+runs the Reindex workflow by hand.
 
 To see the same result before opening the pull request (Node 24, and a token,
 because GitHub allows 60 unauthenticated requests an hour):
