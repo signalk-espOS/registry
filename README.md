@@ -202,7 +202,8 @@ The index lists, for each use case, the boards its projects run on: tested ones
 first, then the most used, counted from release downloads. An image several
 boards share has its downloads split between them, since a download cannot say
 which board it went to. Counts change on nearly every run, so on their own they
-do not cause a commit; they refresh with the daily one.
+do not cause a commit: they refresh on the first run after the index is a day
+old, or sooner with any other change to it.
 
 ## What a valid entry does and does not mean
 

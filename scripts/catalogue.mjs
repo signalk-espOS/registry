@@ -8,8 +8,9 @@
 
 import { readdir, readFile } from "node:fs/promises";
 import { basename, join } from "node:path";
+import { fileURLToPath } from "node:url";
 
-const ROOT = new URL("..", import.meta.url).pathname;
+const ROOT = fileURLToPath(new URL("..", import.meta.url));
 
 /** Every `<dir>/*.json`, parsed, with parse failures reported rather than thrown. */
 async function loadDir(dir, fail) {
@@ -89,6 +90,7 @@ function checkValue(where, key, value, prop, fail) {
   if (prop.type === "array") {
     if (prop.uniqueItems && new Set(value).size !== value.length) fail(where, `"${key}" repeats an item`);
     if (prop.maxItems !== undefined && value.length > prop.maxItems) fail(where, `"${key}" has over ${prop.maxItems} items`);
+    if (prop.minItems !== undefined && value.length < prop.minItems) fail(where, `"${key}" needs at least ${prop.minItems} item(s)`);
     if (prop.items !== undefined) value.forEach((v, i) => checkValue(where, `${key}[${i}]`, v, prop.items, fail));
   }
   if (prop.type === "object" && prop.properties !== undefined) checkShape(`${where} ${key}`, value, prop, fail);
