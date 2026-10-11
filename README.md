@@ -32,8 +32,8 @@ Once merged, the index is rebuilt within minutes and your firmware appears in
 the Signal K plugin and the hosted flasher.
 
 Later releases are picked up by an hourly rebuild, which GitHub can run hours
-late. An official project's release workflow has its release show at once by
-sending this repository a `firmware-released` event:
+late. An official project's release workflow asks for a rebuild as soon as its
+assets are published, by sending this repository a `firmware-released` event:
 
 ```sh
 gh api -X POST repos/signalk-espOS/registry/dispatches -f event_type=firmware-released
