@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "updated": "2026-10-11T23:01:19.553Z",
+  "updated": "2026-10-11T23:10:37.714Z",
   "esposLatest": "0.17.3",
   "projects": [
     {
@@ -1424,6 +1424,8 @@
       "model": "ESP32-DevKitC and similar",
       "name": "ESP32 development board",
       "target": "esp32",
+      "image": "https://raw.githubusercontent.com/signalk-espOS/registry/main/boards/photos/esp32-devkit.png",
+      "imageCredit": "Espressif Systems, CC BY-SA 4.0, from espressif/esp-dev-kits, resized",
       "features": [
         "wifi",
         "ble"
@@ -1444,6 +1446,8 @@
       "model": "ESP32-C3-DevKitM-1 and similar",
       "name": "ESP32-C3 development board",
       "target": "esp32c3",
+      "image": "https://raw.githubusercontent.com/signalk-espOS/registry/main/boards/photos/esp32c3-devkit.png",
+      "imageCredit": "Espressif Systems, CC BY-SA 4.0, from espressif/esp-dev-kits",
       "features": [
         "wifi",
         "ble"
@@ -1463,6 +1467,8 @@
       "model": "ESP32-C6-DevKitC-1 and similar",
       "name": "ESP32-C6 development board",
       "target": "esp32c6",
+      "image": "https://raw.githubusercontent.com/signalk-espOS/registry/main/boards/photos/esp32c6-devkit.png",
+      "imageCredit": "Espressif Systems, CC BY-SA 4.0, from espressif/esp-dev-kits",
       "features": [
         "wifi",
         "ble"
@@ -1483,6 +1489,8 @@
       "model": "ESP32-S3-DevKitC-1 and similar",
       "name": "ESP32-S3 development board",
       "target": "esp32s3",
+      "image": "https://raw.githubusercontent.com/signalk-espOS/registry/main/boards/photos/esp32s3-devkit.png",
+      "imageCredit": "Espressif Systems, CC BY-SA 4.0, from espressif/esp-dev-kits",
       "features": [
         "wifi",
         "ble"
