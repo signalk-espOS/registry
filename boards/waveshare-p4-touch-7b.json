@@ -4,7 +4,7 @@
   "model": "ESP32-P4-WIFI6-Touch-LCD-7B",
   "name": "Waveshare ESP32-P4 7-inch touch display (7B, 1024x600)",
   "target": "esp32p4",
-  "flashBytes": 16777216,
+  "flashBytes": 33554432,
   "features": [
     "wifi",
     "ble",

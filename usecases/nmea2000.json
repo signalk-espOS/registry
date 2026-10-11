@@ -7,8 +7,7 @@
     "can"
   ],
   "projects": [
-    "8relay",
     "cockpit"
   ],
-  "description": "Both do NMEA 2000 alongside their main job: the 8-relay board switches its relays from the bus, and the P4 cockpit is a Signal K to NMEA 2000 gateway. A small node that does only NMEA 2000 is planned."
+  "description": "The P4 cockpit is a Signal K to NMEA 2000 gateway alongside its display. A small node that does only NMEA 2000 is planned."
 }
