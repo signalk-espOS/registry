@@ -33,9 +33,12 @@ on:
       - "index.json"
 
 # The index is pushed, so a cancelled run can leave it half-written: later
-# runs queue behind the one in flight rather than replacing it.
+# runs queue behind the one in flight rather than replacing it. All of them
+# wait, not only the newest (GitHub's default), so a release's request to
+# reindex is never cancelled by the hourly run that arrives behind it.
 concurrency:
   group: reindex
+  queue: max
   cancel-in-progress: false
 
 permissions:
