@@ -7,5 +7,5 @@
     "can"
   ],
   "projects": [],
-  "description": "The firmware for a stand-alone NMEA 2000 node is being written. Until then the 8-relay board and the P4 cockpit both talk NMEA 2000 alongside their main job."
+  "description": "The 8-relay board and the P4 cockpit both talk NMEA 2000 alongside their main job."
 }
