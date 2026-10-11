@@ -8,6 +8,7 @@
   "features": [
     "wifi",
     "ble",
+    "can",
     "display",
     "touch",
     "audio"
