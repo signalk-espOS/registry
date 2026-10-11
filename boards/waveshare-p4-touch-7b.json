@@ -1,0 +1,22 @@
+{
+  "id": "waveshare-p4-touch-7b",
+  "vendor": "Waveshare",
+  "model": "ESP32-P4-WIFI6-Touch-LCD-7B",
+  "name": "Waveshare ESP32-P4 7-inch touch display (7B, 1024x600)",
+  "target": "esp32p4",
+  "flashBytes": 16777216,
+  "features": [
+    "wifi",
+    "ble",
+    "display",
+    "touch",
+    "audio"
+  ],
+  "display": {
+    "inches": 7,
+    "width": 1024,
+    "height": 600
+  },
+  "buyUrl": "https://www.waveshare.com/esp32-p4-wifi6-touch-lcd-7b.htm",
+  "notes": "WiFi and Bluetooth come from the ESP32-C6 on the board. Not the same board as the Touch-LCD-X 7-inch: firmware for one leaves the other's screen black."
+}

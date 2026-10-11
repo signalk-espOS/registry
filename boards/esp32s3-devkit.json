@@ -1,0 +1,11 @@
+{
+  "id": "esp32s3-devkit",
+  "vendor": "Various",
+  "model": "ESP32-S3-DevKitC-1 and similar",
+  "name": "ESP32-S3 development board",
+  "target": "esp32s3",
+  "features": [
+    "wifi",
+    "ble"
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "id": "esp32-devkit",
+  "vendor": "Various",
+  "model": "ESP32-DevKitC and similar",
+  "name": "ESP32 development board",
+  "target": "esp32",
+  "features": [
+    "wifi",
+    "ble"
+  ],
+  "notes": "Needs chip revision 3 or later for signed updates, which every ESP32-WROOM-32E and WROVER-E module has."
+}

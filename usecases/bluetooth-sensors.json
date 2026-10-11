@@ -1,0 +1,16 @@
+{
+  "id": "bluetooth-sensors",
+  "title": "Bring Bluetooth sensors into Signal K",
+  "summary": "Temperature, humidity and battery monitors over Bluetooth Low Energy, forwarded to your Signal K server.",
+  "order": 2,
+  "needs": [
+    "ble"
+  ],
+  "projects": [
+    "ble-gateway"
+  ],
+  "reasons": {
+    "waveshare-p4-poe-eth": "Wired Ethernet: the radio does nothing but Bluetooth, and one cable powers it.",
+    "esp32c6-devkit": "The cheapest way to start."
+  }
+}

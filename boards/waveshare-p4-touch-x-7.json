@@ -1,0 +1,20 @@
+{
+  "id": "waveshare-p4-touch-x-7",
+  "vendor": "Waveshare",
+  "model": "ESP32-P4-WIFI6-Touch-LCD-X (7 inch)",
+  "name": "Waveshare ESP32-P4 7-inch touch display (X series, 720x1280)",
+  "target": "esp32p4",
+  "flashBytes": 16777216,
+  "features": [
+    "wifi",
+    "ble",
+    "display",
+    "touch"
+  ],
+  "display": {
+    "inches": 7,
+    "width": 720,
+    "height": 1280
+  },
+  "notes": "WiFi and Bluetooth come from the ESP32-C6 on the board. Only the 7-inch X is listed: the 8 and 10.1-inch X panels use a different display controller."
+}

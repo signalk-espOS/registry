@@ -10,6 +10,11 @@ GitHub releases into [`index.json`](index.json), which is what the plugin
 fetches — a single unauthenticated request, so a boat needs no token and hits
 no rate limit.
 
+Next to the projects sit the boards they run on, under [`boards/`](boards),
+and the jobs a boat owner wants done, under [`usecases/`](usecases). The
+flasher starts from those: "what do you want to do?" or "which board do you
+have?", rather than from a firmware name.
+
 ## Adding your firmware
 
 1. Publish your firmware as GitHub releases. espOS's reusable
@@ -69,6 +74,17 @@ List every board your firmware supports. A board is what someone recognises on
 a shop page, and it is what the flasher asks about first: "which board do you
 have?", then what can run on it. Several projects can offer the same board —
 that is the point, and nothing needs coordinating between them.
+
+Use the id of a board in [`boards/`](boards) where one fits, and the entry needs
+only what is particular to your image: `target`, `assetSegment`, `reportedAs`,
+`flashMinBytes`, and notes about your firmware on it. The name, notes and shop
+link are filled in from the board file; its photo and features are listed with
+it in the index's `boards`. Say how far you have taken it with `support`:
+`tested` on your bench, `community` when a user reported it working, `builds`
+when you only build for it. Tested boards are offered first.
+
+When one image runs on several boards, list them in `runsOn`; the BLE gateway's
+single P4 image does this for the PoE board and both touch displays.
 
 **Two boards on one chip needs one extra step.** espOS matches an update on
 chip alone, so if you ship a separate image per board, the registry is the only
@@ -155,6 +171,38 @@ Each build also carries `otaSha256` and `mergedSha256`, taken from the digest
 GitHub records for the asset. The plugin checks the mirrored OTA image
 against `otaSha256` and copies it into the manifest, where espOS shows it but
 does not verify it: the image's signature is what the device trusts.
+
+## The board catalogue
+
+[`boards/`](boards) holds one file per physical board, described the way its
+owner would recognise it: vendor, model, a photo, and what it has (Ethernet,
+CAN, a display, relays). The fields are in
+[`schema/board.schema.json`](schema/board.schema.json).
+
+The list is curated: add a board when someone has run espOS firmware on it, not
+because it exists. A list of every ESP32 board on the market would tell an owner
+nothing about what actually works.
+
+Two fields help the flasher recognise a board before anything is written to it:
+`usbBridge`, the USB-to-serial chip a browser can read, and `factoryApps`, the
+project names the vendor's own firmware reports. Both are hints, never proof.
+
+A photo goes in `image` only when its licence allows it, with whose it is in
+`imageCredit`.
+
+## Use cases
+
+[`usecases/`](usecases) holds the jobs the flasher offers on its start screen,
+in an owner's words: "Bring Bluetooth sensors into Signal K". Each names the
+projects that do it (none yet is allowed: the flasher shows it as coming) and,
+in `reasons`, why a board suits the job. The fields are in
+[`schema/usecase.schema.json`](schema/usecase.schema.json).
+
+The index lists, for each use case, the boards its projects run on: tested ones
+first, then the most used, counted from release downloads. An image several
+boards share has its downloads split between them, since a download cannot say
+which board it went to. Counts change on nearly every run, so on their own they
+do not cause a commit; they refresh with the daily one.
 
 ## What a valid entry does and does not mean
 

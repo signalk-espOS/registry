@@ -1,0 +1,13 @@
+{
+  "id": "waveshare-p4-poe-eth",
+  "vendor": "Waveshare",
+  "name": "Waveshare ESP32-P4 Ethernet board with PoE",
+  "target": "esp32p4",
+  "features": [
+    "wifi",
+    "ble",
+    "ethernet",
+    "poe"
+  ],
+  "notes": "Never connect USB and PoE at the same time: powering the board from both damages it. Flash it over USB with the network cable unplugged."
+}

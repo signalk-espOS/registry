@@ -1,0 +1,21 @@
+{
+  "id": "waveshare-esp32-s3-eth-8di-8ro-c",
+  "vendor": "Waveshare",
+  "model": "ESP32-S3-ETH-8DI-8RO-C",
+  "name": "Waveshare ESP32-S3 8-relay board with Ethernet and CAN",
+  "target": "esp32s3",
+  "package": "ESP32-S3R8",
+  "flashBytes": 16777216,
+  "psramBytes": 8388608,
+  "features": [
+    "wifi",
+    "ble",
+    "ethernet",
+    "can",
+    "relays",
+    "digital-inputs",
+    "rtc"
+  ],
+  "buyUrl": "https://www.waveshare.com/wiki/ESP32-S3-ETH-8DI-8RO-C",
+  "notes": "8 relays, 8 isolated inputs, W5500 Ethernet with WiFi as fallback, and an isolated CAN transceiver for NMEA 2000."
+}

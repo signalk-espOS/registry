@@ -11,6 +11,7 @@
 import { readdir, readFile } from "node:fs/promises";
 import { basename, join } from "node:path";
 import { gh, TOKEN } from "./github.mjs";
+import { checkShape, loadCatalogue } from "./catalogue.mjs";
 
 const ROOT = new URL("..", import.meta.url).pathname;
 const errors = [];
@@ -21,13 +22,12 @@ function fail(file, message) { errors.push(`${file}: ${message}`); }
 const schema = JSON.parse(
   await readFile(join(ROOT, "schema/project.schema.json"), "utf8"),
 );
-const required = schema.required;
-const allowed = new Set(Object.keys(schema.properties));
 
 const dir = join(ROOT, "projects");
 const files = (await readdir(dir)).filter((f) => f.endsWith(".json"));
 const seenIds = new Map();
 const seenApps = new Map();
+const parsed = [];
 
 for (const file of files) {
   let entry;
@@ -35,15 +35,16 @@ for (const file of files) {
     entry = JSON.parse(await readFile(join(dir, file), "utf8"));
   } catch (e) {
     fail(file, `not valid JSON: ${e.message}`);
+    // Still known by its filename, so a use case naming it is not reported
+    // as pointing at a missing project on top of the real error.
+    parsed.push({ id: basename(file, ".json") });
     continue;
   }
+  parsed.push(entry);
 
-  for (const key of required) {
-    if (entry[key] === undefined) fail(file, `missing required field "${key}"`);
-  }
-  for (const key of Object.keys(entry)) {
-    if (!allowed.has(key)) fail(file, `unknown field "${key}"`);
-  }
+  // Required and unknown fields, and the enums and patterns of each board
+  // entry: `support` and `runsOn` decide ranking and which boards are offered.
+  checkShape(file, entry, schema, fail);
 
   // The filename is the id: a mismatch makes the entry unfindable.
   const expected = basename(file, ".json");
@@ -189,13 +190,18 @@ for (const file of files) {
   }
 }
 
+const { boards, useCases } = await loadCatalogue(parsed, fail, (n) => notes.push(n));
+
 for (const note of notes) console.log(`note: ${note}`);
 if (errors.length > 0) {
   for (const e of errors) console.log(`::error::${e}`);
   console.log(`\n${errors.length} problem(s).`);
   process.exit(1);
 }
-console.log(`${files.length} project entr${files.length === 1 ? "y" : "ies"} valid.`);
+console.log(
+  `${files.length} project entr${files.length === 1 ? "y" : "ies"}, ` +
+    `${boards.size} board(s) and ${useCases.size} use case(s) valid.`,
+);
 if (TOKEN === undefined) {
   console.log(
     "Repositories were NOT checked: set GITHUB_TOKEN or GH_TOKEN " +

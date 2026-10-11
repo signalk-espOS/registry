@@ -1,0 +1,12 @@
+{
+  "id": "esp32c6-devkit",
+  "vendor": "Various",
+  "model": "ESP32-C6-DevKitC-1 and similar",
+  "name": "ESP32-C6 development board",
+  "target": "esp32c6",
+  "features": [
+    "wifi",
+    "ble"
+  ],
+  "notes": "Boards with the ESP32-C6-MINI-1U module have no antenna on the board: without an external one the radio hears nothing."
+}
