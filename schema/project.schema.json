@@ -128,7 +128,7 @@
               "community",
               "builds"
             ],
-            "description": "How far this firmware is known to work on this board: \"tested\" by the project on the bench, \"community\" reported working by a user, \"builds\" only built for it. The flasher ranks tested boards first when it has no download counts to go on."
+            "description": "How far this firmware is known to work on this board: \"tested\" by the project on the bench, \"community\" reported working by a user, \"builds\" only built for it. The index ranks a use case's boards by this first, then by downloads; leaving it out ranks between \"community\" and \"builds\"."
           },
           "runsOn": {
             "type": "array",
