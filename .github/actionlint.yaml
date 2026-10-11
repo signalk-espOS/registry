@@ -1,0 +1,6 @@
+# actionlint 1.7.12 predates the concurrency key `queue` (GitHub, May 2026),
+# which reindex.yml uses. Drop this once a release of actionlint knows it.
+paths:
+  .github/workflows/reindex.yml:
+    ignore:
+      - 'unexpected key "queue" for "concurrency" section'
