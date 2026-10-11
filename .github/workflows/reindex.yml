@@ -1,15 +1,20 @@
 name: Reindex
 
 # Releases appear after a pull request merges, so an index built only at PR
-# time goes stale within a week. This keeps it current: hourly for new
-# releases, and on every merge that changes an entry or how the index is
-# built, so a new project is listed minutes after its pull request merges.
+# time goes stale within a week. This keeps it current: when a project's
+# release workflow says it has published (repository_dispatch), hourly for
+# releases from projects that do not, and on every merge that changes an entry
+# or how the index is built, so a new project is listed minutes after its pull
+# request merges.
 #
-# Hourly, not nightly: the manager caches the index on top of this, so a
-# nightly run left a fresh release unseen for up to a day and a half, with
-# boats told they were up to date. With nothing new, a run commits at most
-# once a day (scripts/reindex.mjs says why).
+# The dispatch is what makes a release show at once. GitHub runs scheduled
+# workflows late or drops them under load: this hourly one has fired 4 times
+# in a day, and a gateway release sat unseen behind it. The schedule stays as
+# the fallback. With nothing new, a run commits at most once a day
+# (scripts/reindex.mjs says why).
 on:
+  repository_dispatch:
+    types: [firmware-released]
   schedule:
     - cron: "17 * * * *"
   workflow_dispatch:
