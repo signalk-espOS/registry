@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "updated": "2026-10-11T23:10:37.714Z",
+  "updated": "2026-10-11T23:26:23.959Z",
   "esposLatest": "0.17.3",
   "projects": [
     {
@@ -378,6 +378,77 @@
       "official": true,
       "releases": [
         {
+          "version": "1.0.7",
+          "tag": "v1.0.7",
+          "espos": "0.17.3",
+          "channel": "stable",
+          "publishedAt": "2026-10-11T23:22:02Z",
+          "notes": "bump espOS to v0.17.3 (#45) (ba6ea2f)",
+          "notesUrl": "https://github.com/dirkwa/espos-ble-gateway/releases/tag/v1.0.7",
+          "builds": [
+            {
+              "target": "esp32",
+              "boardId": "esp32-devkit",
+              "otaUrl": "https://github.com/dirkwa/espos-ble-gateway/releases/download/v1.0.7/ble-gateway-esp32-v1.0.7-ota.bin",
+              "otaWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-ble-gateway/release-assets/v1.0.7/ble-gateway-esp32-v1.0.7-ota.bin",
+              "otaBytes": 1904640,
+              "otaSha256": "ce7811fe1a8ee85027a1d011d70585badfd37aa8013465022c85dcc45ba07a9a",
+              "mergedUrl": "https://github.com/dirkwa/espos-ble-gateway/releases/download/v1.0.7/ble-gateway-esp32-v1.0.7-merged.bin",
+              "mergedWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-ble-gateway/release-assets/v1.0.7/ble-gateway-esp32-v1.0.7-merged.bin",
+              "mergedBytes": 6225920,
+              "mergedSha256": "decb3da283a87086ff704dd2d8022825ea40bf2b07d24204fa26b991e45bd552"
+            },
+            {
+              "target": "esp32c3",
+              "boardId": "esp32c3-devkit",
+              "otaUrl": "https://github.com/dirkwa/espos-ble-gateway/releases/download/v1.0.7/ble-gateway-esp32c3-v1.0.7-ota.bin",
+              "otaWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-ble-gateway/release-assets/v1.0.7/ble-gateway-esp32c3-v1.0.7-ota.bin",
+              "otaBytes": 2035712,
+              "otaSha256": "c7e0089d61bfe638775ff8e4feb720fdb3dd50ce83ec8e704effb3748bf8133d",
+              "mergedUrl": "https://github.com/dirkwa/espos-ble-gateway/releases/download/v1.0.7/ble-gateway-esp32c3-v1.0.7-merged.bin",
+              "mergedWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-ble-gateway/release-assets/v1.0.7/ble-gateway-esp32c3-v1.0.7-merged.bin",
+              "mergedBytes": 6225920,
+              "mergedSha256": "ff19671ce32c4c35961ac17ab69bf3d18a2e983ee7847e48abbe5e1cfa30d28e"
+            },
+            {
+              "target": "esp32c6",
+              "boardId": "esp32c6-devkit",
+              "otaUrl": "https://github.com/dirkwa/espos-ble-gateway/releases/download/v1.0.7/ble-gateway-esp32c6-v1.0.7-ota.bin",
+              "otaWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-ble-gateway/release-assets/v1.0.7/ble-gateway-esp32c6-v1.0.7-ota.bin",
+              "otaBytes": 2297856,
+              "otaSha256": "8968547f54acc0dd0a6cebe7337114f80c691c40fd2d36c0c4b55733b7a0e07b",
+              "mergedUrl": "https://github.com/dirkwa/espos-ble-gateway/releases/download/v1.0.7/ble-gateway-esp32c6-v1.0.7-merged.bin",
+              "mergedWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-ble-gateway/release-assets/v1.0.7/ble-gateway-esp32c6-v1.0.7-merged.bin",
+              "mergedBytes": 6225920,
+              "mergedSha256": "509677a22c5681681b106a01afb7bd93f7179ed5374bdf52ae07a79578918fdb"
+            },
+            {
+              "target": "esp32p4",
+              "boardId": "waveshare-p4-poe",
+              "otaUrl": "https://github.com/dirkwa/espos-ble-gateway/releases/download/v1.0.7/ble-gateway-esp32p4-v1.0.7-ota.bin",
+              "otaWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-ble-gateway/release-assets/v1.0.7/ble-gateway-esp32p4-v1.0.7-ota.bin",
+              "otaBytes": 1904640,
+              "otaSha256": "90f2c4b59b0ef549f33f20c2dc86129b1b936cda3cfde2bf0ad5993812074993",
+              "mergedUrl": "https://github.com/dirkwa/espos-ble-gateway/releases/download/v1.0.7/ble-gateway-esp32p4-v1.0.7-merged.bin",
+              "mergedWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-ble-gateway/release-assets/v1.0.7/ble-gateway-esp32p4-v1.0.7-merged.bin",
+              "mergedBytes": 6225920,
+              "mergedSha256": "8093673cadc60aa8e0d388bc8a15bc486171cab97f77cd4bfb97d41a3c79d662"
+            },
+            {
+              "target": "esp32s3",
+              "boardId": "esp32s3-devkit",
+              "otaUrl": "https://github.com/dirkwa/espos-ble-gateway/releases/download/v1.0.7/ble-gateway-esp32s3-v1.0.7-ota.bin",
+              "otaWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-ble-gateway/release-assets/v1.0.7/ble-gateway-esp32s3-v1.0.7-ota.bin",
+              "otaBytes": 1839104,
+              "otaSha256": "a01ff831fee4711d101630ae97494809302f0201a053e2c754c2497977fa2289",
+              "mergedUrl": "https://github.com/dirkwa/espos-ble-gateway/releases/download/v1.0.7/ble-gateway-esp32s3-v1.0.7-merged.bin",
+              "mergedWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-ble-gateway/release-assets/v1.0.7/ble-gateway-esp32s3-v1.0.7-merged.bin",
+              "mergedBytes": 6225920,
+              "mergedSha256": "7d2361a3203ef5484dd55e8282a1ee3eb113cafa996916676ebf54d10b4b234e"
+            }
+          ]
+        },
+        {
           "version": "1.0.6",
           "tag": "v1.0.6",
           "espos": "0.17.2",
@@ -674,11 +745,9 @@
               "target": "esp32",
               "boardId": "esp32-devkit",
               "otaUrl": "https://github.com/dirkwa/espos-ble-gateway/releases/download/v1.0.2/ble-gateway-esp32-v1.0.2-ota.bin",
-              "otaWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-ble-gateway/release-assets/v1.0.2/ble-gateway-esp32-v1.0.2-ota.bin",
               "otaBytes": 1839104,
               "otaSha256": "7e591ee872b5983fcce20099c26493339e2474e59f86818845b8a7f471801fd9",
               "mergedUrl": "https://github.com/dirkwa/espos-ble-gateway/releases/download/v1.0.2/ble-gateway-esp32-v1.0.2-merged.bin",
-              "mergedWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-ble-gateway/release-assets/v1.0.2/ble-gateway-esp32-v1.0.2-merged.bin",
               "mergedBytes": 6225920,
               "mergedSha256": "1a68a13ef8d608b650912d7543f85e085b872574c7d157cfdc478867faf0b2bd"
             },
@@ -686,11 +755,9 @@
               "target": "esp32c3",
               "boardId": "esp32c3-devkit",
               "otaUrl": "https://github.com/dirkwa/espos-ble-gateway/releases/download/v1.0.2/ble-gateway-esp32c3-v1.0.2-ota.bin",
-              "otaWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-ble-gateway/release-assets/v1.0.2/ble-gateway-esp32c3-v1.0.2-ota.bin",
               "otaBytes": 1970176,
               "otaSha256": "fa9bc1f87dd37c367f3d22c9b962bba2d5ae8dbbd8d4fcc219ce1bad1ae815db",
               "mergedUrl": "https://github.com/dirkwa/espos-ble-gateway/releases/download/v1.0.2/ble-gateway-esp32c3-v1.0.2-merged.bin",
-              "mergedWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-ble-gateway/release-assets/v1.0.2/ble-gateway-esp32c3-v1.0.2-merged.bin",
               "mergedBytes": 6225920,
               "mergedSha256": "e2d9c8983573bc9aeb7d1bdfce9ab936ac15386ef33994d5dbd24f9690a7b9cf"
             },
@@ -698,11 +765,9 @@
               "target": "esp32c6",
               "boardId": "esp32c6-devkit",
               "otaUrl": "https://github.com/dirkwa/espos-ble-gateway/releases/download/v1.0.2/ble-gateway-esp32c6-v1.0.2-ota.bin",
-              "otaWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-ble-gateway/release-assets/v1.0.2/ble-gateway-esp32c6-v1.0.2-ota.bin",
               "otaBytes": 2232320,
               "otaSha256": "f43aaa131b6509f183f30a08db6fab27d35bef87ed8bf09f7d1a52dd12812f9d",
               "mergedUrl": "https://github.com/dirkwa/espos-ble-gateway/releases/download/v1.0.2/ble-gateway-esp32c6-v1.0.2-merged.bin",
-              "mergedWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-ble-gateway/release-assets/v1.0.2/ble-gateway-esp32c6-v1.0.2-merged.bin",
               "mergedBytes": 6225920,
               "mergedSha256": "f7edb53b6ab6c844ee9d29aa7832705ab76d613485daf59c9a04c63238fd7a3f"
             },
@@ -710,11 +775,9 @@
               "target": "esp32p4",
               "boardId": "waveshare-p4-poe",
               "otaUrl": "https://github.com/dirkwa/espos-ble-gateway/releases/download/v1.0.2/ble-gateway-esp32p4-v1.0.2-ota.bin",
-              "otaWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-ble-gateway/release-assets/v1.0.2/ble-gateway-esp32p4-v1.0.2-ota.bin",
               "otaBytes": 1839104,
               "otaSha256": "b8b933a4e64c485e53b3def4d4532db14bc267bd62b80f07204f2a9d05cd5dda",
               "mergedUrl": "https://github.com/dirkwa/espos-ble-gateway/releases/download/v1.0.2/ble-gateway-esp32p4-v1.0.2-merged.bin",
-              "mergedWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-ble-gateway/release-assets/v1.0.2/ble-gateway-esp32p4-v1.0.2-merged.bin",
               "mergedBytes": 6225920,
               "mergedSha256": "9af46371c2ed9d10cda4092f1b166ad518fea1ef6580a1abcaa677896e992f9d"
             },
@@ -722,11 +785,9 @@
               "target": "esp32s3",
               "boardId": "esp32s3-devkit",
               "otaUrl": "https://github.com/dirkwa/espos-ble-gateway/releases/download/v1.0.2/ble-gateway-esp32s3-v1.0.2-ota.bin",
-              "otaWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-ble-gateway/release-assets/v1.0.2/ble-gateway-esp32s3-v1.0.2-ota.bin",
               "otaBytes": 1839104,
               "otaSha256": "3ccffcedf62a6ae8321cc74a1eb4a32c1412fc1aa5c6162bf4656a29678aaa05",
               "mergedUrl": "https://github.com/dirkwa/espos-ble-gateway/releases/download/v1.0.2/ble-gateway-esp32s3-v1.0.2-merged.bin",
-              "mergedWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-ble-gateway/release-assets/v1.0.2/ble-gateway-esp32s3-v1.0.2-merged.bin",
               "mergedBytes": 6225920,
               "mergedSha256": "e00b92bff42bff37e74b739662f528d1b70420efbc63862935fd1ae6da8fc834"
             }
