@@ -5,6 +5,11 @@
   "name": "Waveshare ESP32-P4 7-inch touch display (7B, 1024x600)",
   "target": "esp32p4",
   "flashBytes": 33554432,
+  "usbBridge": {
+    "chip": "CH343",
+    "vid": "1a86",
+    "pid": "55d3"
+  },
   "features": [
     "wifi",
     "ble",
