@@ -7,7 +7,7 @@ name: Reindex
 # or how the index is built, so a new project is listed minutes after its pull
 # request merges.
 #
-# The dispatch is what makes a release show at once. GitHub runs scheduled
+# The dispatch gets a release indexed within minutes. GitHub runs scheduled
 # workflows late or drops them under load: this hourly one has fired 4 times
 # in a day, and a gateway release sat unseen behind it. The schedule stays as
 # the fallback. With nothing new, a run commits at most once a day
@@ -33,9 +33,10 @@ on:
       - "index.json"
 
 # The index is pushed, so a cancelled run can leave it half-written: later
-# runs queue behind the one in flight rather than replacing it. All of them
-# wait, not only the newest (GitHub's default), so a release's request to
-# reindex is never cancelled by the hourly run that arrives behind it.
+# runs queue behind the one in flight rather than replacing it. GitHub keeps
+# only the newest waiting run by default; queue: max keeps up to 100 and
+# cancels any beyond that, so a release's request to reindex is not cancelled
+# by the hourly run that arrives behind it.
 concurrency:
   group: reindex
   queue: max
