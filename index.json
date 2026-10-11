@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "updated": "2026-10-11T23:29:58.710Z",
+  "updated": "2026-10-11T23:34:36.709Z",
   "esposLatest": "0.17.3",
   "projects": [
     {
@@ -1615,7 +1615,12 @@
       "model": "ESP32-P4-WIFI6-Touch-LCD-X (7 inch)",
       "name": "Waveshare ESP32-P4 7-inch touch display (X series, 720x1280)",
       "target": "esp32p4",
-      "flashBytes": 16777216,
+      "flashBytes": 33554432,
+      "usbBridge": {
+        "chip": "CH343",
+        "vid": "1a86",
+        "pid": "55d3"
+      },
       "features": [
         "wifi",
         "ble",
