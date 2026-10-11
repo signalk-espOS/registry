@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/signalk-espOS/registry/main/schema/usecase.schema.json",
+  "title": "espOS use case",
+  "description": "A job a boat owner wants done, in their words. The flasher's start screen lists these; each leads to the firmware that does it and the tested boards that run it, the most used first.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "title",
+    "summary",
+    "projects"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9-]{1,38}$",
+      "description": "Must equal the filename without .json."
+    },
+    "title": {
+      "type": "string",
+      "minLength": 3,
+      "maxLength": 60,
+      "description": "What the owner wants, e.g. \"Bring Bluetooth sensors into Signal K\"."
+    },
+    "summary": {
+      "type": "string",
+      "maxLength": 140
+    },
+    "description": {
+      "type": "string",
+      "maxLength": 1000
+    },
+    "order": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Position on the start screen, lowest first."
+    },
+    "needs": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "enum": [
+          "wifi",
+          "ble",
+          "ethernet",
+          "poe",
+          "can",
+          "display",
+          "touch",
+          "relays",
+          "digital-inputs",
+          "audio",
+          "rtc"
+        ]
+      },
+      "description": "Features a board must have for this job. Used for buying advice; firmware is only ever offered for boards its project lists."
+    },
+    "projects": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string"
+      },
+      "description": "Ids of the projects that do this job. May be empty while the firmware is being written: the card then says it is coming."
+    },
+    "reasons": {
+      "type": "object",
+      "description": "Why a board suits this job, keyed by board id, shown beside it: \"Wired Ethernet, so no WiFi drop-outs\".",
+      "additionalProperties": {
+        "type": "string",
+        "minLength": 3,
+        "maxLength": 140
+      }
+    }
+  }
+}

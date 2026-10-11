@@ -17,6 +17,8 @@ on:
     branches: [main]
     paths:
       - "projects/**"
+      - "boards/**"
+      - "usecases/**"
       - "scripts/**"
       - "schema/**"
       # A hand-made index that reached main is replaced at once rather than

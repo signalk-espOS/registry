@@ -1,0 +1,159 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/signalk-espOS/registry/main/schema/board.schema.json",
+  "title": "espOS board",
+  "description": "One physical board a boat owner can buy or already owns. Boards are curated: list one only when someone has run espOS firmware on it. Firmware projects refer to boards by id; the flasher shows this entry, with its photo, when someone picks a board or a use case.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "vendor",
+    "name",
+    "target",
+    "features"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9-]{1,48}$",
+      "description": "Must equal the filename without .json, and the id projects use in their boards array."
+    },
+    "vendor": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 40,
+      "description": "Who makes it, as printed on the box: \"Waveshare\". \"Various\" for a generic board many shops sell."
+    },
+    "model": {
+      "type": "string",
+      "maxLength": 80,
+      "description": "The vendor's model or part number, as on the shop page."
+    },
+    "name": {
+      "type": "string",
+      "minLength": 3,
+      "maxLength": 120,
+      "description": "What the flasher shows. Fills in a project board's name when the project gives none."
+    },
+    "target": {
+      "type": "string",
+      "enum": [
+        "esp32",
+        "esp32c2",
+        "esp32c3",
+        "esp32c5",
+        "esp32c6",
+        "esp32c61",
+        "esp32h2",
+        "esp32p4",
+        "esp32s2",
+        "esp32s3"
+      ]
+    },
+    "package": {
+      "type": "string",
+      "maxLength": 32,
+      "description": "The chip or module variant, e.g. ESP32-S3R8. Embedded flash and PSRAM show in it, and the flasher can read it from the chip."
+    },
+    "flashBytes": {
+      "type": "integer",
+      "minimum": 1048576
+    },
+    "psramBytes": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "features": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "enum": [
+          "wifi",
+          "ble",
+          "ethernet",
+          "poe",
+          "can",
+          "display",
+          "touch",
+          "relays",
+          "digital-inputs",
+          "audio",
+          "rtc"
+        ]
+      },
+      "description": "What the hardware has, in the words use cases match on. A radio reached through a co-processor (the P4's ESP32-C6) counts."
+    },
+    "display": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "width",
+        "height"
+      ],
+      "properties": {
+        "inches": {
+          "type": "number",
+          "minimum": 0.5,
+          "maximum": 20
+        },
+        "width": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "height": {
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    },
+    "usbBridge": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "The USB-to-serial chip, which a browser can read before anything is flashed. A hint toward this board, never proof: many boards share a bridge.",
+      "properties": {
+        "chip": {
+          "type": "string",
+          "maxLength": 32
+        },
+        "vid": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{4}$"
+        },
+        "pid": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{4}$"
+        }
+      }
+    },
+    "factoryApps": {
+      "type": "array",
+      "maxItems": 8,
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 32
+      },
+      "description": "Project names the vendor's factory firmware reports in its app description, so a board straight from the box can be recognised."
+    },
+    "image": {
+      "type": "string",
+      "format": "uri",
+      "pattern": "^https://",
+      "description": "A photo of the board. Only one whose licence allows it; say whose it is in imageCredit."
+    },
+    "imageCredit": {
+      "type": "string",
+      "maxLength": 120
+    },
+    "buyUrl": {
+      "type": "string",
+      "format": "uri"
+    },
+    "notes": {
+      "type": "string",
+      "maxLength": 400,
+      "description": "Cautions that hold whatever the firmware: power, antennas, jumpers."
+    }
+  }
+}

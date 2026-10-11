@@ -19,6 +19,7 @@
 import { readdir, readFile, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import { gh, TOKEN } from "./github.mjs";
+import { loadCatalogue, runsOn } from "./catalogue.mjs";
 
 const ROOT = new URL("..", import.meta.url).pathname;
 if (TOKEN === undefined) {
@@ -304,7 +305,7 @@ async function resolveProject(project) {
     releases = await gh(`/repos/${project.repo}/releases?per_page=30`);
   } catch (error) {
     warnings.push(`${project.id}: ${error.message}`);
-    return { ...project, releases: [] };
+    return { project: { ...project, releases: [] }, downloads: new Map() };
   }
 
   // Which tags the mirror branch actually holds. A webAssetsBranch is pruned --
@@ -352,6 +353,10 @@ async function resolveProject(project) {
   }
 
   const resolved = [];
+  /* Download counts per board id, for ranking the boards a use case offers:
+   * the most used first. A build that names no board belongs to the project's
+   * only board on its chip, when it has exactly one. */
+  const downloads = new Map();
   for (const release of releases) {
     if (release.draft === true) continue;
     const assets = release.assets ?? [];
@@ -449,9 +454,20 @@ async function resolveProject(project) {
         );
       };
 
+      const boardId = boardIdFromSegment(project, seg, context);
+      const onTarget = (project.boards ?? []).filter((b) => b.target === target);
+      /* Only a build that names no board falls back to the sole board: one
+       * naming a segment nobody declares is not offered, so it counts for none. */
+      const countedAs =
+        boardId ?? (seg === undefined && onTarget.length === 1 ? onTarget[0].id : undefined);
+      if (countedAs !== undefined) {
+        const n = (ota?.download_count ?? 0) + (merged?.download_count ?? 0);
+        downloads.set(countedAs, (downloads.get(countedAs) ?? 0) + n);
+      }
+
       builds.push({
         target,
-        boardId: boardIdFromSegment(project, seg, context),
+        boardId,
         otaUrl: ota?.browser_download_url,
         otaWebUrl: webUrl(ota),
         otaBytes: ota?.size,
@@ -483,16 +499,113 @@ async function resolveProject(project) {
         `kept, since that is the normal state of a new project`,
     );
   }
-  return { ...project, releases: resolved };
+  return { project: { ...project, releases: resolved }, downloads };
 }
 
 const dir = join(ROOT, "projects");
 const files = (await readdir(dir)).filter((f) => f.endsWith(".json")).sort();
-const projects = [];
+const entries = [];
 for (const file of files) {
-  const project = JSON.parse(await readFile(join(dir, file), "utf8"));
-  projects.push(await resolveProject(project));
+  entries.push(JSON.parse(await readFile(join(dir, file), "utf8")));
 }
+
+/* A broken catalogue stops the run rather than publishing it: validate.mjs
+ * refuses one on every pull request, so reaching here means main is wrong, and
+ * the last good index is better than a half-understood one. */
+const catalogueErrors = [];
+const { boards, useCases } = await loadCatalogue(entries, (where, message) =>
+  catalogueErrors.push(`${where}: ${message}`),
+);
+if (catalogueErrors.length > 0) {
+  for (const e of catalogueErrors) console.log(`::error::${e}`);
+  process.exit(1);
+}
+
+const projects = [];
+const downloadsByProject = new Map();
+for (const entry of entries) {
+  const { project, downloads } = await resolveProject(entry);
+  /* Consumers read a board's name, notes and shop link from the project, as
+   * they always have; the catalogue fills in what the project leaves out. */
+  project.boards = (project.boards ?? []).map((b) => {
+    const own = boards.get(b.id);
+    if (own === undefined) return b;
+    const filled = { ...b, name: b.name ?? own.name };
+    const notes = b.notes ?? own.notes;
+    const buyUrl = b.buyUrl ?? own.buyUrl;
+    if (notes !== undefined) filled.notes = notes;
+    if (buyUrl !== undefined) filled.buyUrl = buyUrl;
+    return filled;
+  });
+  projects.push(project);
+  downloadsByProject.set(project.id, downloads);
+}
+
+/* Undeclared ranks above "builds": a board nobody has marked is more likely
+ * to work than one its project says it only builds for. */
+const SUPPORT_RANK = { tested: 0, community: 1, builds: 3 };
+const supportRank = (s) => SUPPORT_RANK[s] ?? 2;
+
+/** Which projects run on a catalogue board, through which board entry. */
+function projectsOn(boardId, only) {
+  const out = [];
+  for (const project of projects) {
+    if (only !== undefined && !only.includes(project.id)) continue;
+    for (const entry of project.boards ?? []) {
+      if (!runsOn(entry).includes(boardId)) continue;
+      out.push({
+        id: project.id,
+        name: project.name,
+        ...(entry.support === undefined ? {} : { support: entry.support }),
+        /* An image several boards share (runsOn) is split evenly between
+         * them: a download cannot say which board it went to. */
+        downloads: Math.floor(
+          (downloadsByProject.get(project.id)?.get(entry.id) ?? 0) / runsOn(entry).length,
+        ),
+      });
+    }
+  }
+  return out;
+}
+
+const boardList = [...boards.values()]
+  .sort((a, b) => a.name.localeCompare(b.name))
+  .map((board) => {
+    const on = projectsOn(board.id).sort((a, b) => b.downloads - a.downloads);
+    return { ...board, projects: on };
+  });
+
+/* The boards each use case offers: those the project has tested first, then
+ * the most used, with downloads as the only measure of use the registry has.
+ * Where those tie (most often at zero), a board the use case gives a reason
+ * for goes first, then by name, so the list stays fair and stable. */
+const useCaseList = [...useCases.values()]
+  .sort((a, b) => (a.order ?? 1e9) - (b.order ?? 1e9) || a.title.localeCompare(b.title))
+  .map((uc) => {
+    const ranked = [...boards.values()]
+      .map((board) => {
+        const on = projectsOn(board.id, uc.projects ?? []);
+        if (on.length === 0) return undefined;
+        const best = on.map((p) => p.support).sort((x, y) => supportRank(x) - supportRank(y))[0];
+        return {
+          id: board.id,
+          name: board.name,
+          downloads: on.reduce((n, p) => n + p.downloads, 0),
+          ...(best === undefined ? {} : { support: best }),
+          ...(uc.reasons?.[board.id] === undefined ? {} : { reason: uc.reasons[board.id] }),
+        };
+      })
+      .filter((b) => b !== undefined)
+      .sort(
+        (a, b) =>
+          supportRank(a.support) - supportRank(b.support) ||
+          b.downloads - a.downloads ||
+          (a.reason === undefined) - (b.reason === undefined) ||
+          a.name.localeCompare(b.name),
+      );
+    const { reasons: _reasons, ...rest } = uc;
+    return { ...rest, boards: ranked };
+  });
 
 /* The newest espOS, so a consumer can say "this build is a release behind"
  * without fetching anything itself -- a flasher talking to a blank board over
@@ -513,6 +626,8 @@ const esposLatest = (() => {
 const body = {
   ...(esposLatest === undefined ? {} : { esposLatest }),
   projects,
+  boards: boardList,
+  useCases: useCaseList,
 };
 /* `updated` says when the content last changed, give or take a day. The
  * workflow runs hourly and commits only a changed file; a fresh timestamp on
@@ -528,18 +643,30 @@ const DAY_MS = 24 * 3600 * 1000;
  * future one (a hand-made index, a skewed clock) fails the first: kept, it
  * would hold back the daily commit until it was a day in the past. */
 const age = Date.now() - Date.parse(previous?.updated);
-const keepUpdated =
+/* Download counts move on nearly every run, so they are left out of the
+ * comparison: otherwise the index would commit hourly over a ranking that
+ * barely changes. They refresh with everything else, at least once a day. */
+const byId = (list) => [...(list ?? [])].sort((a, b) => a.id.localeCompare(b.id));
+const sansDownloads = (value) =>
+  JSON.stringify(
+    {
+      ...value,
+      /* The order these are ranked in follows the counts too. */
+      boards: (value.boards ?? []).map((b) => ({ ...b, projects: byId(b.projects) })),
+      useCases: (value.useCases ?? []).map((u) => ({ ...u, boards: byId(u.boards) })),
+    },
+    (key, v) => (key === "downloads" ? undefined : v),
+  );
+const keepPrevious =
   previous !== undefined &&
   previous.schema === 1 &&
   age >= 0 &&
   age < DAY_MS &&
-  JSON.stringify({ ...previous, schema: undefined, updated: undefined }) ===
-    JSON.stringify(body);
-const index = {
-  schema: 1,
-  updated: keepUpdated ? previous.updated : new Date().toISOString(),
-  ...body,
-};
+  sansDownloads({ ...previous, schema: undefined, updated: undefined }) ===
+    sansDownloads(body);
+const index = keepPrevious
+  ? previous
+  : { schema: 1, updated: new Date().toISOString(), ...body };
 await writeFile(join(ROOT, "index.json"), JSON.stringify(index, null, 2) + "\n");
 
 const withFirmware = projects.filter((p) => (p.releases ?? []).length > 0);

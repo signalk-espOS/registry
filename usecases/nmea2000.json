@@ -1,0 +1,11 @@
+{
+  "id": "nmea2000",
+  "title": "Connect an NMEA 2000 network",
+  "summary": "Your NMEA 2000 instruments in Signal K, and Signal K data on the NMEA 2000 bus.",
+  "order": 4,
+  "needs": [
+    "can"
+  ],
+  "projects": [],
+  "description": "The firmware for a stand-alone NMEA 2000 node is being written. Until then the 8-relay board and the P4 cockpit both talk NMEA 2000 alongside their main job."
+}

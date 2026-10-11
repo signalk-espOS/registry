@@ -73,14 +73,13 @@
     },
     "boards": {
       "type": "array",
-      "description": "Boards this firmware supports. Declare every one: espOS matches an update on chip alone, so when two incompatible boards share a target the flasher has to ask which the user has — the wrong image is usually a black screen.",
+      "description": "Boards this firmware supports. Declare every one: espOS matches an update on chip alone, so when two incompatible boards share a target the flasher has to ask which the user has — the wrong image is usually a black screen. Each entry is the image's view of a board; what the board itself is (vendor, photo, features) lives in boards/<id>.json under the same id.",
       "items": {
         "type": "object",
         "additionalProperties": false,
         "required": [
           "id",
-          "target",
-          "name"
+          "target"
         ],
         "properties": {
           "id": {
@@ -93,7 +92,8 @@
           "name": {
             "type": "string",
             "minLength": 3,
-            "maxLength": 120
+            "maxLength": 120,
+            "description": "What the flasher shows. Optional when boards/<id>.json exists: the index fills it in from there."
           },
           "flashMinBytes": {
             "type": "integer",
@@ -106,7 +106,8 @@
           },
           "buyUrl": {
             "type": "string",
-            "format": "uri"
+            "format": "uri",
+            "description": "Optional when boards/<id>.json exists, which is the better home for it."
           },
           "reportedAs": {
             "type": "string",
@@ -119,6 +120,25 @@
             "pattern": "^[a-z0-9]+$",
             "maxLength": 24,
             "description": "The segment this board's release assets carry, as captured by the `board` named group in assets.ota/assets.merged (e.g. \"7b\" in p4_cockpit-v1.3.0-7b-ota.bin). Compared case-insensitively. Without it a board-labelled asset cannot be tied to a board, and the build is not offered over the air."
+          },
+          "support": {
+            "type": "string",
+            "enum": [
+              "tested",
+              "community",
+              "builds"
+            ],
+            "description": "How far this firmware is known to work on this board: \"tested\" by the project on the bench, \"community\" reported working by a user, \"builds\" only built for it. The flasher ranks tested boards first when it has no download counts to go on."
+          },
+          "runsOn": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "pattern": "^[a-z0-9][a-z0-9-]{1,48}$"
+            },
+            "description": "Catalogue boards (boards/<id>.json) this image runs on, when it is one image for several boards. Defaults to this entry's own id. Every board listed must use this entry's target."
           }
         }
       }

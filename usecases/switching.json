@@ -1,0 +1,12 @@
+{
+  "id": "switching",
+  "title": "Switch lights, pumps and other loads",
+  "summary": "Relays you switch from Signal K or NMEA 2000, with inputs you can read and schedules.",
+  "order": 3,
+  "needs": [
+    "relays"
+  ],
+  "projects": [
+    "8relay"
+  ]
+}

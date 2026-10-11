@@ -1,0 +1,13 @@
+{
+  "id": "instrument-panel",
+  "title": "Show instruments on a touch screen",
+  "summary": "Gauges, anchor watch and switching on a display at the helm, laid out in the Signal K HMI designer.",
+  "order": 1,
+  "needs": [
+    "display",
+    "touch"
+  ],
+  "projects": [
+    "cockpit"
+  ]
+}
