@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "updated": "2026-10-11T12:57:49.628Z",
+  "updated": "2026-10-11T17:12:04.773Z",
   "esposLatest": "0.17.0",
   "projects": [
     {
@@ -19,11 +19,11 @@
         {
           "id": "waveshare-esp32-s3-eth-8di-8ro-c",
           "target": "esp32s3",
-          "name": "Waveshare ESP32-S3-ETH-8DI-8RO-C",
           "flashMinBytes": 16777216,
-          "notes": "8 MB octal PSRAM (ESP32-S3R8), 16 MB flash, W5500 Ethernet plus WiFi fallback, isolated CAN transceiver for NMEA 2000.",
-          "buyUrl": "https://www.waveshare.com/wiki/ESP32-S3-ETH-8DI-8RO-C",
-          "reportedAs": "Waveshare ESP32-S3-ETH-8DI-8RO-C"
+          "reportedAs": "Waveshare ESP32-S3-ETH-8DI-8RO-C",
+          "name": "Waveshare ESP32-S3 8-relay board with Ethernet and CAN",
+          "notes": "8 relays, 8 isolated inputs, W5500 Ethernet with WiFi as fallback, and an isolated CAN transceiver for NMEA 2000.",
+          "buyUrl": "https://www.waveshare.com/wiki/ESP32-S3-ETH-8DI-8RO-C"
         }
       ],
       "channels": [
@@ -330,34 +330,41 @@
         {
           "id": "esp32c6-devkit",
           "target": "esp32c6",
+          "assetSegment": "esp32c6",
           "name": "ESP32-C6 development board",
-          "notes": "The ESP32-C6-MINI-1U has no PCB antenna: without an external one the radio sees nothing, which looks exactly like a software fault.",
-          "assetSegment": "esp32c6"
+          "notes": "Boards with the ESP32-C6-MINI-1U module have no antenna on the board: without an external one the radio hears nothing."
         },
         {
           "id": "esp32c3-devkit",
           "target": "esp32c3",
-          "name": "ESP32-C3 development board",
-          "assetSegment": "esp32c3"
+          "assetSegment": "esp32c3",
+          "name": "ESP32-C3 development board"
         },
         {
           "id": "esp32s3-devkit",
           "target": "esp32s3",
-          "name": "ESP32-S3 development board",
-          "assetSegment": "esp32s3"
+          "assetSegment": "esp32s3",
+          "name": "ESP32-S3 development board"
         },
         {
           "id": "esp32-devkit",
           "target": "esp32",
+          "assetSegment": "esp32",
           "name": "ESP32 development board",
-          "assetSegment": "esp32"
+          "notes": "Needs chip revision 3 or later for signed updates, which every ESP32-WROOM-32E and WROVER-E module has."
         },
         {
           "id": "waveshare-p4-poe",
           "target": "esp32p4",
           "name": "Waveshare ESP32-P4: POE-ETH, Touch-LCD-7B or Touch-LCD-X",
           "notes": "One image for all three boards: the PoE-ETH runs on its cable, the Touch-LCD boards on WiFi with the screen left dark. Releases up to 1.0.0 have WiFi off and only work on the PoE-ETH. On the PoE-ETH, never connect USB and Ethernet at the same time: powering the board from USB and PoE together damages it.",
-          "assetSegment": "esp32p4"
+          "assetSegment": "esp32p4",
+          "support": "tested",
+          "runsOn": [
+            "waveshare-p4-poe-eth",
+            "waveshare-p4-touch-7b",
+            "waveshare-p4-touch-x-7"
+          ]
         }
       ],
       "assets": {
@@ -926,21 +933,22 @@
         {
           "id": "waveshare-p4-touch-7b",
           "target": "esp32p4",
-          "name": "Waveshare ESP32-P4-WIFI6-Touch-LCD-7B (1024x600)",
           "flashMinBytes": 16777216,
-          "notes": "1024x600 landscape, EK79007 controller. The 7B and the X are different boards: the wrong firmware leaves the screen black, because each drives a backlight pin the other does not connect.",
-          "buyUrl": "https://www.waveshare.com/esp32-p4-wifi6-touch-lcd-7b.htm",
+          "notes": "WiFi and Bluetooth come from the ESP32-C6 on the board. Not the same board as the Touch-LCD-X 7-inch: firmware for one leaves the other's screen black. 1024x600 landscape, EK79007 controller. The 7B and the X are different boards: the wrong firmware leaves the screen black, because each drives a backlight pin the other does not connect.",
           "reportedAs": "Waveshare ESP32-P4-WIFI6-Touch-LCD-7B",
-          "assetSegment": "7b"
+          "assetSegment": "7b",
+          "support": "tested",
+          "name": "Waveshare ESP32-P4 7-inch touch display (7B, 1024x600)",
+          "buyUrl": "https://www.waveshare.com/esp32-p4-wifi6-touch-lcd-7b.htm"
         },
         {
           "id": "waveshare-p4-touch-x-7",
           "target": "esp32p4",
-          "name": "Waveshare ESP32-P4-WIFI6-Touch-LCD-X, 7 inch (720x1280, rotated)",
           "flashMinBytes": 16777216,
-          "notes": "720x1280 portrait ILI9881C on a 7-inch panel, shown rotated to landscape by the P4 PPA. Each size in the X series uses a different display controller, so a build is specific to one: the 8-inch and 10.1-inch X panels are JD9365 and are not supported. Not interchangeable with the 7B either — see that board's note.",
+          "notes": "WiFi and Bluetooth come from the ESP32-C6 on the board. Only the 7-inch X is listed: the 8 and 10.1-inch X panels use a different display controller. 720x1280 portrait ILI9881C on a 7-inch panel, shown rotated to landscape by the P4 PPA. Each size in the X series uses a different display controller, so a build is specific to one: the 8-inch and 10.1-inch X panels are JD9365 and are not supported. Not interchangeable with the 7B either — see that board's note.",
           "reportedAs": "Waveshare ESP32-P4-WIFI6-Touch-LCD-X 7in",
-          "assetSegment": "x7"
+          "assetSegment": "x7",
+          "name": "Waveshare ESP32-P4 7-inch touch display (X series, 720x1280)"
         }
       ],
       "channels": [
@@ -1252,6 +1260,350 @@
               "mergedSha256": "59a498334afb37a824c207d36ad8d0c9deb4403d31d4fd0e6d3f75db7c216a01"
             }
           ]
+        }
+      ]
+    }
+  ],
+  "boards": [
+    {
+      "id": "esp32-devkit",
+      "vendor": "Various",
+      "model": "ESP32-DevKitC and similar",
+      "name": "ESP32 development board",
+      "target": "esp32",
+      "features": [
+        "wifi",
+        "ble"
+      ],
+      "notes": "Needs chip revision 3 or later for signed updates, which every ESP32-WROOM-32E and WROVER-E module has.",
+      "projects": [
+        {
+          "id": "ble-gateway",
+          "name": "BLE Gateway",
+          "boardId": "esp32-devkit",
+          "downloads": 4
+        }
+      ]
+    },
+    {
+      "id": "esp32c3-devkit",
+      "vendor": "Various",
+      "model": "ESP32-C3-DevKitM-1 and similar",
+      "name": "ESP32-C3 development board",
+      "target": "esp32c3",
+      "features": [
+        "wifi",
+        "ble"
+      ],
+      "projects": [
+        {
+          "id": "ble-gateway",
+          "name": "BLE Gateway",
+          "boardId": "esp32c3-devkit",
+          "downloads": 4
+        }
+      ]
+    },
+    {
+      "id": "esp32c6-devkit",
+      "vendor": "Various",
+      "model": "ESP32-C6-DevKitC-1 and similar",
+      "name": "ESP32-C6 development board",
+      "target": "esp32c6",
+      "features": [
+        "wifi",
+        "ble"
+      ],
+      "notes": "Boards with the ESP32-C6-MINI-1U module have no antenna on the board: without an external one the radio hears nothing.",
+      "projects": [
+        {
+          "id": "ble-gateway",
+          "name": "BLE Gateway",
+          "boardId": "esp32c6-devkit",
+          "downloads": 5
+        }
+      ]
+    },
+    {
+      "id": "esp32s3-devkit",
+      "vendor": "Various",
+      "model": "ESP32-S3-DevKitC-1 and similar",
+      "name": "ESP32-S3 development board",
+      "target": "esp32s3",
+      "features": [
+        "wifi",
+        "ble"
+      ],
+      "projects": [
+        {
+          "id": "ble-gateway",
+          "name": "BLE Gateway",
+          "boardId": "esp32s3-devkit",
+          "downloads": 4
+        }
+      ]
+    },
+    {
+      "id": "waveshare-p4-touch-7b",
+      "vendor": "Waveshare",
+      "model": "ESP32-P4-WIFI6-Touch-LCD-7B",
+      "name": "Waveshare ESP32-P4 7-inch touch display (7B, 1024x600)",
+      "target": "esp32p4",
+      "flashBytes": 33554432,
+      "features": [
+        "wifi",
+        "ble",
+        "can",
+        "display",
+        "touch",
+        "audio"
+      ],
+      "display": {
+        "inches": 7,
+        "width": 1024,
+        "height": 600
+      },
+      "buyUrl": "https://www.waveshare.com/esp32-p4-wifi6-touch-lcd-7b.htm",
+      "notes": "WiFi and Bluetooth come from the ESP32-C6 on the board. Not the same board as the Touch-LCD-X 7-inch: firmware for one leaves the other's screen black.",
+      "projects": [
+        {
+          "id": "cockpit",
+          "name": "P4 Cockpit",
+          "boardId": "waveshare-p4-touch-7b",
+          "support": "tested",
+          "downloads": 15
+        },
+        {
+          "id": "ble-gateway",
+          "name": "BLE Gateway",
+          "boardId": "waveshare-p4-poe",
+          "support": "tested",
+          "downloads": 2
+        }
+      ]
+    },
+    {
+      "id": "waveshare-p4-touch-x-7",
+      "vendor": "Waveshare",
+      "model": "ESP32-P4-WIFI6-Touch-LCD-X (7 inch)",
+      "name": "Waveshare ESP32-P4 7-inch touch display (X series, 720x1280)",
+      "target": "esp32p4",
+      "flashBytes": 16777216,
+      "features": [
+        "wifi",
+        "ble",
+        "display",
+        "touch"
+      ],
+      "display": {
+        "inches": 7,
+        "width": 720,
+        "height": 1280
+      },
+      "notes": "WiFi and Bluetooth come from the ESP32-C6 on the board. Only the 7-inch X is listed: the 8 and 10.1-inch X panels use a different display controller.",
+      "projects": [
+        {
+          "id": "cockpit",
+          "name": "P4 Cockpit",
+          "boardId": "waveshare-p4-touch-x-7",
+          "downloads": 14
+        },
+        {
+          "id": "ble-gateway",
+          "name": "BLE Gateway",
+          "boardId": "waveshare-p4-poe",
+          "support": "tested",
+          "downloads": 2
+        }
+      ]
+    },
+    {
+      "id": "waveshare-p4-poe-eth",
+      "vendor": "Waveshare",
+      "name": "Waveshare ESP32-P4 Ethernet board with PoE",
+      "target": "esp32p4",
+      "features": [
+        "wifi",
+        "ble",
+        "ethernet",
+        "poe"
+      ],
+      "notes": "Never connect USB and PoE at the same time: powering the board from both damages it. Flash it over USB with the network cable unplugged.",
+      "projects": [
+        {
+          "id": "ble-gateway",
+          "name": "BLE Gateway",
+          "boardId": "waveshare-p4-poe",
+          "support": "tested",
+          "downloads": 2
+        }
+      ]
+    },
+    {
+      "id": "waveshare-esp32-s3-eth-8di-8ro-c",
+      "vendor": "Waveshare",
+      "model": "ESP32-S3-ETH-8DI-8RO-C",
+      "name": "Waveshare ESP32-S3 8-relay board with Ethernet and CAN",
+      "target": "esp32s3",
+      "package": "ESP32-S3R8",
+      "flashBytes": 16777216,
+      "psramBytes": 8388608,
+      "features": [
+        "wifi",
+        "ble",
+        "ethernet",
+        "can",
+        "relays",
+        "digital-inputs",
+        "rtc"
+      ],
+      "buyUrl": "https://www.waveshare.com/wiki/ESP32-S3-ETH-8DI-8RO-C",
+      "notes": "8 relays, 8 isolated inputs, W5500 Ethernet with WiFi as fallback, and an isolated CAN transceiver for NMEA 2000.",
+      "projects": [
+        {
+          "id": "8relay",
+          "name": "8-Relay Switch Bank",
+          "boardId": "waveshare-esp32-s3-eth-8di-8ro-c",
+          "downloads": 60
+        }
+      ]
+    }
+  ],
+  "useCases": [
+    {
+      "id": "instrument-panel",
+      "title": "Show instruments on a touch screen",
+      "summary": "Gauges, anchor watch and switching on a display at the helm, laid out in the Signal K HMI designer.",
+      "order": 1,
+      "needs": [
+        "display",
+        "touch"
+      ],
+      "projects": [
+        "cockpit"
+      ],
+      "boards": [
+        {
+          "id": "waveshare-p4-touch-7b",
+          "name": "Waveshare ESP32-P4 7-inch touch display (7B, 1024x600)",
+          "fits": true,
+          "downloads": 15,
+          "support": "tested"
+        },
+        {
+          "id": "waveshare-p4-touch-x-7",
+          "name": "Waveshare ESP32-P4 7-inch touch display (X series, 720x1280)",
+          "fits": true,
+          "downloads": 14
+        }
+      ]
+    },
+    {
+      "id": "bluetooth-sensors",
+      "title": "Bring Bluetooth sensors into Signal K",
+      "summary": "Temperature, humidity and battery monitors over Bluetooth Low Energy, forwarded to your Signal K server.",
+      "order": 2,
+      "needs": [
+        "ble"
+      ],
+      "projects": [
+        "ble-gateway"
+      ],
+      "boards": [
+        {
+          "id": "waveshare-p4-poe-eth",
+          "name": "Waveshare ESP32-P4 Ethernet board with PoE",
+          "fits": true,
+          "downloads": 2,
+          "support": "tested",
+          "reason": "Wired Ethernet: the radio does nothing but Bluetooth, and one cable powers it."
+        },
+        {
+          "id": "waveshare-p4-touch-7b",
+          "name": "Waveshare ESP32-P4 7-inch touch display (7B, 1024x600)",
+          "fits": true,
+          "downloads": 2,
+          "support": "tested"
+        },
+        {
+          "id": "waveshare-p4-touch-x-7",
+          "name": "Waveshare ESP32-P4 7-inch touch display (X series, 720x1280)",
+          "fits": true,
+          "downloads": 2,
+          "support": "tested"
+        },
+        {
+          "id": "esp32c6-devkit",
+          "name": "ESP32-C6 development board",
+          "fits": true,
+          "downloads": 5,
+          "reason": "The cheapest way to start."
+        },
+        {
+          "id": "esp32-devkit",
+          "name": "ESP32 development board",
+          "fits": true,
+          "downloads": 4
+        },
+        {
+          "id": "esp32c3-devkit",
+          "name": "ESP32-C3 development board",
+          "fits": true,
+          "downloads": 4
+        },
+        {
+          "id": "esp32s3-devkit",
+          "name": "ESP32-S3 development board",
+          "fits": true,
+          "downloads": 4
+        }
+      ]
+    },
+    {
+      "id": "switching",
+      "title": "Switch lights, pumps and other loads",
+      "summary": "Relays you switch from Signal K or NMEA 2000, with inputs you can read and schedules.",
+      "order": 3,
+      "needs": [
+        "relays"
+      ],
+      "projects": [
+        "8relay"
+      ],
+      "boards": [
+        {
+          "id": "waveshare-esp32-s3-eth-8di-8ro-c",
+          "name": "Waveshare ESP32-S3 8-relay board with Ethernet and CAN",
+          "fits": true,
+          "downloads": 60
+        }
+      ]
+    },
+    {
+      "id": "nmea2000",
+      "title": "Connect an NMEA 2000 network",
+      "summary": "Your NMEA 2000 instruments in Signal K, and Signal K data on the NMEA 2000 bus.",
+      "order": 4,
+      "needs": [
+        "can"
+      ],
+      "projects": [
+        "cockpit"
+      ],
+      "description": "The P4 cockpit is a Signal K to NMEA 2000 gateway alongside its display. A small node that does only NMEA 2000 is planned.",
+      "boards": [
+        {
+          "id": "waveshare-p4-touch-7b",
+          "name": "Waveshare ESP32-P4 7-inch touch display (7B, 1024x600)",
+          "fits": true,
+          "downloads": 15,
+          "support": "tested"
+        },
+        {
+          "id": "waveshare-p4-touch-x-7",
+          "name": "Waveshare ESP32-P4 7-inch touch display (X series, 720x1280)",
+          "fits": false,
+          "downloads": 14
         }
       ]
     }
