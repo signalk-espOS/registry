@@ -4,6 +4,8 @@
   "model": "ESP32-C6-DevKitC-1 and similar",
   "name": "ESP32-C6 development board",
   "target": "esp32c6",
+  "image": "https://raw.githubusercontent.com/signalk-espOS/registry/main/boards/photos/esp32c6-devkit.png",
+  "imageCredit": "Espressif Systems, CC BY-SA 4.0, from espressif/esp-dev-kits",
   "features": [
     "wifi",
     "ble"
