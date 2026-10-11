@@ -11,9 +11,8 @@
 import { readdir, readFile } from "node:fs/promises";
 import { basename, join } from "node:path";
 import { gh, TOKEN } from "./github.mjs";
-import { checkShape, loadCatalogue } from "./catalogue.mjs";
+import { checkShape, loadCatalogue, ROOT } from "./catalogue.mjs";
 
-const ROOT = new URL("..", import.meta.url).pathname;
 const errors = [];
 const notes = [];
 
@@ -93,19 +92,6 @@ for (const file of files) {
     }
   }
 
-  // Compared verbatim with what the device reports, so any other spelling
-  // (upper case, a full digest, a key file) would read as a key change.
-  if (
-    entry.signingKeyId !== undefined &&
-    (typeof entry.signingKeyId !== "string" ||
-      !new RegExp(schema.properties.signingKeyId.pattern).test(entry.signingKeyId))
-  ) {
-    fail(
-      file,
-      "signingKeyId must be the first 16 lower-case hex characters of the key's " +
-        "public-key digest (see README, Signing)",
-    );
-  }
   if (entry.signed === false) {
     notes.push(`${file}: marked unsigned — those builds accept no updates afterwards`);
   }

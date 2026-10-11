@@ -10,7 +10,7 @@ import { readdir, readFile } from "node:fs/promises";
 import { basename, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
-const ROOT = fileURLToPath(new URL("..", import.meta.url));
+export const ROOT = fileURLToPath(new URL("..", import.meta.url));
 
 /** Every `<dir>/*.json`, parsed, with parse failures reported rather than thrown. */
 async function loadDir(dir, fail) {
@@ -44,7 +44,7 @@ async function loadSchema(name) {
  * deliberately has no dependencies, and these are the mistakes people make.
  */
 export function checkShape(where, entry, schema, fail) {
-  if (entry === null || typeof entry !== "object" || Array.isArray(entry)) {
+  if (!isObject(entry)) {
     fail(where, "must be a JSON object");
     return;
   }
@@ -59,6 +59,10 @@ export function checkShape(where, entry, schema, fail) {
     }
     checkValue(where, key, value, prop, fail);
   }
+}
+
+function isObject(value) {
+  return value !== null && typeof value === "object" && !Array.isArray(value);
 }
 
 function checkValue(where, key, value, prop, fail) {
@@ -113,11 +117,13 @@ export async function loadCatalogue(projects, fail, note = () => {}) {
 
   for (const { where, id, entry } of await loadDir("boards", fail)) {
     checkShape(where, entry, boardSchema, fail);
+    if (!isObject(entry)) continue;
     if (entry.id !== id) fail(where, `id "${entry.id}" does not match the filename`);
     boards.set(entry.id, entry);
   }
   for (const { where, id, entry } of await loadDir("usecases", fail)) {
     checkShape(where, entry, useCaseSchema, fail);
+    if (!isObject(entry)) continue;
     if (entry.id !== id) fail(where, `id "${entry.id}" does not match the filename`);
     useCases.set(entry.id, entry);
   }

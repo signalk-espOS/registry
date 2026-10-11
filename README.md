@@ -198,8 +198,9 @@ projects that do it (none yet is allowed: the flasher shows it as coming) and,
 in `reasons`, why a board suits the job. The fields are in
 [`schema/usecase.schema.json`](schema/usecase.schema.json).
 
-The index lists, for each use case, the boards its projects run on: tested ones
-first, then the most used, counted from release downloads. An image several
+The index lists, for each use case, the boards its projects run on: those with
+every feature in its `needs` first (`fits`), then tested ones, then the most
+used, counted from release downloads. An image several
 boards share has its downloads split between them, since a download cannot say
 which board it went to. Counts change on nearly every run, so on their own they
 do not cause a commit: they refresh on the first run after the index is a day

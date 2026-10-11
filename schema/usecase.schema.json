@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/signalk-espOS/registry/main/schema/usecase.schema.json",
   "title": "espOS use case",
-  "description": "A job a boat owner wants done, in their words. The flasher's start screen lists these; each leads to the firmware that does it and the tested boards that run it, the most used first.",
+  "description": "A job a boat owner wants done, in their words. The flasher's start screen lists these; each leads to the firmware that does it and the boards that run it: those with every feature it needs first, then tested ones, then the most used.",
   "type": "object",
   "additionalProperties": false,
   "required": [
@@ -55,7 +55,7 @@
           "rtc"
         ]
       },
-      "description": "Features a board must have for this job. Used for buying advice; firmware is only ever offered for boards its project lists."
+      "description": "Features a board must have for this job. Boards that have them rank first; firmware is only ever offered for boards its project lists."
     },
     "projects": {
       "type": "array",

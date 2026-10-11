@@ -19,9 +19,8 @@
 import { readdir, readFile, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import { gh, TOKEN } from "./github.mjs";
-import { loadCatalogue, runsOn } from "./catalogue.mjs";
+import { loadCatalogue, ROOT, runsOn } from "./catalogue.mjs";
 
-const ROOT = new URL("..", import.meta.url).pathname;
 if (TOKEN === undefined) {
   console.log(
     "note: no GITHUB_TOKEN or GH_TOKEN; unauthenticated, 60 requests an hour. " +
@@ -531,7 +530,9 @@ for (const entry of entries) {
     const own = boards.get(b.id);
     if (own === undefined) return b;
     const filled = { ...b, name: b.name ?? own.name };
-    const notes = b.notes ?? own.notes;
+    /* Both, board first: the catalogue's notes are hardware cautions (a
+     * board that two power sources damage) that hold whatever the firmware. */
+    const notes = [own.notes, b.notes].filter((n) => n !== undefined).join(" ") || undefined;
     const buyUrl = b.buyUrl ?? own.buyUrl;
     if (notes !== undefined) filled.notes = notes;
     if (buyUrl !== undefined) filled.buyUrl = buyUrl;
@@ -556,6 +557,8 @@ function projectsOn(boardId, only) {
       out.push({
         id: project.id,
         name: project.name,
+        /* The project's own board entry, which its builds' boardId names. */
+        boardId: entry.id,
         ...(entry.support === undefined ? {} : { support: entry.support }),
         /* An image several boards share (runsOn) is split evenly between
          * them: a download cannot say which board it went to. */
@@ -586,10 +589,18 @@ const useCaseList = [...useCases.values()]
       .map((board) => {
         const on = projectsOn(board.id, uc.projects ?? []);
         if (on.length === 0) return undefined;
-        const best = on.map((p) => p.support).sort((x, y) => supportRank(x) - supportRank(y))[0];
+        /* By rank, not sort(): sort() puts undefined last without asking the
+         * comparator, which would rank an undeclared board below "builds". */
+        const best = on.reduce(
+          (top, p) => (supportRank(p.support) < supportRank(top) ? p.support : top),
+          on[0].support,
+        );
         return {
           id: board.id,
           name: board.name,
+          /* A board that lacks what the job needs (CAN for NMEA 2000) can
+           * still run the firmware, but only with extra hardware added. */
+          fits: (uc.needs ?? []).every((f) => (board.features ?? []).includes(f)),
           downloads: on.reduce((n, p) => n + p.downloads, 0),
           ...(best === undefined ? {} : { support: best }),
           ...(uc.reasons?.[board.id] === undefined ? {} : { reason: uc.reasons[board.id] }),
@@ -598,6 +609,7 @@ const useCaseList = [...useCases.values()]
       .filter((b) => b !== undefined)
       .sort(
         (a, b) =>
+          b.fits - a.fits ||
           supportRank(a.support) - supportRank(b.support) ||
           b.downloads - a.downloads ||
           (a.reason === undefined) - (b.reason === undefined) ||
