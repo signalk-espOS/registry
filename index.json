@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "updated": "2026-10-12T21:37:08.589Z",
+  "updated": "2026-10-12T21:38:33.622Z",
   "esposLatest": "0.18.0",
   "projects": [
     {
@@ -315,7 +315,7 @@
       "app": "ble_gateway",
       "name": "BLE Gateway",
       "summary": "Bridges Bluetooth sensors into Signal K",
-      "description": "Scans for Bluetooth Low Energy sensors — temperature, humidity, battery monitors — and forwards their readings to a Signal K server.\n\nRuns on the Waveshare ESP32-P4 boards (BLE via their ESP32-C6 co-processor, which is what two gateways here use in daily service; the PoE-ETH on its cable, the Touch-LCD boards on WiFi) and on the ESP32, C3, S3 and C6.\n\nNot the ESP32-C5: it builds and scans, then reboots after about 30 seconds. BLE plus WiFi plus the Signal K client needs ~152 KB of its ~176 KB of internal RAM, the HTTP posts start failing and the health watchdog restarts the board. Its 8 MB of PSRAM does not help — what remains is task stacks and DMA buffers, which cannot live in external RAM. A C5 is a good WiFi/Signal K board, but it is not a BLE bridge.",
+      "description": "Scans for Bluetooth Low Energy sensors — temperature, humidity, battery monitors — and forwards their readings to a Signal K server.\n\nRuns on the Waveshare ESP32-P4 boards (BLE via their ESP32-C6 co-processor, which is what two gateways here use in daily service; the PoE-ETH on its cable, the Touch-LCD boards on WiFi) and on the ESP32, C3, S3 and C6.\n\nAlso on the Waveshare ESP32-C5 WiFi 6 kit, using its PSRAM: Bluetooth plus WiFi plus the Signal K client does not fit an ESP32-C5's internal RAM alone, so a C5 without PSRAM cannot run it.",
       "repo": "dirkwa/espos-ble-gateway",
       "license": "Apache-2.0",
       "signingKeyId": "b3381b48b9cc9941",
@@ -324,7 +324,8 @@
         "esp32",
         "esp32s3",
         "esp32c3",
-        "esp32c6"
+        "esp32c6",
+        "esp32c5"
       ],
       "boards": [
         {
@@ -352,6 +353,16 @@
           "assetSegment": "esp32",
           "name": "ESP32 development board",
           "notes": "Needs chip revision 3 or later for signed updates, which every ESP32-WROOM-32E and WROVER-E module has."
+        },
+        {
+          "id": "waveshare-esp32-c5-wifi6-kit",
+          "target": "esp32c5",
+          "notes": "WiFi on 2.4 and 5 GHz. Sold as N16R8 (8 MB PSRAM) and N16R4 (4 MB); the -M versions come with the pin headers soldered on. Needs the module's PSRAM: an ESP32-C5 without it cannot run Bluetooth beside WiFi. Tested on the N16R8 (8 MB PSRAM).",
+          "assetSegment": "esp32c5",
+          "minVersion": "1.0.8",
+          "support": "tested",
+          "name": "Waveshare ESP32-C5 dual-band WiFi 6 development board",
+          "buyUrl": "https://www.waveshare.com/esp32-c5-wifi6-kit-n16r4.htm"
         },
         {
           "id": "waveshare-p4-poe",
@@ -409,6 +420,18 @@
               "mergedWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-ble-gateway/release-assets/v1.1.0/ble-gateway-esp32c3-v1.1.0-merged.bin",
               "mergedBytes": 6225920,
               "mergedSha256": "c82df44778f0c3a873752e0ceb275cabcf5a9872b2fac5b03660755c9982696d"
+            },
+            {
+              "target": "esp32c5",
+              "boardId": "waveshare-esp32-c5-wifi6-kit",
+              "otaUrl": "https://github.com/dirkwa/espos-ble-gateway/releases/download/v1.1.0/ble-gateway-esp32c5-v1.1.0-ota.bin",
+              "otaWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-ble-gateway/release-assets/v1.1.0/ble-gateway-esp32c5-v1.1.0-ota.bin",
+              "otaBytes": 2297856,
+              "otaSha256": "d57fa404eff6d634c7d8bc246165c981bd04abaf77f407c05096aac3689bda86",
+              "mergedUrl": "https://github.com/dirkwa/espos-ble-gateway/releases/download/v1.1.0/ble-gateway-esp32c5-v1.1.0-merged.bin",
+              "mergedWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-ble-gateway/release-assets/v1.1.0/ble-gateway-esp32c5-v1.1.0-merged.bin",
+              "mergedBytes": 6225920,
+              "mergedSha256": "ce46a84228e34ad113a0ad4a790725ea5f4355f5962bcd4502c5041854c531b8"
             },
             {
               "target": "esp32c6",
@@ -1646,7 +1669,15 @@
       ],
       "buyUrl": "https://www.waveshare.com/esp32-c5-wifi6-kit-n16r4.htm",
       "notes": "WiFi on 2.4 and 5 GHz. Sold as N16R8 (8 MB PSRAM) and N16R4 (4 MB); the -M versions come with the pin headers soldered on.",
-      "projects": []
+      "projects": [
+        {
+          "id": "ble-gateway",
+          "name": "BLE Gateway",
+          "boardId": "waveshare-esp32-c5-wifi6-kit",
+          "support": "tested",
+          "downloads": 0
+        }
+      ]
     },
     {
       "id": "waveshare-p4-touch-7b",
@@ -1846,6 +1877,14 @@
           "fits": true,
           "downloads": 3,
           "support": "tested"
+        },
+        {
+          "id": "waveshare-esp32-c5-wifi6-kit",
+          "name": "Waveshare ESP32-C5 dual-band WiFi 6 development board",
+          "fits": true,
+          "downloads": 0,
+          "support": "tested",
+          "reason": "Dual-band WiFi: joins a 5 GHz network, which the other boards here cannot."
         },
         {
           "id": "esp32c6-devkit",
