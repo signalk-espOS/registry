@@ -11,6 +11,7 @@
   ],
   "reasons": {
     "waveshare-p4-poe-eth": "Wired Ethernet: the radio does nothing but Bluetooth, and one cable powers it.",
-    "esp32c6-devkit": "The cheapest way to start."
+    "esp32c6-devkit": "The cheapest way to start.",
+    "waveshare-esp32-c5-wifi6-kit": "Dual-band WiFi: joins a 5 GHz network, which the other boards here cannot."
   }
 }
