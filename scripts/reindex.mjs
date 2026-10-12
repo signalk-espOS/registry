@@ -459,6 +459,22 @@ async function resolveProject(project) {
        * naming a segment nobody declares is not offered, so it counts for none. */
       const countedAs =
         boardId ?? (seg === undefined && onTarget.length === 1 ? onTarget[0].id : undefined);
+      // A board can join a project after releases that already built images for
+      // it. Those images stay on the immutable releases, so the index skips them.
+      const floor = (project.boards ?? []).find((b) => b.id === countedAs)
+        ?.minVersion;
+      const core = String(release.tag_name).replace(/^v/, "").split(/[-+]/)[0];
+      if (
+        floor !== undefined &&
+        /^[0-9]+(\.[0-9]+)*$/.test(core) &&
+        compareVersions(core, floor) < 0
+      ) {
+        warnings.push(
+          `${context}: ${countedAs} build predates the board's minVersion ` +
+            `${floor}, so it was not indexed`,
+        );
+        continue;
+      }
       if (countedAs !== undefined) {
         const n = (ota?.download_count ?? 0) + (merged?.download_count ?? 0);
         downloads.set(countedAs, (downloads.get(countedAs) ?? 0) + n);
