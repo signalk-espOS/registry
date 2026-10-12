@@ -121,6 +121,11 @@
             "maxLength": 24,
             "description": "The segment this board's release assets carry, as captured by the `board` named group in assets.ota/assets.merged (e.g. \"7b\" in p4_cockpit-v1.3.0-7b-ota.bin). Compared case-insensitively. Without it a board-labelled asset cannot be tied to a board, and the build is not offered over the air."
           },
+          "minVersion": {
+            "type": "string",
+            "pattern": "^[0-9]+(\\.[0-9]+)*$",
+            "description": "The first release whose image for this board works. Older releases can carry images for it that do not run (built before the firmware supported the board, or before a fix it needs); published releases are immutable, so those images are left out of the index instead. Compared on the release's numeric version, ignoring a prerelease suffix."
+          },
           "support": {
             "type": "string",
             "enum": [

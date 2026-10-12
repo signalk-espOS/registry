@@ -41,6 +41,7 @@
       "target": "esp32c5",
       "notes": "Needs the module's PSRAM: an ESP32-C5 without it cannot run Bluetooth beside WiFi. Tested on the N16R8 (8 MB PSRAM).",
       "assetSegment": "esp32c5",
+      "minVersion": "1.0.8",
       "support": "tested"
     },
     {
