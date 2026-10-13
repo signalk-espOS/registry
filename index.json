@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "updated": "2026-10-13T06:36:56.986Z",
+  "updated": "2026-10-13T20:32:55.238Z",
   "esposLatest": "0.18.1",
   "projects": [
     {
@@ -1622,6 +1622,161 @@
           ]
         }
       ]
+    },
+    {
+      "id": "nmea-gateway",
+      "app": "nmea_gateway",
+      "name": "NMEA Gateway",
+      "summary": "Streams the NMEA 2000 bus to Signal K over Wi-Fi",
+      "description": "A small tap on the NMEA 2000 backbone: every CAN frame goes over Wi-Fi to Signal K in candump format, where canboatjs decodes it, and frames Signal K sends go back onto the bus (or never, in receive-only mode). It decodes nothing itself, so new PGNs need only a server update.\n\nNeeds a CAN transceiver (an SN65HVD230 module, for example) between the board and the bus, except on boards that have one. Pins are set on the device's settings page. NMEA 0183 over a serial port is planned as an option in the same firmware.",
+      "repo": "dirkwa/espos-nmea-gateway",
+      "license": "Apache-2.0",
+      "signingKeyId": "2d513aabefc4296a",
+      "targets": [
+        "esp32c5",
+        "esp32",
+        "esp32s3",
+        "esp32c3",
+        "esp32c6",
+        "esp32p4"
+      ],
+      "boards": [
+        {
+          "id": "waveshare-esp32-c5-wifi6-kit",
+          "target": "esp32c5",
+          "assetSegment": "esp32c5",
+          "flashMinBytes": 16777216,
+          "notes": "WiFi on 2.4 and 5 GHz. Sold as N16R8 (8 MB PSRAM) and N16R4 (4 MB); the -M versions come with the pin headers soldered on. Wire a CAN transceiver to GPIO 4 (TX) and GPIO 5 (RX), or set other pins in the settings.",
+          "support": "builds",
+          "name": "Waveshare ESP32-C5 dual-band WiFi 6 development board",
+          "buyUrl": "https://www.waveshare.com/esp32-c5-wifi6-kit-n16r4.htm"
+        },
+        {
+          "id": "esp32-devkit",
+          "target": "esp32",
+          "assetSegment": "esp32",
+          "notes": "Needs chip revision 3 or later for signed updates, which every ESP32-WROOM-32E and WROVER-E module has. Wire a CAN transceiver to GPIO 32 (TX) and GPIO 34 (RX), as on the SH-ESP32, or set other pins in the settings.",
+          "support": "builds",
+          "name": "ESP32 development board"
+        },
+        {
+          "id": "esp32s3-devkit",
+          "target": "esp32s3",
+          "assetSegment": "esp32s3",
+          "notes": "Wire a CAN transceiver to GPIO 4 (TX) and GPIO 5 (RX), or set other pins in the settings.",
+          "support": "builds",
+          "name": "ESP32-S3 development board"
+        },
+        {
+          "id": "esp32c3-devkit",
+          "target": "esp32c3",
+          "assetSegment": "esp32c3",
+          "notes": "Wire a CAN transceiver to GPIO 4 (TX) and GPIO 5 (RX), or set other pins in the settings.",
+          "support": "builds",
+          "name": "ESP32-C3 development board"
+        },
+        {
+          "id": "esp32c6-devkit",
+          "target": "esp32c6",
+          "assetSegment": "esp32c6",
+          "notes": "Boards with the ESP32-C6-MINI-1U module have no antenna on the board: without an external one the radio hears nothing. Wire a CAN transceiver to GPIO 4 (TX) and GPIO 5 (RX), or set other pins in the settings.",
+          "support": "builds",
+          "name": "ESP32-C6 development board"
+        },
+        {
+          "id": "waveshare-p4-touch-7b",
+          "target": "esp32p4",
+          "assetSegment": "esp32p4",
+          "flashMinBytes": 16777216,
+          "minVersion": "0.1.1",
+          "notes": "WiFi and Bluetooth come from the ESP32-C6 on the board. Not the same board as the Touch-LCD-X 7-inch: firmware for one leaves the other's screen black. Uses the board's own CAN transceiver; the screen stays dark. For a display as well, the P4 cockpit is a gateway too.",
+          "support": "builds",
+          "name": "Waveshare ESP32-P4 7-inch touch display (7B, 1024x600)",
+          "buyUrl": "https://www.waveshare.com/esp32-p4-wifi6-touch-lcd-7b.htm"
+        }
+      ],
+      "assets": {
+        "ota": "^nmea-gateway-(?<board>esp32[a-z0-9]*)-v?(?<version>[0-9][^-]*)-ota\\.bin$",
+        "merged": "^nmea-gateway-(?<board>esp32[a-z0-9]*)-v?(?<version>[0-9][^-]*)-merged\\.bin$"
+      },
+      "webAssetsBranch": "release-assets",
+      "channels": [
+        "stable"
+      ],
+      "official": true,
+      "releases": [
+        {
+          "version": "0.1.0",
+          "tag": "v0.1.0",
+          "espos": "0.18.1",
+          "channel": "stable",
+          "publishedAt": "2026-10-13T19:55:35Z",
+          "notes": "add the NMEA 2000 Wi-Fi gateway firmware (4316d29)",
+          "notesUrl": "https://github.com/dirkwa/espos-nmea-gateway/releases/tag/v0.1.0",
+          "builds": [
+            {
+              "target": "esp32",
+              "boardId": "esp32-devkit",
+              "otaUrl": "https://github.com/dirkwa/espos-nmea-gateway/releases/download/v0.1.0/nmea-gateway-esp32-v0.1.0-ota.bin",
+              "otaWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-nmea-gateway/release-assets/v0.1.0/nmea-gateway-esp32-v0.1.0-ota.bin",
+              "otaBytes": 1380352,
+              "otaSha256": "0e8b2fe370003f4035bfa060bc1e2b5c71bf65183e71d9a756501f25130113e6",
+              "mergedUrl": "https://github.com/dirkwa/espos-nmea-gateway/releases/download/v0.1.0/nmea-gateway-esp32-v0.1.0-merged.bin",
+              "mergedWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-nmea-gateway/release-assets/v0.1.0/nmea-gateway-esp32-v0.1.0-merged.bin",
+              "mergedBytes": 4128768,
+              "mergedSha256": "8f3fe1676bf414381f1f2468219e04a1a38eaebca2e387dcbd0ccea3d62bc268"
+            },
+            {
+              "target": "esp32c3",
+              "boardId": "esp32c3-devkit",
+              "otaUrl": "https://github.com/dirkwa/espos-nmea-gateway/releases/download/v0.1.0/nmea-gateway-esp32c3-v0.1.0-ota.bin",
+              "otaWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-nmea-gateway/release-assets/v0.1.0/nmea-gateway-esp32c3-v0.1.0-ota.bin",
+              "otaBytes": 1445888,
+              "otaSha256": "0c67506e95f77e161bcef002a58b8baa246ad4396774e0884c9d6ab45d3faf37",
+              "mergedUrl": "https://github.com/dirkwa/espos-nmea-gateway/releases/download/v0.1.0/nmea-gateway-esp32c3-v0.1.0-merged.bin",
+              "mergedWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-nmea-gateway/release-assets/v0.1.0/nmea-gateway-esp32c3-v0.1.0-merged.bin",
+              "mergedBytes": 4128768,
+              "mergedSha256": "6154764e96ca60d053296f8b244a935d46494c28e89965805a191f95dac46777"
+            },
+            {
+              "target": "esp32c5",
+              "boardId": "waveshare-esp32-c5-wifi6-kit",
+              "otaUrl": "https://github.com/dirkwa/espos-nmea-gateway/releases/download/v0.1.0/nmea-gateway-esp32c5-v0.1.0-ota.bin",
+              "otaWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-nmea-gateway/release-assets/v0.1.0/nmea-gateway-esp32c5-v0.1.0-ota.bin",
+              "otaBytes": 1511424,
+              "otaSha256": "2bffaa924652d0cef8a2f885d14a88e4cdd69688c00ecb20bfdb3dae5e7e423f",
+              "mergedUrl": "https://github.com/dirkwa/espos-nmea-gateway/releases/download/v0.1.0/nmea-gateway-esp32c5-v0.1.0-merged.bin",
+              "mergedWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-nmea-gateway/release-assets/v0.1.0/nmea-gateway-esp32c5-v0.1.0-merged.bin",
+              "mergedBytes": 15663104,
+              "mergedSha256": "d139fee55e7fbfde8f362b236614bdc9b82f32599445a159e054c9fb968f1da7"
+            },
+            {
+              "target": "esp32c6",
+              "boardId": "esp32c6-devkit",
+              "otaUrl": "https://github.com/dirkwa/espos-nmea-gateway/releases/download/v0.1.0/nmea-gateway-esp32c6-v0.1.0-ota.bin",
+              "otaWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-nmea-gateway/release-assets/v0.1.0/nmea-gateway-esp32c6-v0.1.0-ota.bin",
+              "otaBytes": 1511424,
+              "otaSha256": "53bdb73d747586dfc1731a8b0baccdb59badee98dad93c2f315bbde0c44cf626",
+              "mergedUrl": "https://github.com/dirkwa/espos-nmea-gateway/releases/download/v0.1.0/nmea-gateway-esp32c6-v0.1.0-merged.bin",
+              "mergedWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-nmea-gateway/release-assets/v0.1.0/nmea-gateway-esp32c6-v0.1.0-merged.bin",
+              "mergedBytes": 4128768,
+              "mergedSha256": "3bcf6c24445cc94be3ed813c138601e9b66c1e0c1a4ef4f4971d8a953f444fe4"
+            },
+            {
+              "target": "esp32s3",
+              "boardId": "esp32s3-devkit",
+              "otaUrl": "https://github.com/dirkwa/espos-nmea-gateway/releases/download/v0.1.0/nmea-gateway-esp32s3-v0.1.0-ota.bin",
+              "otaWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-nmea-gateway/release-assets/v0.1.0/nmea-gateway-esp32s3-v0.1.0-ota.bin",
+              "otaBytes": 1380352,
+              "otaSha256": "a76a82305c9705081af1ce7eec6f20eb43369bf39dc7a4e32e80b80cd413b0d9",
+              "mergedUrl": "https://github.com/dirkwa/espos-nmea-gateway/releases/download/v0.1.0/nmea-gateway-esp32s3-v0.1.0-merged.bin",
+              "mergedWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-nmea-gateway/release-assets/v0.1.0/nmea-gateway-esp32s3-v0.1.0-merged.bin",
+              "mergedBytes": 4128768,
+              "mergedSha256": "cecfb91da15454d2f169d28684b5630b7017c6295888e57b3e9376a192319a25"
+            }
+          ]
+        }
+      ]
     }
   ],
   "boards": [
@@ -1644,6 +1799,13 @@
           "name": "BLE Gateway",
           "boardId": "esp32-devkit",
           "downloads": 4
+        },
+        {
+          "id": "nmea-gateway",
+          "name": "NMEA Gateway",
+          "boardId": "esp32-devkit",
+          "support": "builds",
+          "downloads": 1
         }
       ]
     },
@@ -1665,6 +1827,13 @@
           "name": "BLE Gateway",
           "boardId": "esp32c3-devkit",
           "downloads": 4
+        },
+        {
+          "id": "nmea-gateway",
+          "name": "NMEA Gateway",
+          "boardId": "esp32c3-devkit",
+          "support": "builds",
+          "downloads": 0
         }
       ]
     },
@@ -1687,6 +1856,13 @@
           "name": "BLE Gateway",
           "boardId": "esp32c6-devkit",
           "downloads": 11
+        },
+        {
+          "id": "nmea-gateway",
+          "name": "NMEA Gateway",
+          "boardId": "esp32c6-devkit",
+          "support": "builds",
+          "downloads": 0
         }
       ]
     },
@@ -1708,6 +1884,13 @@
           "name": "BLE Gateway",
           "boardId": "esp32s3-devkit",
           "downloads": 4
+        },
+        {
+          "id": "nmea-gateway",
+          "name": "NMEA Gateway",
+          "boardId": "esp32s3-devkit",
+          "support": "builds",
+          "downloads": 0
         }
       ]
     },
@@ -1732,6 +1915,13 @@
       "buyUrl": "https://www.waveshare.com/esp32-c5-wifi6-kit-n16r4.htm",
       "notes": "WiFi on 2.4 and 5 GHz. Sold as N16R8 (8 MB PSRAM) and N16R4 (4 MB); the -M versions come with the pin headers soldered on.",
       "projects": [
+        {
+          "id": "nmea-gateway",
+          "name": "NMEA Gateway",
+          "boardId": "waveshare-esp32-c5-wifi6-kit",
+          "support": "builds",
+          "downloads": 1
+        },
         {
           "id": "ble-gateway",
           "name": "BLE Gateway",
@@ -1782,6 +1972,13 @@
           "boardId": "waveshare-p4-poe",
           "support": "tested",
           "downloads": 3
+        },
+        {
+          "id": "nmea-gateway",
+          "name": "NMEA Gateway",
+          "boardId": "waveshare-p4-touch-7b",
+          "support": "builds",
+          "downloads": 0
         }
       ]
     },
@@ -1814,7 +2011,7 @@
           "id": "cockpit",
           "name": "P4 Cockpit",
           "boardId": "waveshare-p4-touch-x-7",
-          "downloads": 18
+          "downloads": 19
         },
         {
           "id": "ble-gateway",
@@ -1902,7 +2099,7 @@
           "id": "waveshare-p4-touch-x-7",
           "name": "Waveshare ESP32-P4 7-inch touch display (X series, 720x1280)",
           "fits": true,
-          "downloads": 18
+          "downloads": 19
         }
       ]
     },
@@ -2004,9 +2201,10 @@
         "can"
       ],
       "projects": [
+        "nmea-gateway",
         "cockpit"
       ],
-      "description": "The P4 cockpit is a Signal K to NMEA 2000 gateway alongside its display. A small node that does only NMEA 2000 is planned.",
+      "description": "The NMEA gateway is a small node that streams the bus to Signal K over Wi-Fi and needs only a CAN transceiver. The P4 cockpit does the same alongside its touch display.",
       "boards": [
         {
           "id": "waveshare-p4-touch-7b",
@@ -2019,7 +2217,42 @@
           "id": "waveshare-p4-touch-x-7",
           "name": "Waveshare ESP32-P4 7-inch touch display (X series, 720x1280)",
           "fits": false,
-          "downloads": 18
+          "downloads": 19
+        },
+        {
+          "id": "esp32-devkit",
+          "name": "ESP32 development board",
+          "fits": false,
+          "downloads": 1,
+          "support": "builds"
+        },
+        {
+          "id": "waveshare-esp32-c5-wifi6-kit",
+          "name": "Waveshare ESP32-C5 dual-band WiFi 6 development board",
+          "fits": false,
+          "downloads": 1,
+          "support": "builds"
+        },
+        {
+          "id": "esp32c3-devkit",
+          "name": "ESP32-C3 development board",
+          "fits": false,
+          "downloads": 0,
+          "support": "builds"
+        },
+        {
+          "id": "esp32c6-devkit",
+          "name": "ESP32-C6 development board",
+          "fits": false,
+          "downloads": 0,
+          "support": "builds"
+        },
+        {
+          "id": "esp32s3-devkit",
+          "name": "ESP32-S3 development board",
+          "fits": false,
+          "downloads": 0,
+          "support": "builds"
         }
       ]
     }
