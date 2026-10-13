@@ -7,7 +7,8 @@
     "can"
   ],
   "projects": [
+    "nmea-gateway",
     "cockpit"
   ],
-  "description": "The P4 cockpit is a Signal K to NMEA 2000 gateway alongside its display. A small node that does only NMEA 2000 is planned."
+  "description": "The NMEA gateway is a small node that streams the bus to Signal K over Wi-Fi and needs only a CAN transceiver. The P4 cockpit does the same alongside its touch display."
 }
