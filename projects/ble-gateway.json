@@ -3,7 +3,7 @@
   "app": "ble_gateway",
   "name": "BLE Gateway",
   "summary": "Bridges Bluetooth sensors into Signal K",
-  "description": "Scans for Bluetooth Low Energy sensors — temperature, humidity, battery monitors — and forwards their readings to a Signal K server.\n\nRuns on the Waveshare ESP32-P4 boards (BLE via their ESP32-C6 co-processor, which is what two gateways here use in daily service; the PoE-ETH on its cable, the Touch-LCD boards on WiFi) and on the ESP32, C3, S3 and C6.\n\nAlso on the Waveshare ESP32-C5 WiFi 6 kit, using its PSRAM: Bluetooth plus WiFi plus the Signal K client does not fit an ESP32-C5's internal RAM alone, so a C5 without PSRAM cannot run it.",
+  "description": "Scans for Bluetooth Low Energy sensors — temperature, humidity, battery monitors — and forwards their readings to a Signal K server.\n\nRuns on the Waveshare ESP32-P4 boards (BLE via their ESP32-C6 co-processor, which is what two gateways here use in daily service; the PoE-ETH on its cable, the Touch-LCD boards on WiFi) and on the ESP32, S3 and C6. Not on the ESP32-C3: its boards have 4 MB of flash, too little for two copies of the image.\n\nAlso on the Waveshare ESP32-C5 WiFi 6 kit, using its PSRAM: Bluetooth plus WiFi plus the Signal K client does not fit an ESP32-C5's internal RAM alone, so a C5 without PSRAM cannot run it.",
   "repo": "dirkwa/espos-ble-gateway",
   "license": "Apache-2.0",
   "signingKeyId": "b3381b48b9cc9941",
@@ -11,7 +11,6 @@
     "esp32p4",
     "esp32",
     "esp32s3",
-    "esp32c3",
     "esp32c6",
     "esp32c5"
   ],
@@ -20,11 +19,6 @@
       "id": "esp32c6-devkit",
       "target": "esp32c6",
       "assetSegment": "esp32c6"
-    },
-    {
-      "id": "esp32c3-devkit",
-      "target": "esp32c3",
-      "assetSegment": "esp32c3"
     },
     {
       "id": "esp32s3-devkit",
