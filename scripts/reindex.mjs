@@ -167,6 +167,38 @@ function matchAssets(assets, pattern, fallbackSuffix, context) {
 }
 
 /**
+ * The same build laid out for other flash sizes.
+ *
+ * espOS's release workflow publishes `<merged>-<size>.bin` next to a build's
+ * `-merged.bin`, one per partition table (`flash_tables`): the same app, a
+ * table and bootloader header for that flash size. Found by name from the
+ * merged image the project's pattern already matched, so no project needs a
+ * second pattern, and an older registry or flasher simply never sees them.
+ * Smallest first; the flasher takes the largest that fits the chip.
+ */
+const MB = 1024 * 1024;
+function flashImages(merged, assets, webUrl) {
+  if (merged === undefined || !merged.name.endsWith("-merged.bin")) return {};
+  const stem = merged.name.slice(0, -".bin".length);
+  const images = [];
+  for (const a of assets) {
+    if (!a.name.startsWith(`${stem}-`)) continue;
+    const m = /^([1-9][0-9]*)mb\.bin$/i.exec(a.name.slice(stem.length + 1));
+    if (m === null) continue;
+    images.push({
+      flashBytes: Number(m[1]) * MB,
+      url: a.browser_download_url,
+      webUrl: webUrl(a),
+      bytes: a.size,
+      sha256: sha256Of(a),
+    });
+  }
+  if (images.length === 0) return {};
+  images.sort((x, y) => x.flashBytes - y.flashBytes);
+  return { mergedByFlash: images };
+}
+
+/**
  * The grouping key for a captured `board` segment.
  *
  * Trimmed and lower-cased, and the SAME normalisation board ids are resolved
@@ -491,6 +523,7 @@ async function resolveProject(project) {
         mergedWebUrl: webUrl(merged),
         mergedBytes: merged?.size,
         mergedSha256: sha256Of(merged),
+        ...flashImages(merged, assets, webUrl),
         ...(unsigned ? { unsigned: true } : {}),
       });
     }

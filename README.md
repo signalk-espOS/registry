@@ -96,6 +96,16 @@ it in the index's `boards`. Say how far you have taken it with `support`:
 `tested` on your bench, `community` when a user reported it working, `builds`
 when you only build for it. Tested boards are offered first.
 
+**One image per flash size.** Many boards are sold with 4, 8, 16 or 32 MB of
+flash, and a partition table is fixed to one size. espOS's release workflow
+lays the same build out once per table (`flash_tables`) and publishes
+`<name>-<tag>-merged-<size>.bin` next to `-merged.bin`. The index lists them,
+smallest first, as the build's `mergedByFlash` (`flashBytes`, `url`, `webUrl`,
+`bytes`, `sha256`), found by name from the merged image your pattern matched,
+so `assets` needs no change. The flasher reads the chip and writes the largest
+that fits. The OTA image is the same for every size. Set `flashMinBytes` to the
+smallest size you publish an image for.
+
 When one image runs on several boards, list them in `runsOn`; the BLE gateway's
 single P4 image does this for the PoE board and both touch displays.
 
@@ -199,6 +209,10 @@ nothing about what actually works.
 Two fields help the flasher recognise a board before anything is written to it:
 `usbBridge`, the USB-to-serial chip a browser can read, and `factoryApps`, the
 project names the vendor's own firmware reports. Both are hints, never proof.
+
+`flashBytes` is the flash of the model the entry names. A board sold in
+several sizes lists every one in `flashSizes`, so the flasher can say which
+sizes a firmware supports before anything is connected.
 
 A photo goes in `image` only when its licence allows it, with whose it is in
 `imageCredit`.

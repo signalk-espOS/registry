@@ -4,6 +4,12 @@
   "model": "ESP32-S3-DevKitC-1 and similar",
   "name": "ESP32-S3 development board",
   "target": "esp32s3",
+  "flashSizes": [
+    4194304,
+    8388608,
+    16777216,
+    33554432
+  ],
   "image": "https://raw.githubusercontent.com/signalk-espOS/registry/main/boards/photos/esp32s3-devkit.png",
   "imageCredit": "Espressif Systems, CC BY-SA 4.0, from espressif/esp-dev-kits",
   "features": [

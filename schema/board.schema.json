@@ -57,7 +57,18 @@
     },
     "flashBytes": {
       "type": "integer",
-      "minimum": 1048576
+      "minimum": 1048576,
+      "description": "The flash of the model named here. A board sold in several sizes lists them all in flashSizes."
+    },
+    "flashSizes": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "integer",
+        "minimum": 1048576
+      },
+      "description": "Every flash size the board is sold with, in bytes, smallest first. Firmware publishes a full-flash image per size (mergedByFlash in the index), and the flasher reads the chip and takes the largest that fits."
     },
     "psramBytes": {
       "type": "integer",

@@ -3,6 +3,7 @@
   "vendor": "Waveshare",
   "name": "Waveshare ESP32-P4 Ethernet board with PoE",
   "target": "esp32p4",
+  "flashBytes": 33554432,
   "features": [
     "wifi",
     "ble",

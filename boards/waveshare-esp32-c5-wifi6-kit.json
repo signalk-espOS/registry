@@ -6,6 +6,10 @@
   "target": "esp32c5",
   "package": "ESP32-C5HR8",
   "flashBytes": 16777216,
+  "flashSizes": [
+    16777216,
+    33554432
+  ],
   "psramBytes": 8388608,
   "usbBridge": {
     "chip": "CH343",
