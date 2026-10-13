@@ -180,15 +180,20 @@ const MB = 1024 * 1024;
 function flashImages(merged, assets, webUrl) {
   if (merged === undefined || !merged.name.endsWith("-merged.bin")) return {};
   const stem = merged.name.slice(0, -".bin".length);
+  // The web flasher can only fetch from the mirror, so when the default image
+  // is mirrored a size the mirror lacks would swap a working URL for none.
+  const mirrored = webUrl(merged) !== undefined;
   const images = [];
   for (const a of assets) {
     if (!a.name.startsWith(`${stem}-`)) continue;
     const m = /^([1-9][0-9]*)mb\.bin$/i.exec(a.name.slice(stem.length + 1));
     if (m === null) continue;
+    const web = webUrl(a);
+    if (mirrored && web === undefined) continue;
     images.push({
       flashBytes: Number(m[1]) * MB,
       url: a.browser_download_url,
-      webUrl: webUrl(a),
+      webUrl: web,
       bytes: a.size,
       sha256: sha256Of(a),
     });
