@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "updated": "2026-10-13T20:32:55.238Z",
+  "updated": "2026-10-13T21:49:50.618Z",
   "esposLatest": "0.18.1",
   "projects": [
     {
@@ -1705,6 +1705,89 @@
       ],
       "official": true,
       "releases": [
+        {
+          "version": "0.1.1",
+          "tag": "v0.1.1",
+          "espos": "0.18.1",
+          "channel": "stable",
+          "publishedAt": "2026-10-13T21:45:29Z",
+          "notes": "use GPIO 22 for CAN TX on the ESP32-P4 (dd39670)",
+          "notesUrl": "https://github.com/dirkwa/espos-nmea-gateway/releases/tag/v0.1.1",
+          "builds": [
+            {
+              "target": "esp32",
+              "boardId": "esp32-devkit",
+              "otaUrl": "https://github.com/dirkwa/espos-nmea-gateway/releases/download/v0.1.1/nmea-gateway-esp32-v0.1.1-ota.bin",
+              "otaWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-nmea-gateway/release-assets/v0.1.1/nmea-gateway-esp32-v0.1.1-ota.bin",
+              "otaBytes": 1380352,
+              "otaSha256": "8d68b9409da03d5ac6f5162d793c143008b26998235fc63929055bb4587b1e96",
+              "mergedUrl": "https://github.com/dirkwa/espos-nmea-gateway/releases/download/v0.1.1/nmea-gateway-esp32-v0.1.1-merged.bin",
+              "mergedWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-nmea-gateway/release-assets/v0.1.1/nmea-gateway-esp32-v0.1.1-merged.bin",
+              "mergedBytes": 4128768,
+              "mergedSha256": "564d7e1202fd53c79d2ae363a55b6b3ca5bd28a70ad3952dd35c605853286e71"
+            },
+            {
+              "target": "esp32c3",
+              "boardId": "esp32c3-devkit",
+              "otaUrl": "https://github.com/dirkwa/espos-nmea-gateway/releases/download/v0.1.1/nmea-gateway-esp32c3-v0.1.1-ota.bin",
+              "otaWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-nmea-gateway/release-assets/v0.1.1/nmea-gateway-esp32c3-v0.1.1-ota.bin",
+              "otaBytes": 1445888,
+              "otaSha256": "11984d9f58e21d0f7801e4fa3366dbe53493e5c84cce71beb1e5b3d8a11e4b97",
+              "mergedUrl": "https://github.com/dirkwa/espos-nmea-gateway/releases/download/v0.1.1/nmea-gateway-esp32c3-v0.1.1-merged.bin",
+              "mergedWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-nmea-gateway/release-assets/v0.1.1/nmea-gateway-esp32c3-v0.1.1-merged.bin",
+              "mergedBytes": 4128768,
+              "mergedSha256": "9191b556965d436f2750561ffb158967f12e268024cf4a2e8397bdb69eeacca8"
+            },
+            {
+              "target": "esp32c5",
+              "boardId": "waveshare-esp32-c5-wifi6-kit",
+              "otaUrl": "https://github.com/dirkwa/espos-nmea-gateway/releases/download/v0.1.1/nmea-gateway-esp32c5-v0.1.1-ota.bin",
+              "otaWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-nmea-gateway/release-assets/v0.1.1/nmea-gateway-esp32c5-v0.1.1-ota.bin",
+              "otaBytes": 1511424,
+              "otaSha256": "bf3eeb4f0a344e47ae3507d34ad53207159a00288bb61a777dca73837483ca00",
+              "mergedUrl": "https://github.com/dirkwa/espos-nmea-gateway/releases/download/v0.1.1/nmea-gateway-esp32c5-v0.1.1-merged.bin",
+              "mergedWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-nmea-gateway/release-assets/v0.1.1/nmea-gateway-esp32c5-v0.1.1-merged.bin",
+              "mergedBytes": 15663104,
+              "mergedSha256": "98b53f8a17b94b3c412ec020161bd3f86494c41293571613b6f707eb11491ddb"
+            },
+            {
+              "target": "esp32c6",
+              "boardId": "esp32c6-devkit",
+              "otaUrl": "https://github.com/dirkwa/espos-nmea-gateway/releases/download/v0.1.1/nmea-gateway-esp32c6-v0.1.1-ota.bin",
+              "otaWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-nmea-gateway/release-assets/v0.1.1/nmea-gateway-esp32c6-v0.1.1-ota.bin",
+              "otaBytes": 1511424,
+              "otaSha256": "79a7197afe2a451adfdbb5ceeb5e0df2c8b33377410dd67853178b1a069814e9",
+              "mergedUrl": "https://github.com/dirkwa/espos-nmea-gateway/releases/download/v0.1.1/nmea-gateway-esp32c6-v0.1.1-merged.bin",
+              "mergedWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-nmea-gateway/release-assets/v0.1.1/nmea-gateway-esp32c6-v0.1.1-merged.bin",
+              "mergedBytes": 4128768,
+              "mergedSha256": "511a5fdf1fc6f4808336bd80120d454980e88a693b828e62432d734c13e58ee9"
+            },
+            {
+              "target": "esp32p4",
+              "boardId": "waveshare-p4-touch-7b",
+              "otaUrl": "https://github.com/dirkwa/espos-nmea-gateway/releases/download/v0.1.1/nmea-gateway-esp32p4-v0.1.1-ota.bin",
+              "otaWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-nmea-gateway/release-assets/v0.1.1/nmea-gateway-esp32p4-v0.1.1-ota.bin",
+              "otaBytes": 1445888,
+              "otaSha256": "611ecead436486870704b4d34883f9e1d16c34dce52e371af5d48351fcbf9e5c",
+              "mergedUrl": "https://github.com/dirkwa/espos-nmea-gateway/releases/download/v0.1.1/nmea-gateway-esp32p4-v0.1.1-merged.bin",
+              "mergedWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-nmea-gateway/release-assets/v0.1.1/nmea-gateway-esp32p4-v0.1.1-merged.bin",
+              "mergedBytes": 15663104,
+              "mergedSha256": "0e0ee748b8a24fec36bf9c14b1032f27ed45e6c170f405f5e7746977aa3d26a5"
+            },
+            {
+              "target": "esp32s3",
+              "boardId": "esp32s3-devkit",
+              "otaUrl": "https://github.com/dirkwa/espos-nmea-gateway/releases/download/v0.1.1/nmea-gateway-esp32s3-v0.1.1-ota.bin",
+              "otaWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-nmea-gateway/release-assets/v0.1.1/nmea-gateway-esp32s3-v0.1.1-ota.bin",
+              "otaBytes": 1380352,
+              "otaSha256": "215a992d051cd3d92e4c13a61cff7ff02e6af55781db2b3b9d65aa65e26992d7",
+              "mergedUrl": "https://github.com/dirkwa/espos-nmea-gateway/releases/download/v0.1.1/nmea-gateway-esp32s3-v0.1.1-merged.bin",
+              "mergedWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-nmea-gateway/release-assets/v0.1.1/nmea-gateway-esp32s3-v0.1.1-merged.bin",
+              "mergedBytes": 4128768,
+              "mergedSha256": "ae65689265852ecb2359ac84386ad0a4966eb8b592728641dafd64c05e0d9928"
+            }
+          ]
+        },
         {
           "version": "0.1.0",
           "tag": "v0.1.0",
