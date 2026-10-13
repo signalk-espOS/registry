@@ -99,11 +99,13 @@ when you only build for it. Tested boards are offered first.
 **One image per flash size.** Many boards are sold with 4, 8, 16 or 32 MB of
 flash, and a partition table is fixed to one size. espOS's release workflow
 lays the same build out once per table (`flash_tables`) and publishes
-`<name>-<tag>-merged-<size>.bin` next to `-merged.bin`. The index lists them,
-smallest first, as the build's `mergedByFlash` (`flashBytes`, `url`, `webUrl`,
-`bytes`, `sha256`), found by name from the merged image your pattern matched,
-so `assets` needs no change. The flasher reads the chip and writes the largest
-that fits. The OTA image is the same for every size. Set `flashMinBytes` to the
+`<name>-<tag>-merged-<size>mb.bin` (for example `-merged-16mb.bin`) next to
+`-merged.bin`. The index lists them, smallest first, as the build's
+`mergedByFlash` (`flashBytes`, `url`, `webUrl`, `bytes`, `sha256`), found by
+name from the merged image your pattern matched, so `assets` needs no change.
+When the default image is mirrored, a size the mirror lacks is left out. The
+manager's flasher (from the release with signalk-espos-manager #66) reads the
+chip and writes the largest that fits; an older flasher writes `-merged.bin`. The OTA image is the same for every size. Set `flashMinBytes` to the
 smallest size you publish an image for.
 
 When one image runs on several boards, list them in `runsOn`; the BLE gateway's
