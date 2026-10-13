@@ -4,6 +4,7 @@
   "model": "ESP32-C3-DevKitM-1 and similar",
   "name": "ESP32-C3 development board",
   "target": "esp32c3",
+  "flashBytes": 4194304,
   "image": "https://raw.githubusercontent.com/signalk-espOS/registry/main/boards/photos/esp32c3-devkit.png",
   "imageCredit": "Espressif Systems, CC BY-SA 4.0, from espressif/esp-dev-kits",
   "features": [

@@ -119,6 +119,13 @@ export async function loadCatalogue(projects, fail, note = () => {}) {
     checkShape(where, entry, boardSchema, fail);
     if (!isObject(entry)) continue;
     if (entry.id !== id) fail(where, `id "${entry.id}" does not match the filename`);
+    if (
+      Array.isArray(entry.flashSizes) &&
+      entry.flashBytes !== undefined &&
+      !entry.flashSizes.includes(entry.flashBytes)
+    ) {
+      fail(where, `flashBytes ${entry.flashBytes} is not one of its flashSizes`);
+    }
     boards.set(entry.id, entry);
   }
   for (const { where, id, entry } of await loadDir("usecases", fail)) {
@@ -147,12 +154,11 @@ export async function loadCatalogue(projects, fail, note = () => {}) {
         if (board.target !== b.target) {
           fail(where, `board "${b.id}" is ${b.target} but boards/${target}.json is ${board.target}`);
         }
-        if (
-          b.flashMinBytes !== undefined &&
-          board.flashBytes !== undefined &&
-          board.flashBytes < b.flashMinBytes
-        ) {
-          fail(where, `board "${b.id}" needs ${b.flashMinBytes} bytes of flash, but boards/${target}.json has ${board.flashBytes}`);
+        // A board sold in several sizes fails only when none of them fits;
+        // the flasher refuses the small ones by reading the chip.
+        const largest = Math.max(...(board.flashSizes ?? []), board.flashBytes ?? 0);
+        if (b.flashMinBytes !== undefined && largest > 0 && largest < b.flashMinBytes) {
+          fail(where, `board "${b.id}" needs ${b.flashMinBytes} bytes of flash, but boards/${target}.json has at most ${largest}`);
         }
       }
     }
