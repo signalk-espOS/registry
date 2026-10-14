@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "updated": "2026-10-13T22:47:03.182Z",
-  "esposLatest": "0.18.1",
+  "updated": "2026-10-14T01:57:03.000Z",
+  "esposLatest": "0.19.0",
   "projects": [
     {
       "id": "8relay",
