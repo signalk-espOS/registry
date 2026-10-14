@@ -18,17 +18,20 @@
     {
       "id": "esp32c6-devkit",
       "target": "esp32c6",
-      "assetSegment": "esp32c6"
+      "assetSegment": "esp32c6",
+      "flashMinBytes": 8388608
     },
     {
       "id": "esp32s3-devkit",
       "target": "esp32s3",
-      "assetSegment": "esp32s3"
+      "assetSegment": "esp32s3",
+      "flashMinBytes": 8388608
     },
     {
       "id": "esp32-devkit",
       "target": "esp32",
-      "assetSegment": "esp32"
+      "assetSegment": "esp32",
+      "flashMinBytes": 8388608
     },
     {
       "id": "waveshare-esp32-c5-wifi6-kit",
