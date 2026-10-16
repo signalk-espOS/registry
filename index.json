@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "updated": "2026-10-15T07:30:46.705Z",
+  "updated": "2026-10-16T12:32:22.130Z",
   "esposLatest": "0.19.0",
   "projects": [
     {
@@ -2118,7 +2118,7 @@
           "name": "NMEA Gateway",
           "boardId": "esp32-devkit",
           "support": "builds",
-          "downloads": 1
+          "downloads": 2
         }
       ]
     },
@@ -2540,7 +2540,7 @@
           "id": "esp32-devkit",
           "name": "ESP32 development board",
           "fits": false,
-          "downloads": 1,
+          "downloads": 2,
           "support": "builds"
         },
         {
