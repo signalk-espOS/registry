@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "updated": "2026-10-17T13:46:55.929Z",
-  "esposLatest": "0.19.1",
+  "updated": "2026-10-17T19:29:58.615Z",
+  "esposLatest": "0.20.0",
   "projects": [
     {
       "id": "8relay",
@@ -2201,14 +2201,14 @@
           "id": "ble-gateway",
           "name": "BLE Gateway",
           "boardId": "esp32s3-devkit",
-          "downloads": 4
+          "downloads": 5
         },
         {
           "id": "nmea-gateway",
           "name": "NMEA Gateway",
           "boardId": "esp32s3-devkit",
           "support": "builds",
-          "downloads": 0
+          "downloads": 1
         }
       ]
     },
@@ -2476,14 +2476,14 @@
           "reason": "The cheapest way to start."
         },
         {
-          "id": "esp32-devkit",
-          "name": "ESP32 development board",
-          "fits": true,
-          "downloads": 4
-        },
-        {
           "id": "esp32s3-devkit",
           "name": "ESP32-S3 development board",
+          "fits": true,
+          "downloads": 5
+        },
+        {
+          "id": "esp32-devkit",
+          "name": "ESP32 development board",
           "fits": true,
           "downloads": 4
         }
@@ -2544,6 +2544,13 @@
           "support": "builds"
         },
         {
+          "id": "esp32s3-devkit",
+          "name": "ESP32-S3 development board",
+          "fits": false,
+          "downloads": 1,
+          "support": "builds"
+        },
+        {
           "id": "waveshare-esp32-c5-wifi6-kit",
           "name": "Waveshare ESP32-C5 dual-band WiFi 6 development board",
           "fits": false,
@@ -2560,13 +2567,6 @@
         {
           "id": "esp32c6-devkit",
           "name": "ESP32-C6 development board",
-          "fits": false,
-          "downloads": 0,
-          "support": "builds"
-        },
-        {
-          "id": "esp32s3-devkit",
-          "name": "ESP32-S3 development board",
           "fits": false,
           "downloads": 0,
           "support": "builds"
