@@ -1,14 +1,19 @@
 # espOS firmware registry
 
-The list of firmware projects that [espOS](https://github.com/signalk-espOS/espOS)
-devices can run. The
+The list of ready-made firmware for ESP32 boards on Signal K boats, built on
+[espOS](https://github.com/signalk-espOS/espOS). The
 [signalk-espos-manager](https://github.com/signalk-espOS/signalk-espos-manager)
-plugin reads it to work out what a boat's devices could be updated to.
+plugin and the [web flasher](https://signalk-espos.github.io/signalk-espos-manager/flash/)
+read it to offer firmware for a new board and updates for the ones on a boat.
+
+If you want to install firmware, you don't need anything here: use the
+manager or the flasher. This page is for developers who want their firmware
+listed.
 
 Each project is one file under [`projects/`](projects). CI resolves their
 GitHub releases into [`index.json`](index.json), which is what the plugin
-fetches — a single unauthenticated request, so a boat needs no token and hits
-no rate limit.
+fetches. That is a single request without a login, so a boat needs no token
+and hits no rate limit.
 
 Next to the projects sit the boards they run on, under [`boards/`](boards),
 and the jobs a boat owner wants done, under [`usecases/`](usecases). The
@@ -55,7 +60,7 @@ node scripts/reindex.mjs           # rewrites index.json locally; do not commit 
 
 ### The field people get wrong
 
-`app` must be your firmware's **CMake `project()` name** — what the device
+`app` must be your firmware's **CMake `project()` name**, which the device
 reports from `/api/v1/system/ping` and announces over mDNS. It is not the
 repository name, and not `espos_start_opts_t.app_name`.
 
@@ -72,9 +77,9 @@ curl http://your-device.local/api/v1/system/ping
 
 Attach two files per target to each GitHub release:
 
-- `<name>-<target>-v<version>-merged.bin` — the full-flash image, for a board
+- `<name>-<target>-v<version>-merged.bin`, the full-flash image for a board
   being set up for the first time;
-- `<name>-<target>-v<version>-ota.bin` — the application image, for updates.
+- `<name>-<target>-v<version>-ota.bin`, the application image for updates.
 
 If your names carry no target segment, declare anchored `assets` patterns in
 your entry and list exactly one target, so the mapping stays unambiguous. A
@@ -85,8 +90,8 @@ wrong image is one a device rejects only after the whole download.
 
 List every board your firmware supports. A board is what someone recognises on
 a shop page, and it is what the flasher asks about first: "which board do you
-have?", then what can run on it. Several projects can offer the same board —
-that is the point, and nothing needs coordinating between them.
+have?", then what can run on it. Several projects can offer the same board,
+and nothing needs coordinating between them.
 
 Use the id of a board in [`boards/`](boards) where one fits, and the entry needs
 only what is particular to your image: `target`, `assetSegment`, `reportedAs`,
@@ -134,8 +139,8 @@ The cockpit does this for its two P4 panels:
 so `p4_cockpit-v1.3.2-7b-merged.bin` resolves to the 7B and nothing else.
 
 With either half missing, no image can be tied to a board, and **every** image
-for that chip is withheld rather than offered as a coin toss — on a display
-panel the wrong one is usually a black screen, which reads as a hardware fault
+for that chip is withheld rather than offered as a guess. On a display panel
+the wrong one is usually a black screen, which looks like a hardware fault
 rather than a wrong download. CI rejects that shape and tells you which half is
 missing, so you find out on the pull request instead of after publishing.
 
@@ -148,9 +153,9 @@ the target itself (the BLE gateway does exactly that).
 Generated, not declared: the reindexer reads your espOS submodule pin at each
 release tag and records the version that release was built against, as `espos`
 on the release, alongside `esposLatest` at the top of the index. A consumer can
-then say "this firmware is a runtime release behind" — which a web flasher
-talking to a blank board has no other way to know, since an unflashed board
-cannot be asked.
+then say "this firmware is one espOS release behind". A web flasher talking
+to a blank board has no other way to know, since a blank board cannot be
+asked.
 
 Nothing is required of you if your submodule lives at `espos`. If it lives
 elsewhere, set `esposSubmodule` to its path.
@@ -237,8 +242,8 @@ old, or sooner with any other change to it.
 
 ## What a valid entry does and does not mean
 
-Firmware cannot be load-tested in CI the way an npm package can — that needs
-the board. So validation proves an entry is well-formed, its repository exists
+Firmware cannot be tested in CI the way an npm package can, because that
+needs the board. So validation proves an entry is well-formed, its repository exists
 and its release assets are downloadable. It does not prove the firmware works.
 
 `official` marks projects maintained by the signalk-espOS organisation.
