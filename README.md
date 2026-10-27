@@ -243,8 +243,8 @@ old, or sooner with any other change to it.
 ## What a valid entry does and does not mean
 
 Firmware cannot be tested in CI the way an npm package can, because that
-needs the board. So validation proves an entry is well-formed, its repository exists
-and its release assets are downloadable. It does not prove the firmware works.
+needs the board. So CI checks that an entry is well-formed, that its
+repository exists and which release assets its patterns find. It does not prove the firmware works.
 
 `official` marks projects maintained by the signalk-espOS organisation.
 Everything else is community-contributed, and the plugin labels it that way.
