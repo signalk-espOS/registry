@@ -3,7 +3,7 @@
   "app": "zigbee_coordinator",
   "name": "Zigbee Coordinator",
   "summary": "A Zigbee coordinator that Zigbee2MQTT reaches over Wi-Fi",
-  "description": "Runs the Zigbee network on the chip's own 802.15.4 radio and serves it to Zigbee2MQTT over Wi-Fi, so the coordinator can sit where the devices are rather than in a USB port of the server. Set Zigbee2MQTT's adapter to zboss and its port to tcp://<device>:6638, or mdns://espos-zigbee. One Zigbee2MQTT at a time per coordinator.\n\nIt decodes nothing itself: devices, their values and their Signal K paths are Zigbee2MQTT's. Only the ESP32-C5 and ESP32-C6 have the radio.",
+  "description": "Runs the Zigbee network on the chip's own 802.15.4 radio and serves it to Zigbee2MQTT over Wi-Fi, so the coordinator can sit where the devices are rather than in a USB port of the server. Set Zigbee2MQTT's adapter to zboss and its port to tcp://<device>:6638, or mdns://espos-zigbee. One Zigbee2MQTT at a time per coordinator. Over Wi-Fi it needs longer timeouts than the official Zigbee2MQTT image sets, and network backup and restore need patches too; the ghcr.io/tostmann/zigbee2mqtt-esp32 image carries both.\n\nIt decodes nothing itself: devices, their values and their Signal K paths are Zigbee2MQTT's. Only the ESP32-C5 and ESP32-C6 have the radio.",
   "repo": "dirkwa/espos-zigbee-coordinator",
   "license": "Apache-2.0",
   "targets": [
