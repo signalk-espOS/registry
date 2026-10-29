@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "updated": "2026-10-29T02:13:22.031Z",
+  "updated": "2026-10-29T03:33:04.649Z",
   "esposLatest": "0.24.0",
   "projects": [
     {
@@ -2128,7 +2128,59 @@
         "stable"
       ],
       "official": true,
-      "releases": []
+      "releases": [
+        {
+          "version": "0.1.0",
+          "tag": "v0.1.0",
+          "espos": "0.24.0",
+          "channel": "stable",
+          "publishedAt": "2026-10-29T02:12:49Z",
+          "notes": "<!-- Release notes generated using configuration in .github/release.yml at main -->",
+          "notesUrl": "https://github.com/dirkwa/espos-zigbee-coordinator/releases/tag/v0.1.0",
+          "builds": [
+            {
+              "target": "esp32c5",
+              "boardId": "waveshare-esp32-c5-wifi6-kit",
+              "otaUrl": "https://github.com/dirkwa/espos-zigbee-coordinator/releases/download/v0.1.0/zigbee-coordinator-esp32c5-v0.1.0-ota.bin",
+              "otaWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-zigbee-coordinator/release-assets/v0.1.0/zigbee-coordinator-esp32c5-v0.1.0-ota.bin",
+              "otaBytes": 1773568,
+              "otaSha256": "90ca42039a566cbee2543af188fc435387ffdcc3da33098b8afa620f4ca339ea",
+              "mergedUrl": "https://github.com/dirkwa/espos-zigbee-coordinator/releases/download/v0.1.0/zigbee-coordinator-esp32c5-v0.1.0-merged.bin",
+              "mergedWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-zigbee-coordinator/release-assets/v0.1.0/zigbee-coordinator-esp32c5-v0.1.0-merged.bin",
+              "mergedBytes": 15728640,
+              "mergedSha256": "de9fb70a39bbf5381400cafcb7c78a552ea77c3f9d1d7210fd0ba7d8d86bc01c"
+            },
+            {
+              "target": "esp32c6",
+              "boardId": "esp32c6-devkit",
+              "otaUrl": "https://github.com/dirkwa/espos-zigbee-coordinator/releases/download/v0.1.0/zigbee-coordinator-esp32c6-v0.1.0-ota.bin",
+              "otaWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-zigbee-coordinator/release-assets/v0.1.0/zigbee-coordinator-esp32c6-v0.1.0-ota.bin",
+              "otaBytes": 1773568,
+              "otaSha256": "b1f0910dcf3b0b30c1adad52421f231cedacfd41252fc7e4cf04914fb4fb2f0b",
+              "mergedUrl": "https://github.com/dirkwa/espos-zigbee-coordinator/releases/download/v0.1.0/zigbee-coordinator-esp32c6-v0.1.0-merged.bin",
+              "mergedWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-zigbee-coordinator/release-assets/v0.1.0/zigbee-coordinator-esp32c6-v0.1.0-merged.bin",
+              "mergedBytes": 8323072,
+              "mergedSha256": "1393ce0f507155ade6a0ff2a7e5cc0c33ef70356aef7770116f87ef34830c3a7",
+              "mergedByFlash": [
+                {
+                  "flashBytes": 8388608,
+                  "url": "https://github.com/dirkwa/espos-zigbee-coordinator/releases/download/v0.1.0/zigbee-coordinator-esp32c6-v0.1.0-merged-8mb.bin",
+                  "webUrl": "https://raw.githubusercontent.com/dirkwa/espos-zigbee-coordinator/release-assets/v0.1.0/zigbee-coordinator-esp32c6-v0.1.0-merged-8mb.bin",
+                  "bytes": 8323072,
+                  "sha256": "1393ce0f507155ade6a0ff2a7e5cc0c33ef70356aef7770116f87ef34830c3a7"
+                },
+                {
+                  "flashBytes": 16777216,
+                  "url": "https://github.com/dirkwa/espos-zigbee-coordinator/releases/download/v0.1.0/zigbee-coordinator-esp32c6-v0.1.0-merged-16mb.bin",
+                  "webUrl": "https://raw.githubusercontent.com/dirkwa/espos-zigbee-coordinator/release-assets/v0.1.0/zigbee-coordinator-esp32c6-v0.1.0-merged-16mb.bin",
+                  "bytes": 15728640,
+                  "sha256": "876291695ad1d8dd286aded25240119bc314dd9044609e52407d64a85d94634f"
+                }
+              ]
+            }
+          ]
+        }
+      ]
     }
   ],
   "boards": [
