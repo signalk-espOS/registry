@@ -1,0 +1,10 @@
+{
+  "id": "zigbee",
+  "title": "Connect Zigbee sensors and switches",
+  "summary": "Zigbee devices in Zigbee2MQTT and Signal K, through a coordinator on Wi-Fi instead of a USB stick.",
+  "order": 5,
+  "projects": [
+    "zigbee-coordinator"
+  ],
+  "description": "The Zigbee coordinator runs the Zigbee network on an ESP32-C5 or C6 and hands it to Zigbee2MQTT over Wi-Fi. Zigbee2MQTT knows the devices; a Signal K plugin then maps their values to Signal K paths."
+}
