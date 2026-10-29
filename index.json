@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "updated": "2026-10-28T13:03:19.358Z",
+  "updated": "2026-10-29T02:13:22.031Z",
   "esposLatest": "0.24.0",
   "projects": [
     {
@@ -2085,6 +2085,50 @@
           ]
         }
       ]
+    },
+    {
+      "id": "zigbee-coordinator",
+      "app": "zigbee_coordinator",
+      "name": "Zigbee Coordinator",
+      "summary": "A Zigbee coordinator that Zigbee2MQTT reaches over Wi-Fi",
+      "description": "Runs the Zigbee network on the chip's own 802.15.4 radio and serves it to Zigbee2MQTT over Wi-Fi, so the coordinator can sit where the devices are rather than in a USB port of the server. Set Zigbee2MQTT's adapter to zboss and its port to tcp://<device>:6638, or mdns://espos-zigbee. One Zigbee2MQTT at a time per coordinator. Over Wi-Fi it needs longer timeouts than the official Zigbee2MQTT image sets, and network backup and restore need patches too; the ghcr.io/tostmann/zigbee2mqtt-esp32 image carries both.\n\nIt decodes nothing itself: devices, their values and their Signal K paths are Zigbee2MQTT's. Only the ESP32-C5 and ESP32-C6 have the radio.",
+      "repo": "dirkwa/espos-zigbee-coordinator",
+      "license": "Apache-2.0",
+      "targets": [
+        "esp32c5",
+        "esp32c6"
+      ],
+      "boards": [
+        {
+          "id": "waveshare-esp32-c5-wifi6-kit",
+          "target": "esp32c5",
+          "assetSegment": "esp32c5",
+          "flashMinBytes": 16777216,
+          "notes": "WiFi on 2.4 and 5 GHz. Sold as N16R8 (8 MB PSRAM) and N16R4 (4 MB); the -M versions come with the pin headers soldered on. Joins a 2.4 or 5 GHz Wi-Fi network; Zigbee itself is always on 2.4 GHz.",
+          "support": "builds",
+          "name": "Waveshare ESP32-C5 dual-band WiFi 6 development board",
+          "buyUrl": "https://www.waveshare.com/esp32-c5-wifi6-kit-n16r4.htm"
+        },
+        {
+          "id": "esp32c6-devkit",
+          "target": "esp32c6",
+          "assetSegment": "esp32c6",
+          "flashMinBytes": 8388608,
+          "notes": "Boards with the ESP32-C6-MINI-1U module have no antenna on the board: without an external one the radio hears nothing. Needs 8 MB of flash; the 4 MB kits are too small.",
+          "support": "builds",
+          "name": "ESP32-C6 development board"
+        }
+      ],
+      "assets": {
+        "ota": "^zigbee-coordinator-(?<board>esp32[a-z0-9]*)-v?(?<version>[0-9][^-]*)-ota\\.bin$",
+        "merged": "^zigbee-coordinator-(?<board>esp32[a-z0-9]*)-v?(?<version>[0-9][^-]*)-merged\\.bin$"
+      },
+      "webAssetsBranch": "release-assets",
+      "channels": [
+        "stable"
+      ],
+      "official": true,
+      "releases": []
     }
   ],
   "boards": [
@@ -2175,6 +2219,13 @@
           "boardId": "esp32c6-devkit",
           "support": "builds",
           "downloads": 0
+        },
+        {
+          "id": "zigbee-coordinator",
+          "name": "Zigbee Coordinator",
+          "boardId": "esp32c6-devkit",
+          "support": "builds",
+          "downloads": 0
         }
       ]
     },
@@ -2250,6 +2301,13 @@
           "boardId": "waveshare-esp32-c5-wifi6-kit",
           "support": "builds",
           "downloads": 1
+        },
+        {
+          "id": "zigbee-coordinator",
+          "name": "Zigbee Coordinator",
+          "boardId": "waveshare-esp32-c5-wifi6-kit",
+          "support": "builds",
+          "downloads": 0
         }
       ]
     },
@@ -2568,6 +2626,32 @@
           "id": "esp32c6-devkit",
           "name": "ESP32-C6 development board",
           "fits": false,
+          "downloads": 0,
+          "support": "builds"
+        }
+      ]
+    },
+    {
+      "id": "zigbee",
+      "title": "Connect Zigbee sensors and switches",
+      "summary": "Zigbee devices in Zigbee2MQTT and Signal K, through a coordinator on Wi-Fi instead of a USB stick.",
+      "order": 5,
+      "projects": [
+        "zigbee-coordinator"
+      ],
+      "description": "The Zigbee coordinator runs the Zigbee network on an ESP32-C5 or C6 and hands it to Zigbee2MQTT over Wi-Fi. Zigbee2MQTT knows the devices; a Signal K plugin then maps their values to Signal K paths.",
+      "boards": [
+        {
+          "id": "esp32c6-devkit",
+          "name": "ESP32-C6 development board",
+          "fits": true,
+          "downloads": 0,
+          "support": "builds"
+        },
+        {
+          "id": "waveshare-esp32-c5-wifi6-kit",
+          "name": "Waveshare ESP32-C5 dual-band WiFi 6 development board",
+          "fits": true,
           "downloads": 0,
           "support": "builds"
         }
