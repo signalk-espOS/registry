@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "updated": "2026-10-29T21:46:54.923Z",
-  "esposLatest": "0.25.1",
+  "updated": "2026-10-30T00:45:49.515Z",
+  "esposLatest": "0.25.2",
   "projects": [
     {
       "id": "8relay",
@@ -2131,6 +2131,57 @@
       "official": true,
       "releases": [
         {
+          "version": "0.2.1",
+          "tag": "v0.2.1",
+          "espos": "0.25.2",
+          "channel": "stable",
+          "publishedAt": "2026-10-30T00:41:29Z",
+          "notes": "<!-- Release notes generated using configuration in .github/release.yml at main -->",
+          "notesUrl": "https://github.com/dirkwa/espos-zigbee-coordinator/releases/tag/v0.2.1",
+          "builds": [
+            {
+              "target": "esp32c5",
+              "boardId": "waveshare-esp32-c5-wifi6-kit",
+              "otaUrl": "https://github.com/dirkwa/espos-zigbee-coordinator/releases/download/v0.2.1/zigbee-coordinator-esp32c5-v0.2.1-ota.bin",
+              "otaWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-zigbee-coordinator/release-assets/v0.2.1/zigbee-coordinator-esp32c5-v0.2.1-ota.bin",
+              "otaBytes": 1773568,
+              "otaSha256": "53a48a57d24ce1f483388f1dc3dae00a4b610d48e86f0fd82664dbc580deea38",
+              "mergedUrl": "https://github.com/dirkwa/espos-zigbee-coordinator/releases/download/v0.2.1/zigbee-coordinator-esp32c5-v0.2.1-merged.bin",
+              "mergedWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-zigbee-coordinator/release-assets/v0.2.1/zigbee-coordinator-esp32c5-v0.2.1-merged.bin",
+              "mergedBytes": 15728640,
+              "mergedSha256": "39d019a51d1dbac9d23bcf52c9ab6308500ee4066c9194058a41a96a1ba82ada"
+            },
+            {
+              "target": "esp32c6",
+              "boardId": "esp32c6-devkit",
+              "otaUrl": "https://github.com/dirkwa/espos-zigbee-coordinator/releases/download/v0.2.1/zigbee-coordinator-esp32c6-v0.2.1-ota.bin",
+              "otaWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-zigbee-coordinator/release-assets/v0.2.1/zigbee-coordinator-esp32c6-v0.2.1-ota.bin",
+              "otaBytes": 1773568,
+              "otaSha256": "0e79ae748a9b281a017da60c85eaf536781de74de6e07903ed4d44a75de7b9ef",
+              "mergedUrl": "https://github.com/dirkwa/espos-zigbee-coordinator/releases/download/v0.2.1/zigbee-coordinator-esp32c6-v0.2.1-merged.bin",
+              "mergedWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-zigbee-coordinator/release-assets/v0.2.1/zigbee-coordinator-esp32c6-v0.2.1-merged.bin",
+              "mergedBytes": 8323072,
+              "mergedSha256": "fe88a3b0f04a1ebd7ca033ac48835c1a771b6ff1bd618137e887bd4d10bec3d4",
+              "mergedByFlash": [
+                {
+                  "flashBytes": 8388608,
+                  "url": "https://github.com/dirkwa/espos-zigbee-coordinator/releases/download/v0.2.1/zigbee-coordinator-esp32c6-v0.2.1-merged-8mb.bin",
+                  "webUrl": "https://raw.githubusercontent.com/dirkwa/espos-zigbee-coordinator/release-assets/v0.2.1/zigbee-coordinator-esp32c6-v0.2.1-merged-8mb.bin",
+                  "bytes": 8323072,
+                  "sha256": "fe88a3b0f04a1ebd7ca033ac48835c1a771b6ff1bd618137e887bd4d10bec3d4"
+                },
+                {
+                  "flashBytes": 16777216,
+                  "url": "https://github.com/dirkwa/espos-zigbee-coordinator/releases/download/v0.2.1/zigbee-coordinator-esp32c6-v0.2.1-merged-16mb.bin",
+                  "webUrl": "https://raw.githubusercontent.com/dirkwa/espos-zigbee-coordinator/release-assets/v0.2.1/zigbee-coordinator-esp32c6-v0.2.1-merged-16mb.bin",
+                  "bytes": 15728640,
+                  "sha256": "06c7ecb79c01697cf38aa8d55e4d93802e4fc8b0ac4b1d70cb752ce4e8e76b08"
+                }
+              ]
+            }
+          ]
+        },
+        {
           "version": "0.2.0",
           "tag": "v0.2.0",
           "espos": "0.25.1",
@@ -2373,7 +2424,7 @@
           "name": "Zigbee Coordinator",
           "boardId": "esp32c6-devkit",
           "support": "builds",
-          "downloads": 7
+          "downloads": 8
         },
         {
           "id": "nmea-gateway",
@@ -2448,7 +2499,7 @@
           "name": "Zigbee Coordinator",
           "boardId": "waveshare-esp32-c5-wifi6-kit",
           "support": "builds",
-          "downloads": 7
+          "downloads": 10
         },
         {
           "id": "ble-gateway",
@@ -2797,17 +2848,17 @@
       "description": "The Zigbee coordinator runs the Zigbee network on an ESP32-C5 or C6 and hands it to Zigbee2MQTT over Wi-Fi. Zigbee2MQTT knows the devices; a Signal K plugin then maps their values to Signal K paths.",
       "boards": [
         {
-          "id": "esp32c6-devkit",
-          "name": "ESP32-C6 development board",
-          "fits": true,
-          "downloads": 7,
-          "support": "builds"
-        },
-        {
           "id": "waveshare-esp32-c5-wifi6-kit",
           "name": "Waveshare ESP32-C5 dual-band WiFi 6 development board",
           "fits": true,
-          "downloads": 7,
+          "downloads": 10,
+          "support": "builds"
+        },
+        {
+          "id": "esp32c6-devkit",
+          "name": "ESP32-C6 development board",
+          "fits": true,
+          "downloads": 8,
           "support": "builds"
         }
       ]
