@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "updated": "2026-10-30T00:45:49.515Z",
+  "updated": "2026-10-31T00:50:49.164Z",
   "esposLatest": "0.25.2",
   "projects": [
     {
@@ -2424,7 +2424,7 @@
           "name": "Zigbee Coordinator",
           "boardId": "esp32c6-devkit",
           "support": "builds",
-          "downloads": 8
+          "downloads": 11
         },
         {
           "id": "nmea-gateway",
@@ -2499,7 +2499,7 @@
           "name": "Zigbee Coordinator",
           "boardId": "waveshare-esp32-c5-wifi6-kit",
           "support": "builds",
-          "downloads": 10
+          "downloads": 13
         },
         {
           "id": "ble-gateway",
@@ -2851,14 +2851,14 @@
           "id": "waveshare-esp32-c5-wifi6-kit",
           "name": "Waveshare ESP32-C5 dual-band WiFi 6 development board",
           "fits": true,
-          "downloads": 10,
+          "downloads": 13,
           "support": "builds"
         },
         {
           "id": "esp32c6-devkit",
           "name": "ESP32-C6 development board",
           "fits": true,
-          "downloads": 8,
+          "downloads": 11,
           "support": "builds"
         }
       ]
