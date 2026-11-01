@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "updated": "2026-10-31T19:53:13.094Z",
+  "updated": "2026-11-01T07:02:58.450Z",
   "esposLatest": "0.26.0",
   "projects": [
     {
@@ -1399,6 +1399,41 @@
       "official": true,
       "releases": [
         {
+          "version": "1.6.0",
+          "tag": "v1.6.0",
+          "espos": "0.26.0",
+          "channel": "stable",
+          "publishedAt": "2026-11-01T06:54:37Z",
+          "notes": "license: relicense under Apache-2.0 (#198) (c3eaeed)",
+          "notesUrl": "https://github.com/dirkwa/espos-p4-cockpit/releases/tag/v1.6.0",
+          "builds": [
+            {
+              "target": "esp32p4",
+              "boardId": "waveshare-p4-touch-7b",
+              "otaUrl": "https://github.com/dirkwa/espos-p4-cockpit/releases/download/v1.6.0/p4_cockpit-v1.6.0-7b-ota.bin",
+              "otaWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-p4-cockpit/release-assets/v1.6.0/p4_cockpit-v1.6.0-7b-ota.bin",
+              "otaBytes": 2691072,
+              "otaSha256": "51a0f2ae74aa35cb489bfa23fae0b7e5be957c543a2f31ebecca42efcac05471",
+              "mergedUrl": "https://github.com/dirkwa/espos-p4-cockpit/releases/download/v1.6.0/p4_cockpit-v1.6.0-7b-merged.bin",
+              "mergedWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-p4-cockpit/release-assets/v1.6.0/p4_cockpit-v1.6.0-7b-merged.bin",
+              "mergedBytes": 15036742,
+              "mergedSha256": "8a4c7c8c0687130b2d5917e9ad918720426bfc67ca590e83297589d4be3b2a47"
+            },
+            {
+              "target": "esp32p4",
+              "boardId": "waveshare-p4-touch-x-7",
+              "otaUrl": "https://github.com/dirkwa/espos-p4-cockpit/releases/download/v1.6.0/p4_cockpit-v1.6.0-x7-ota.bin",
+              "otaWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-p4-cockpit/release-assets/v1.6.0/p4_cockpit-v1.6.0-x7-ota.bin",
+              "otaBytes": 2756608,
+              "otaSha256": "023174021b03c2993a79eeb72837c6132f71d834d9ff9de7d91f4092fc1b66eb",
+              "mergedUrl": "https://github.com/dirkwa/espos-p4-cockpit/releases/download/v1.6.0/p4_cockpit-v1.6.0-x7-merged.bin",
+              "mergedWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-p4-cockpit/release-assets/v1.6.0/p4_cockpit-v1.6.0-x7-merged.bin",
+              "mergedBytes": 15036742,
+              "mergedSha256": "c260cd939cbb4b62c07f855577f5a89cbabc49006ee491a6abeae6b45afd3893"
+            }
+          ]
+        },
+        {
           "version": "1.5.6",
           "tag": "v1.5.6",
           "espos": "0.19.0",
@@ -1481,11 +1516,9 @@
               "target": "esp32p4",
               "boardId": "waveshare-p4-touch-7b",
               "otaUrl": "https://github.com/dirkwa/espos-p4-cockpit/releases/download/v1.5.4/p4_cockpit-v1.5.4-7b-ota.bin",
-              "otaWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-p4-cockpit/release-assets/v1.5.4/p4_cockpit-v1.5.4-7b-ota.bin",
               "otaBytes": 2953216,
               "otaSha256": "3e3660e96d676451b89902e735cbd10e85102b8d75a65d8a67e0d81eb1d22f88",
               "mergedUrl": "https://github.com/dirkwa/espos-p4-cockpit/releases/download/v1.5.4/p4_cockpit-v1.5.4-7b-merged.bin",
-              "mergedWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-p4-cockpit/release-assets/v1.5.4/p4_cockpit-v1.5.4-7b-merged.bin",
               "mergedBytes": 15036742,
               "mergedSha256": "66de4cec51125e2a05ebe44c2756b14408714d433bc59cb03eac3fa25194f58c"
             },
@@ -1493,11 +1526,9 @@
               "target": "esp32p4",
               "boardId": "waveshare-p4-touch-x-7",
               "otaUrl": "https://github.com/dirkwa/espos-p4-cockpit/releases/download/v1.5.4/p4_cockpit-v1.5.4-x7-ota.bin",
-              "otaWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-p4-cockpit/release-assets/v1.5.4/p4_cockpit-v1.5.4-x7-ota.bin",
               "otaBytes": 3018752,
               "otaSha256": "e4151460a8058d4d4a076a23805f93956418ddf2792ddf8d9e262e6e60f2d368",
               "mergedUrl": "https://github.com/dirkwa/espos-p4-cockpit/releases/download/v1.5.4/p4_cockpit-v1.5.4-x7-merged.bin",
-              "mergedWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-p4-cockpit/release-assets/v1.5.4/p4_cockpit-v1.5.4-x7-merged.bin",
               "mergedBytes": 15036742,
               "mergedSha256": "01b644420c57868e6acbe7c3b0bfdc92b8fa56552d3523707f6fddb0b0970152"
             }
@@ -2481,7 +2512,7 @@
           "id": "ble-gateway",
           "name": "BLE Gateway",
           "boardId": "esp32-devkit",
-          "downloads": 4
+          "downloads": 34
         },
         {
           "id": "nmea-gateway",
@@ -2537,7 +2568,7 @@
           "id": "ble-gateway",
           "name": "BLE Gateway",
           "boardId": "esp32c6-devkit",
-          "downloads": 12
+          "downloads": 42
         },
         {
           "id": "zigbee-coordinator",
@@ -2578,7 +2609,7 @@
           "id": "ble-gateway",
           "name": "BLE Gateway",
           "boardId": "esp32s3-devkit",
-          "downloads": 8
+          "downloads": 38
         },
         {
           "id": "nmea-gateway",
@@ -2626,7 +2657,7 @@
           "name": "BLE Gateway",
           "boardId": "waveshare-esp32-c5-wifi6-kit",
           "support": "tested",
-          "downloads": 1
+          "downloads": 9
         },
         {
           "id": "nmea-gateway",
@@ -2677,7 +2708,7 @@
           "name": "BLE Gateway",
           "boardId": "waveshare-p4-poe",
           "support": "tested",
-          "downloads": 3
+          "downloads": 13
         },
         {
           "id": "nmea-gateway",
@@ -2724,7 +2755,7 @@
           "name": "BLE Gateway",
           "boardId": "waveshare-p4-poe",
           "support": "tested",
-          "downloads": 3
+          "downloads": 13
         }
       ]
     },
@@ -2747,7 +2778,7 @@
           "name": "BLE Gateway",
           "boardId": "waveshare-p4-poe",
           "support": "tested",
-          "downloads": 3
+          "downloads": 13
         }
       ]
     },
@@ -2826,7 +2857,7 @@
           "id": "waveshare-p4-poe-eth",
           "name": "Waveshare ESP32-P4 Ethernet board with PoE",
           "fits": true,
-          "downloads": 3,
+          "downloads": 13,
           "support": "tested",
           "reason": "Wired Ethernet: the radio does nothing but Bluetooth, and one cable powers it."
         },
@@ -2834,21 +2865,21 @@
           "id": "waveshare-p4-touch-7b",
           "name": "Waveshare ESP32-P4 7-inch touch display (7B, 1024x600)",
           "fits": true,
-          "downloads": 3,
+          "downloads": 13,
           "support": "tested"
         },
         {
           "id": "waveshare-p4-touch-x-7",
           "name": "Waveshare ESP32-P4 7-inch touch display (X series, 720x1280)",
           "fits": true,
-          "downloads": 3,
+          "downloads": 13,
           "support": "tested"
         },
         {
           "id": "waveshare-esp32-c5-wifi6-kit",
           "name": "Waveshare ESP32-C5 dual-band WiFi 6 development board",
           "fits": true,
-          "downloads": 1,
+          "downloads": 9,
           "support": "tested",
           "reason": "Dual-band WiFi: joins a 5 GHz network, which the other boards here cannot."
         },
@@ -2856,20 +2887,20 @@
           "id": "esp32c6-devkit",
           "name": "ESP32-C6 development board",
           "fits": true,
-          "downloads": 12,
+          "downloads": 42,
           "reason": "The cheapest way to start."
         },
         {
           "id": "esp32s3-devkit",
           "name": "ESP32-S3 development board",
           "fits": true,
-          "downloads": 8
+          "downloads": 38
         },
         {
           "id": "esp32-devkit",
           "name": "ESP32 development board",
           "fits": true,
-          "downloads": 4
+          "downloads": 34
         }
       ]
     },
