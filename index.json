@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "updated": "2026-11-01T07:02:58.450Z",
+  "updated": "2026-11-02T07:42:54.463Z",
   "esposLatest": "0.26.0",
   "projects": [
     {
@@ -2701,14 +2701,14 @@
           "name": "P4 Cockpit",
           "boardId": "waveshare-p4-touch-7b",
           "support": "tested",
-          "downloads": 15
+          "downloads": 39
         },
         {
           "id": "ble-gateway",
           "name": "BLE Gateway",
           "boardId": "waveshare-p4-poe",
           "support": "tested",
-          "downloads": 13
+          "downloads": 14
         },
         {
           "id": "nmea-gateway",
@@ -2748,14 +2748,14 @@
           "id": "cockpit",
           "name": "P4 Cockpit",
           "boardId": "waveshare-p4-touch-x-7",
-          "downloads": 19
+          "downloads": 43
         },
         {
           "id": "ble-gateway",
           "name": "BLE Gateway",
           "boardId": "waveshare-p4-poe",
           "support": "tested",
-          "downloads": 13
+          "downloads": 14
         }
       ]
     },
@@ -2778,7 +2778,7 @@
           "name": "BLE Gateway",
           "boardId": "waveshare-p4-poe",
           "support": "tested",
-          "downloads": 13
+          "downloads": 14
         }
       ]
     },
@@ -2830,14 +2830,14 @@
           "id": "waveshare-p4-touch-7b",
           "name": "Waveshare ESP32-P4 7-inch touch display (7B, 1024x600)",
           "fits": true,
-          "downloads": 15,
+          "downloads": 39,
           "support": "tested"
         },
         {
           "id": "waveshare-p4-touch-x-7",
           "name": "Waveshare ESP32-P4 7-inch touch display (X series, 720x1280)",
           "fits": true,
-          "downloads": 19
+          "downloads": 43
         }
       ]
     },
@@ -2857,7 +2857,7 @@
           "id": "waveshare-p4-poe-eth",
           "name": "Waveshare ESP32-P4 Ethernet board with PoE",
           "fits": true,
-          "downloads": 13,
+          "downloads": 14,
           "support": "tested",
           "reason": "Wired Ethernet: the radio does nothing but Bluetooth, and one cable powers it."
         },
@@ -2865,14 +2865,14 @@
           "id": "waveshare-p4-touch-7b",
           "name": "Waveshare ESP32-P4 7-inch touch display (7B, 1024x600)",
           "fits": true,
-          "downloads": 13,
+          "downloads": 14,
           "support": "tested"
         },
         {
           "id": "waveshare-p4-touch-x-7",
           "name": "Waveshare ESP32-P4 7-inch touch display (X series, 720x1280)",
           "fits": true,
-          "downloads": 13,
+          "downloads": 14,
           "support": "tested"
         },
         {
@@ -2942,14 +2942,14 @@
           "id": "waveshare-p4-touch-7b",
           "name": "Waveshare ESP32-P4 7-inch touch display (7B, 1024x600)",
           "fits": true,
-          "downloads": 15,
+          "downloads": 39,
           "support": "tested"
         },
         {
           "id": "waveshare-p4-touch-x-7",
           "name": "Waveshare ESP32-P4 7-inch touch display (X series, 720x1280)",
           "fits": false,
-          "downloads": 19
+          "downloads": 43
         },
         {
           "id": "esp32-devkit",
