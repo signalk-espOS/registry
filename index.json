@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "updated": "2026-11-02T07:42:54.463Z",
+  "updated": "2026-11-03T09:38:32.344Z",
   "esposLatest": "0.26.0",
   "projects": [
     {
@@ -2807,7 +2807,7 @@
           "id": "8relay",
           "name": "8-Relay Switch Bank",
           "boardId": "waveshare-esp32-s3-eth-8di-8ro-c",
-          "downloads": 60
+          "downloads": 89
         }
       ]
     }
@@ -2920,7 +2920,7 @@
           "id": "waveshare-esp32-s3-eth-8di-8ro-c",
           "name": "Waveshare ESP32-S3 8-relay board with Ethernet and CAN",
           "fits": true,
-          "downloads": 60
+          "downloads": 89
         }
       ]
     },
