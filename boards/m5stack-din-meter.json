@@ -1,0 +1,33 @@
+{
+  "id": "m5stack-din-meter",
+  "vendor": "M5Stack",
+  "model": "DIN Meter (K134)",
+  "name": "M5Stack DIN Meter (DIN-rail display with knob)",
+  "target": "esp32s3",
+  "package": "ESP32-S3FN8",
+  "flashBytes": 8388608,
+  "flashSizes": [
+    8388608
+  ],
+  "psramBytes": 0,
+  "usbBridge": {
+    "chip": "ESP32-S3 USB Serial/JTAG",
+    "vid": "303a",
+    "pid": "1001"
+  },
+  "features": [
+    "wifi",
+    "ble",
+    "display",
+    "rtc"
+  ],
+  "display": {
+    "inches": 1.14,
+    "width": 240,
+    "height": 135
+  },
+  "image": "https://raw.githubusercontent.com/signalk-espOS/registry/main/boards/photos/m5stack-din-meter.jpg",
+  "imageCredit": "Thomas Christoffel, CC BY 4.0",
+  "buyUrl": "https://docs.m5stack.com/en/core/DinMeter",
+  "notes": "Fits a DIN rail; 6 to 36 V DC or USB-C. Rotary knob with push button and a buzzer. A Stamp-S3 inside, no PSRAM."
+}
