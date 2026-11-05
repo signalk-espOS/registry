@@ -1,0 +1,32 @@
+{
+  "id": "m5-tough",
+  "app": "m5_tough",
+  "name": "M5 Tough Display",
+  "summary": "Small touch instrument display for Signal K, on the M5Stack Tough",
+  "description": "The JSON Layout Player from the P4 Cockpit on a 320x240 M5Stack Tough: values, gauges, bars, anchor watch, a notifications list, an alert overlay with chime and buttons, laid out in the Signal K HMI designer and pushed to the display. Pages switch with a swipe, the status and tab strips can be hidden and shown with a swipe, and number readouts scale up to fill the screen. Brightness is adjustable, and the screen dims when idle at night.",
+  "repo": "Colug0/espos-m5-tough",
+  "license": "Apache-2.0",
+  "signingKeyId": "7bcd3eec7a8b2f68",
+  "targets": [
+    "esp32"
+  ],
+  "boards": [
+    {
+      "id": "m5stack-tough",
+      "target": "esp32",
+      "flashMinBytes": 16777216,
+      "reportedAs": "M5Stack Tough",
+      "assetSegment": "esp32",
+      "support": "tested",
+      "notes": "In use on a boat with a Signal K server. The image keeps its own partition table with an extra NVS partition for the layout, so it is laid out for the Tough's 16 MB only."
+    }
+  ],
+  "channels": [
+    "stable"
+  ],
+  "assets": {
+    "ota": "^m5-tough-(?<board>[a-z0-9]+)-v(?<version>[0-9]+\\.[0-9]+\\.[0-9]+)-ota\\.bin$",
+    "merged": "^m5-tough-(?<board>[a-z0-9]+)-v(?<version>[0-9]+\\.[0-9]+\\.[0-9]+)-merged\\.bin$"
+  },
+  "webAssetsBranch": "release-assets"
+}
