@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "updated": "2026-11-04T22:24:09.335Z",
+  "updated": "2026-11-06T00:20:55.049Z",
   "esposLatest": "0.26.1",
   "projects": [
     {
@@ -2632,7 +2632,7 @@
           "id": "ble-gateway",
           "name": "BLE Gateway",
           "boardId": "esp32-devkit",
-          "downloads": 34
+          "downloads": 40
         },
         {
           "id": "nmea-gateway",
@@ -2688,7 +2688,7 @@
           "id": "ble-gateway",
           "name": "BLE Gateway",
           "boardId": "esp32c6-devkit",
-          "downloads": 42
+          "downloads": 44
         },
         {
           "id": "zigbee-coordinator",
@@ -2729,7 +2729,7 @@
           "id": "ble-gateway",
           "name": "BLE Gateway",
           "boardId": "esp32s3-devkit",
-          "downloads": 38
+          "downloads": 40
         },
         {
           "id": "nmea-gateway",
@@ -2777,7 +2777,7 @@
           "name": "BLE Gateway",
           "boardId": "waveshare-esp32-c5-wifi6-kit",
           "support": "tested",
-          "downloads": 9
+          "downloads": 12
         },
         {
           "id": "nmea-gateway",
@@ -2828,7 +2828,7 @@
           "name": "BLE Gateway",
           "boardId": "waveshare-p4-poe",
           "support": "tested",
-          "downloads": 14
+          "downloads": 15
         },
         {
           "id": "nmea-gateway",
@@ -2875,7 +2875,7 @@
           "name": "BLE Gateway",
           "boardId": "waveshare-p4-poe",
           "support": "tested",
-          "downloads": 14
+          "downloads": 15
         }
       ]
     },
@@ -2898,7 +2898,7 @@
           "name": "BLE Gateway",
           "boardId": "waveshare-p4-poe",
           "support": "tested",
-          "downloads": 14
+          "downloads": 15
         }
       ]
     },
@@ -2927,7 +2927,7 @@
           "id": "8relay",
           "name": "8-Relay Switch Bank",
           "boardId": "waveshare-esp32-s3-eth-8di-8ro-c",
-          "downloads": 89
+          "downloads": 90
         }
       ]
     }
@@ -2977,7 +2977,7 @@
           "id": "waveshare-p4-poe-eth",
           "name": "Waveshare ESP32-P4 Ethernet board with PoE",
           "fits": true,
-          "downloads": 14,
+          "downloads": 15,
           "support": "tested",
           "reason": "Wired Ethernet: the radio does nothing but Bluetooth, and one cable powers it."
         },
@@ -2985,21 +2985,21 @@
           "id": "waveshare-p4-touch-7b",
           "name": "Waveshare ESP32-P4 7-inch touch display (7B, 1024x600)",
           "fits": true,
-          "downloads": 14,
+          "downloads": 15,
           "support": "tested"
         },
         {
           "id": "waveshare-p4-touch-x-7",
           "name": "Waveshare ESP32-P4 7-inch touch display (X series, 720x1280)",
           "fits": true,
-          "downloads": 14,
+          "downloads": 15,
           "support": "tested"
         },
         {
           "id": "waveshare-esp32-c5-wifi6-kit",
           "name": "Waveshare ESP32-C5 dual-band WiFi 6 development board",
           "fits": true,
-          "downloads": 9,
+          "downloads": 12,
           "support": "tested",
           "reason": "Dual-band WiFi: joins a 5 GHz network, which the other boards here cannot."
         },
@@ -3007,20 +3007,20 @@
           "id": "esp32c6-devkit",
           "name": "ESP32-C6 development board",
           "fits": true,
-          "downloads": 42,
+          "downloads": 44,
           "reason": "The cheapest way to start."
-        },
-        {
-          "id": "esp32s3-devkit",
-          "name": "ESP32-S3 development board",
-          "fits": true,
-          "downloads": 38
         },
         {
           "id": "esp32-devkit",
           "name": "ESP32 development board",
           "fits": true,
-          "downloads": 34
+          "downloads": 40
+        },
+        {
+          "id": "esp32s3-devkit",
+          "name": "ESP32-S3 development board",
+          "fits": true,
+          "downloads": 40
         }
       ]
     },
@@ -3040,7 +3040,7 @@
           "id": "waveshare-esp32-s3-eth-8di-8ro-c",
           "name": "Waveshare ESP32-S3 8-relay board with Ethernet and CAN",
           "fits": true,
-          "downloads": 89
+          "downloads": 90
         }
       ]
     },
