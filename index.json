@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "updated": "2026-11-06T00:20:55.049Z",
+  "updated": "2026-11-07T01:58:27.353Z",
   "esposLatest": "0.26.1",
   "projects": [
     {
@@ -2729,7 +2729,7 @@
           "id": "ble-gateway",
           "name": "BLE Gateway",
           "boardId": "esp32s3-devkit",
-          "downloads": 40
+          "downloads": 41
         },
         {
           "id": "nmea-gateway",
@@ -3011,14 +3011,14 @@
           "reason": "The cheapest way to start."
         },
         {
-          "id": "esp32-devkit",
-          "name": "ESP32 development board",
-          "fits": true,
-          "downloads": 40
-        },
-        {
           "id": "esp32s3-devkit",
           "name": "ESP32-S3 development board",
+          "fits": true,
+          "downloads": 41
+        },
+        {
+          "id": "esp32-devkit",
+          "name": "ESP32 development board",
           "fits": true,
           "downloads": 40
         }
