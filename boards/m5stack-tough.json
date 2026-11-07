@@ -1,0 +1,30 @@
+{
+  "id": "m5stack-tough",
+  "vendor": "M5Stack",
+  "model": "Tough (K034)",
+  "name": "M5Stack Tough (2-inch touch display, 320x240)",
+  "target": "esp32",
+  "package": "ESP32-D0WDQ6-V3",
+  "flashBytes": 16777216,
+  "psramBytes": 8388608,
+  "features": [
+    "wifi",
+    "ble",
+    "display",
+    "touch",
+    "audio",
+    "rtc"
+  ],
+  "display": {
+    "inches": 2,
+    "width": 320,
+    "height": 240
+  },
+  "usbBridge": {
+    "chip": "CH9102",
+    "vid": "1a86",
+    "pid": "55d4"
+  },
+  "buyUrl": "https://shop.m5stack.com/products/m5stack-tough-esp32-iot-development-board-kit",
+  "notes": "A sealed, weather-resistant M5Stack Core with an ILI9342C display, a CHSC6540 touch panel, an NS4168 speaker amplifier and an RS485 port. Display power, backlight and speaker run through the AXP192 power chip, so firmware that does not set it up leaves the screen dark. Of the 8 MB PSRAM the classic ESP32 maps 4 MB."
+}
