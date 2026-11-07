@@ -1,0 +1,31 @@
+{
+  "id": "din-meter",
+  "app": "din_meter",
+  "name": "DIN Meter Signal K display",
+  "summary": "Signal K values on a small DIN-rail display in the switch panel",
+  "description": "Firmware for the M5Stack DIN Meter: one or two Signal K values per page, set up in the device's web page, with the knob to turn to the next page. Unit conversions from Signal K's SI units, stale and wrong-type values marked, night brightness from environment.mode, a dark mode for night watches and buzzer tunes. Reads from Signal K only; no server plugin needed.",
+  "repo": "Colug0/espos-din-meter",
+  "license": "Apache-2.0",
+  "signingKeyId": "94af317c231f06ab",
+  "targets": [
+    "esp32s3"
+  ],
+  "boards": [
+    {
+      "id": "m5stack-din-meter",
+      "target": "esp32s3",
+      "flashMinBytes": 8388608,
+      "reportedAs": "M5Stack DIN Meter",
+      "support": "tested",
+      "assetSegment": "esp32s3"
+    }
+  ],
+  "channels": [
+    "stable"
+  ],
+  "assets": {
+    "ota": "^din-meter-(?<board>[a-z0-9]+)-v(?<version>[0-9]+\\.[0-9]+\\.[0-9]+)-ota\\.bin$",
+    "merged": "^din-meter-(?<board>[a-z0-9]+)-v(?<version>[0-9]+\\.[0-9]+\\.[0-9]+)-merged\\.bin$"
+  },
+  "webAssetsBranch": "release-assets"
+}
