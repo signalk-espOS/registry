@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "updated": "2026-11-15T22:54:26.926Z",
+  "updated": "2026-11-16T18:31:52.617Z",
   "esposLatest": "0.29.2",
   "projects": [
     {
@@ -2006,6 +2006,382 @@
       ]
     },
     {
+      "id": "din-meter",
+      "app": "din_meter",
+      "name": "DIN Meter Signal K display",
+      "summary": "Signal K values on a small DIN-rail display in the switch panel",
+      "description": "Firmware for the M5Stack DIN Meter: one or two Signal K values per page, set up in the device's web page, with the knob to turn to the next page. Unit conversions from Signal K's SI units, stale and wrong-type values marked, night brightness from environment.mode, a dark mode for night watches and buzzer tunes. Reads from Signal K only; no server plugin needed.",
+      "repo": "Colug0/espos-din-meter",
+      "license": "Apache-2.0",
+      "signingKeyId": "94af317c231f06ab",
+      "targets": [
+        "esp32s3"
+      ],
+      "boards": [
+        {
+          "id": "m5stack-din-meter",
+          "target": "esp32s3",
+          "flashMinBytes": 8388608,
+          "reportedAs": "M5Stack DIN Meter",
+          "support": "tested",
+          "assetSegment": "esp32s3",
+          "name": "M5Stack DIN Meter (DIN-rail display with knob)",
+          "notes": "Fits a DIN rail; 6 to 36 V DC or USB-C. Rotary knob with push button and a buzzer. A Stamp-S3 inside, no PSRAM.",
+          "buyUrl": "https://docs.m5stack.com/en/core/DinMeter"
+        }
+      ],
+      "channels": [
+        "stable"
+      ],
+      "assets": {
+        "ota": "^din-meter-(?<board>[a-z0-9]+)-v(?<version>[0-9]+\\.[0-9]+\\.[0-9]+)-ota\\.bin$",
+        "merged": "^din-meter-(?<board>[a-z0-9]+)-v(?<version>[0-9]+\\.[0-9]+\\.[0-9]+)-merged\\.bin$"
+      },
+      "webAssetsBranch": "release-assets",
+      "releases": [
+        {
+          "version": "0.1.1",
+          "tag": "v0.1.1",
+          "espos": "0.27.0",
+          "channel": "stable",
+          "publishedAt": "2026-11-10T09:53:21Z",
+          "notes": "Built on espOS 0.27.0. An OTA update is enough: the web pages are unchanged.",
+          "notesUrl": "https://github.com/Colug0/espos-din-meter/releases/tag/v0.1.1",
+          "builds": [
+            {
+              "target": "esp32s3",
+              "boardId": "m5stack-din-meter",
+              "otaUrl": "https://github.com/Colug0/espos-din-meter/releases/download/v0.1.1/din-meter-esp32s3-v0.1.1-ota.bin",
+              "otaWebUrl": "https://raw.githubusercontent.com/Colug0/espos-din-meter/release-assets/v0.1.1/din-meter-esp32s3-v0.1.1-ota.bin",
+              "otaBytes": 1708032,
+              "otaSha256": "5e0e340106e7bc06892e2c8bdb4073b661201a69652eb01d47bbf9da9433675b",
+              "mergedUrl": "https://github.com/Colug0/espos-din-meter/releases/download/v0.1.1/din-meter-esp32s3-v0.1.1-merged.bin",
+              "mergedWebUrl": "https://raw.githubusercontent.com/Colug0/espos-din-meter/release-assets/v0.1.1/din-meter-esp32s3-v0.1.1-merged.bin",
+              "mergedBytes": 8323072,
+              "mergedSha256": "46eed9a7140f7c297fe591c2a49b108b584d4adb11d445fe988ba40234d35680"
+            }
+          ]
+        },
+        {
+          "version": "0.1.0",
+          "tag": "v0.1.0",
+          "espos": "0.26.0",
+          "channel": "stable",
+          "publishedAt": "2026-11-04T11:07:58Z",
+          "notes": "First release: Signal K values on an M5Stack DIN Meter, built on espOS 0.26.0.",
+          "notesUrl": "https://github.com/Colug0/espos-din-meter/releases/tag/v0.1.0",
+          "builds": [
+            {
+              "target": "esp32s3",
+              "boardId": "m5stack-din-meter",
+              "otaUrl": "https://github.com/Colug0/espos-din-meter/releases/download/v0.1.0/din-meter-esp32s3-v0.1.0-ota.bin",
+              "otaWebUrl": "https://raw.githubusercontent.com/Colug0/espos-din-meter/release-assets/v0.1.0/din-meter-esp32s3-v0.1.0-ota.bin",
+              "otaBytes": 1708032,
+              "otaSha256": "3894b3c04985d566b09547d6db1d10a1f7cbf50a1e752ec651eb875aea7c428d",
+              "mergedUrl": "https://github.com/Colug0/espos-din-meter/releases/download/v0.1.0/din-meter-esp32s3-v0.1.0-merged.bin",
+              "mergedWebUrl": "https://raw.githubusercontent.com/Colug0/espos-din-meter/release-assets/v0.1.0/din-meter-esp32s3-v0.1.0-merged.bin",
+              "mergedBytes": 8323072,
+              "mergedSha256": "5c0a5c7c36ee7c9814c9b98bccae0a1bd28f77af7eb418fa88b535e16f9a8e04"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "m5-tough",
+      "app": "m5_tough",
+      "name": "M5 Tough Display",
+      "summary": "Small touch instrument display for Signal K, on the M5Stack Tough",
+      "description": "The JSON Layout Player from the P4 Cockpit on a 320x240 M5Stack Tough: values, gauges, bars, anchor watch, a notifications list, an alert overlay with chime and buttons, laid out in the Signal K HMI designer and pushed to the display. Pages switch with a swipe, the status and tab strips can be hidden and shown with a swipe, and number readouts scale up to fill the screen. Brightness is adjustable, and the screen dims when idle at night.",
+      "repo": "Colug0/espos-m5-tough",
+      "license": "Apache-2.0",
+      "signingKeyId": "7bcd3eec7a8b2f68",
+      "targets": [
+        "esp32"
+      ],
+      "boards": [
+        {
+          "id": "m5stack-tough",
+          "target": "esp32",
+          "flashMinBytes": 16777216,
+          "reportedAs": "M5Stack Tough",
+          "assetSegment": "esp32",
+          "support": "tested",
+          "notes": "A sealed, weather-resistant M5Stack Core with an ILI9342C display, a CHSC6540 touch panel, an NS4168 speaker amplifier and an RS485 port. Display power, backlight and speaker run through the AXP192 power chip, so firmware that does not set it up leaves the screen dark. Of the 8 MB PSRAM the classic ESP32 maps 4 MB. In use on a boat with a Signal K server. The image keeps its own partition table with an extra NVS partition for the layout, so it is laid out for the Tough's 16 MB only.",
+          "name": "M5Stack Tough (2-inch touch display, 320x240)",
+          "buyUrl": "https://shop.m5stack.com/products/m5stack-tough-esp32-iot-development-board-kit"
+        }
+      ],
+      "channels": [
+        "stable"
+      ],
+      "assets": {
+        "ota": "^m5-tough-(?<board>[a-z0-9]+)-v(?<version>[0-9]+\\.[0-9]+\\.[0-9]+)-ota\\.bin$",
+        "merged": "^m5-tough-(?<board>[a-z0-9]+)-v(?<version>[0-9]+\\.[0-9]+\\.[0-9]+)-merged\\.bin$"
+      },
+      "webAssetsBranch": "release-assets",
+      "releases": [
+        {
+          "version": "0.6.1",
+          "tag": "v0.6.1",
+          "espos": "0.28.0",
+          "channel": "stable",
+          "publishedAt": "2026-11-12T00:10:06Z",
+          "notes": "<!-- Release notes generated using configuration in .github/release.yml at main -->",
+          "notesUrl": "https://github.com/Colug0/espos-m5-tough/releases/tag/v0.6.1",
+          "builds": [
+            {
+              "target": "esp32",
+              "boardId": "m5stack-tough",
+              "otaUrl": "https://github.com/Colug0/espos-m5-tough/releases/download/v0.6.1/m5-tough-esp32-v0.6.1-ota.bin",
+              "otaWebUrl": "https://raw.githubusercontent.com/Colug0/espos-m5-tough/release-assets/v0.6.1/m5-tough-esp32-v0.6.1-ota.bin",
+              "otaBytes": 2297856,
+              "otaSha256": "3f40e7fa1a001c5b97369f5efb0aa27cff91038e29c158e7c4d2c7d7b8e3e938",
+              "mergedUrl": "https://github.com/Colug0/espos-m5-tough/releases/download/v0.6.1/m5-tough-esp32-v0.6.1-merged.bin",
+              "mergedWebUrl": "https://raw.githubusercontent.com/Colug0/espos-m5-tough/release-assets/v0.6.1/m5-tough-esp32-v0.6.1-merged.bin",
+              "mergedBytes": 15728640,
+              "mergedSha256": "53a56080643de08a0f5b61b5523a9f77fe563e1a48c921dcc05b1bf91355e3e9"
+            }
+          ]
+        },
+        {
+          "version": "0.6.0",
+          "tag": "v0.6.0",
+          "espos": "0.28.0",
+          "channel": "stable",
+          "publishedAt": "2026-11-11T22:29:18Z",
+          "notes": "<!-- Release notes generated using configuration in .github/release.yml at main -->",
+          "notesUrl": "https://github.com/Colug0/espos-m5-tough/releases/tag/v0.6.0",
+          "builds": [
+            {
+              "target": "esp32",
+              "boardId": "m5stack-tough",
+              "otaUrl": "https://github.com/Colug0/espos-m5-tough/releases/download/v0.6.0/m5-tough-esp32-v0.6.0-ota.bin",
+              "otaWebUrl": "https://raw.githubusercontent.com/Colug0/espos-m5-tough/release-assets/v0.6.0/m5-tough-esp32-v0.6.0-ota.bin",
+              "otaBytes": 2297856,
+              "otaSha256": "d94f6a0b311617683ac03a849efdc4c9b770a7facf7298a63e03a0426864fecb",
+              "mergedUrl": "https://github.com/Colug0/espos-m5-tough/releases/download/v0.6.0/m5-tough-esp32-v0.6.0-merged.bin",
+              "mergedWebUrl": "https://raw.githubusercontent.com/Colug0/espos-m5-tough/release-assets/v0.6.0/m5-tough-esp32-v0.6.0-merged.bin",
+              "mergedBytes": 15728640,
+              "mergedSha256": "7f0b0f1120fbca7b59df2b3f657b5d2087eff8c9ff3bc953e83c81f395ecf2a9"
+            }
+          ]
+        },
+        {
+          "version": "0.5.4",
+          "tag": "v0.5.4",
+          "espos": "0.27.0",
+          "channel": "stable",
+          "publishedAt": "2026-11-10T01:34:02Z",
+          "notes": "<!-- Release notes generated using configuration in .github/release.yml at main -->",
+          "notesUrl": "https://github.com/Colug0/espos-m5-tough/releases/tag/v0.5.4",
+          "builds": [
+            {
+              "target": "esp32",
+              "boardId": "m5stack-tough",
+              "otaUrl": "https://github.com/Colug0/espos-m5-tough/releases/download/v0.5.4/m5-tough-esp32-v0.5.4-ota.bin",
+              "otaWebUrl": "https://raw.githubusercontent.com/Colug0/espos-m5-tough/release-assets/v0.5.4/m5-tough-esp32-v0.5.4-ota.bin",
+              "otaBytes": 2297856,
+              "otaSha256": "76aaad040f6d89b3b5a26c8c2c925e9c995c8a6b544addc61180b3b4bcc78a52",
+              "mergedUrl": "https://github.com/Colug0/espos-m5-tough/releases/download/v0.5.4/m5-tough-esp32-v0.5.4-merged.bin",
+              "mergedWebUrl": "https://raw.githubusercontent.com/Colug0/espos-m5-tough/release-assets/v0.5.4/m5-tough-esp32-v0.5.4-merged.bin",
+              "mergedBytes": 15728640,
+              "mergedSha256": "b8788d1160190445815a064a9165e0abeb999435066435bfc6802f02431e1d48"
+            }
+          ]
+        },
+        {
+          "version": "0.5.3",
+          "tag": "v0.5.3",
+          "espos": "0.26.1",
+          "channel": "stable",
+          "publishedAt": "2026-11-05T23:14:58Z",
+          "notes": "<!-- Release notes generated using configuration in .github/release.yml at main -->",
+          "notesUrl": "https://github.com/Colug0/espos-m5-tough/releases/tag/v0.5.3",
+          "builds": [
+            {
+              "target": "esp32",
+              "boardId": "m5stack-tough",
+              "otaUrl": "https://github.com/Colug0/espos-m5-tough/releases/download/v0.5.3/m5-tough-esp32-v0.5.3-ota.bin",
+              "otaBytes": 2297856,
+              "otaSha256": "58afe3d1555d59d7e48b4adf19187303f3fc62e45dd16619b4c5015b0d50781b",
+              "mergedUrl": "https://github.com/Colug0/espos-m5-tough/releases/download/v0.5.3/m5-tough-esp32-v0.5.3-merged.bin",
+              "mergedBytes": 15728640,
+              "mergedSha256": "98ed542ffaf91818ff2677ccb709c0afca9bfcd77f21a828ec7ab4a5ed6dee2a"
+            }
+          ]
+        },
+        {
+          "version": "0.5.2",
+          "tag": "v0.5.2",
+          "espos": "0.26.1",
+          "channel": "stable",
+          "publishedAt": "2026-11-05T10:21:51Z",
+          "notes": "<!-- Release notes generated using configuration in .github/release.yml at main -->",
+          "notesUrl": "https://github.com/Colug0/espos-m5-tough/releases/tag/v0.5.2",
+          "builds": [
+            {
+              "target": "esp32",
+              "boardId": "m5stack-tough",
+              "otaUrl": "https://github.com/Colug0/espos-m5-tough/releases/download/v0.5.2/m5-tough-esp32-v0.5.2-ota.bin",
+              "otaBytes": 2297856,
+              "otaSha256": "710580daa329cbbd159158467f2ffb3aea110daf4a7e0d47efaf9ee83bd62d75",
+              "mergedUrl": "https://github.com/Colug0/espos-m5-tough/releases/download/v0.5.2/m5-tough-esp32-v0.5.2-merged.bin",
+              "mergedBytes": 15728640,
+              "mergedSha256": "a4c6216fc94b0767b1cfe39d9010f3a5d40f3ce10e51a7c015daff7f5a667f6e"
+            }
+          ]
+        },
+        {
+          "version": "0.5.1",
+          "tag": "v0.5.1",
+          "espos": "0.26.1",
+          "channel": "stable",
+          "publishedAt": "2026-11-05T09:10:54Z",
+          "notes": "<!-- Release notes generated using configuration in .github/release.yml at main -->",
+          "notesUrl": "https://github.com/Colug0/espos-m5-tough/releases/tag/v0.5.1",
+          "builds": [
+            {
+              "target": "esp32",
+              "boardId": "m5stack-tough",
+              "otaUrl": "https://github.com/Colug0/espos-m5-tough/releases/download/v0.5.1/m5-tough-esp32-v0.5.1-ota.bin",
+              "otaBytes": 2297856,
+              "otaSha256": "e0d5170dc4b8da3aa2ba012c0c84c6db6c06201c95c496eef5c44461f9c5b9ff",
+              "mergedUrl": "https://github.com/Colug0/espos-m5-tough/releases/download/v0.5.1/m5-tough-esp32-v0.5.1-merged.bin",
+              "mergedBytes": 15728640,
+              "mergedSha256": "505b38c6657957274c5d883fb6273295e629e72c9a421e5a08a0a3a691595b7d"
+            }
+          ]
+        },
+        {
+          "version": "0.5.0",
+          "tag": "v0.5.0",
+          "espos": "0.26.0",
+          "channel": "stable",
+          "publishedAt": "2026-11-05T07:29:36Z",
+          "notes": "<!-- Release notes generated using configuration in .github/release.yml at main -->",
+          "notesUrl": "https://github.com/Colug0/espos-m5-tough/releases/tag/v0.5.0",
+          "builds": [
+            {
+              "target": "esp32",
+              "boardId": "m5stack-tough",
+              "otaUrl": "https://github.com/Colug0/espos-m5-tough/releases/download/v0.5.0/m5-tough-esp32-v0.5.0-ota.bin",
+              "otaBytes": 2297856,
+              "otaSha256": "66a4a4b9e65a31c7eeae40897788c1fffd5e87f4643137c3b8b858b88f67e312",
+              "mergedUrl": "https://github.com/Colug0/espos-m5-tough/releases/download/v0.5.0/m5-tough-esp32-v0.5.0-merged.bin",
+              "mergedBytes": 15728640,
+              "mergedSha256": "601d79b92c77228d5e811d86cccb12b3489a98885e15bd9ca552e97bac55246f"
+            }
+          ]
+        },
+        {
+          "version": "0.4.0",
+          "tag": "v0.4.0",
+          "espos": "0.26.0",
+          "channel": "stable",
+          "publishedAt": "2026-11-04T07:53:30Z",
+          "notes": "<!-- Release notes generated using configuration in .github/release.yml at main -->",
+          "notesUrl": "https://github.com/Colug0/espos-m5-tough/releases/tag/v0.4.0",
+          "builds": [
+            {
+              "target": "esp32",
+              "boardId": "m5stack-tough",
+              "otaUrl": "https://github.com/Colug0/espos-m5-tough/releases/download/v0.4.0/m5-tough-esp32-v0.4.0-ota.bin",
+              "otaBytes": 1904640,
+              "otaSha256": "706226a58910dfd6519697b756cf108cacc013e9a828de6477317be60e796d0d",
+              "mergedUrl": "https://github.com/Colug0/espos-m5-tough/releases/download/v0.4.0/m5-tough-esp32-v0.4.0-merged.bin",
+              "mergedBytes": 15728640,
+              "mergedSha256": "ee1ca90bfb61ae8a34378c18500ed6b87419ebc7ece2296711e7630389a12fc8"
+            }
+          ]
+        },
+        {
+          "version": "0.3.0",
+          "tag": "v0.3.0",
+          "espos": "0.26.0",
+          "channel": "stable",
+          "publishedAt": "2026-11-04T05:20:37Z",
+          "notes": "<!-- Release notes generated using configuration in .github/release.yml at main -->",
+          "notesUrl": "https://github.com/Colug0/espos-m5-tough/releases/tag/v0.3.0",
+          "builds": [
+            {
+              "target": "esp32",
+              "boardId": "m5stack-tough",
+              "otaUrl": "https://github.com/Colug0/espos-m5-tough/releases/download/v0.3.0/m5-tough-esp32-v0.3.0-ota.bin",
+              "otaBytes": 1904640,
+              "otaSha256": "234e020062365d4e80dd000f16ff641ea63ef4072752bbfda4f254c778991a84",
+              "mergedUrl": "https://github.com/Colug0/espos-m5-tough/releases/download/v0.3.0/m5-tough-esp32-v0.3.0-merged.bin",
+              "mergedBytes": 15728640,
+              "mergedSha256": "4c6897b56f9137e6ea306e6737163e45c1d14f646057d70943a7c23c16759211"
+            }
+          ]
+        },
+        {
+          "version": "0.2.0",
+          "tag": "v0.2.0",
+          "espos": "0.26.0",
+          "channel": "stable",
+          "publishedAt": "2026-11-03T10:00:41Z",
+          "notes": "<!-- Release notes generated using configuration in .github/release.yml at main -->",
+          "notesUrl": "https://github.com/Colug0/espos-m5-tough/releases/tag/v0.2.0",
+          "builds": [
+            {
+              "target": "esp32",
+              "boardId": "m5stack-tough",
+              "otaUrl": "https://github.com/Colug0/espos-m5-tough/releases/download/v0.2.0/m5-tough-esp32-v0.2.0-ota.bin",
+              "otaBytes": 1904640,
+              "otaSha256": "5d4b90b35f0feeffa584c54e7d242d914a833629714d8d3e4d1490aceb5ecaf6",
+              "mergedUrl": "https://github.com/Colug0/espos-m5-tough/releases/download/v0.2.0/m5-tough-esp32-v0.2.0-merged.bin",
+              "mergedBytes": 15728640,
+              "mergedSha256": "8ae0a136370dae63799c8f867ae9b53ab4167171dc61fd6263768cff4c5d63a5"
+            }
+          ]
+        },
+        {
+          "version": "0.1.1",
+          "tag": "v0.1.1",
+          "espos": "0.26.0",
+          "channel": "stable",
+          "publishedAt": "2026-11-03T08:51:42Z",
+          "notes": "<!-- Release notes generated using configuration in .github/release.yml at main -->",
+          "notesUrl": "https://github.com/Colug0/espos-m5-tough/releases/tag/v0.1.1",
+          "builds": [
+            {
+              "target": "esp32",
+              "boardId": "m5stack-tough",
+              "otaUrl": "https://github.com/Colug0/espos-m5-tough/releases/download/v0.1.1/m5-tough-esp32-v0.1.1-ota.bin",
+              "otaBytes": 1904640,
+              "otaSha256": "7f53fc38a9e94f089e8cfdefd4ea703407d44db5827935696b33f72e5347b477",
+              "mergedUrl": "https://github.com/Colug0/espos-m5-tough/releases/download/v0.1.1/m5-tough-esp32-v0.1.1-merged.bin",
+              "mergedBytes": 15728640,
+              "mergedSha256": "ec2a6473dd18ec1774417e64bd1707805bae78935b8c3943638b297833120853"
+            }
+          ]
+        },
+        {
+          "version": "0.1.0",
+          "tag": "v0.1.0",
+          "espos": "0.26.0",
+          "channel": "stable",
+          "publishedAt": "2026-11-02T22:27:10Z",
+          "notes": "<!-- Release notes generated using configuration in .github/release.yml at main -->",
+          "notesUrl": "https://github.com/Colug0/espos-m5-tough/releases/tag/v0.1.0",
+          "builds": [
+            {
+              "target": "esp32",
+              "boardId": "m5stack-tough",
+              "otaUrl": "https://github.com/Colug0/espos-m5-tough/releases/download/v0.1.0/m5-tough-esp32-v0.1.0-ota.bin",
+              "otaBytes": 1904640,
+              "otaSha256": "76a6a46a2b8e5a8b88fa4f16e315eb8b1f239425d4aead2e892641d8dc4aabb1",
+              "mergedUrl": "https://github.com/Colug0/espos-m5-tough/releases/download/v0.1.0/m5-tough-esp32-v0.1.0-merged.bin",
+              "mergedBytes": 15728640,
+              "mergedSha256": "da3bcf4091f8c1a4863f95db3b47c882dddc345d7029de16f7be23d38a673812"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "id": "nmea-gateway",
       "app": "nmea_gateway",
       "name": "NMEA Gateway",
@@ -2768,6 +3144,87 @@
           "boardId": "esp32s3-devkit",
           "support": "builds",
           "downloads": 1
+        }
+      ]
+    },
+    {
+      "id": "m5stack-din-meter",
+      "vendor": "M5Stack",
+      "model": "DIN Meter (K134)",
+      "name": "M5Stack DIN Meter (DIN-rail display with knob)",
+      "target": "esp32s3",
+      "package": "ESP32-S3FN8",
+      "flashBytes": 8388608,
+      "flashSizes": [
+        8388608
+      ],
+      "psramBytes": 0,
+      "usbBridge": {
+        "chip": "ESP32-S3 USB Serial/JTAG",
+        "vid": "303a",
+        "pid": "1001"
+      },
+      "features": [
+        "wifi",
+        "ble",
+        "display",
+        "rtc"
+      ],
+      "display": {
+        "inches": 1.14,
+        "width": 240,
+        "height": 135
+      },
+      "image": "https://raw.githubusercontent.com/signalk-espOS/registry/main/boards/photos/m5stack-din-meter.jpg",
+      "imageCredit": "Thomas Christoffel, CC BY 4.0",
+      "buyUrl": "https://docs.m5stack.com/en/core/DinMeter",
+      "notes": "Fits a DIN rail; 6 to 36 V DC or USB-C. Rotary knob with push button and a buzzer. A Stamp-S3 inside, no PSRAM.",
+      "projects": [
+        {
+          "id": "din-meter",
+          "name": "DIN Meter Signal K display",
+          "boardId": "m5stack-din-meter",
+          "support": "tested",
+          "downloads": 8
+        }
+      ]
+    },
+    {
+      "id": "m5stack-tough",
+      "vendor": "M5Stack",
+      "model": "Tough (K034)",
+      "name": "M5Stack Tough (2-inch touch display, 320x240)",
+      "target": "esp32",
+      "package": "ESP32-D0WDQ6-V3",
+      "flashBytes": 16777216,
+      "psramBytes": 8388608,
+      "features": [
+        "wifi",
+        "ble",
+        "display",
+        "touch",
+        "audio",
+        "rtc"
+      ],
+      "display": {
+        "inches": 2,
+        "width": 320,
+        "height": 240
+      },
+      "usbBridge": {
+        "chip": "CH9102",
+        "vid": "1a86",
+        "pid": "55d4"
+      },
+      "buyUrl": "https://shop.m5stack.com/products/m5stack-tough-esp32-iot-development-board-kit",
+      "notes": "A sealed, weather-resistant M5Stack Core with an ILI9342C display, a CHSC6540 touch panel, an NS4168 speaker amplifier and an RS485 port. Display power, backlight and speaker run through the AXP192 power chip, so firmware that does not set it up leaves the screen dark. Of the 8 MB PSRAM the classic ESP32 maps 4 MB.",
+      "projects": [
+        {
+          "id": "m5-tough",
+          "name": "M5 Tough Display",
+          "boardId": "m5stack-tough",
+          "support": "tested",
+          "downloads": 31
         }
       ]
     },
