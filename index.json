@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "updated": "2026-11-16T18:31:52.617Z",
+  "updated": "2026-11-16T18:38:47.368Z",
   "esposLatest": "0.29.2",
   "projects": [
     {
@@ -3431,7 +3431,8 @@
         "touch"
       ],
       "projects": [
-        "cockpit"
+        "cockpit",
+        "m5-tough"
       ],
       "boards": [
         {
@@ -3439,6 +3440,13 @@
           "name": "Waveshare ESP32-P4 7-inch touch display (7B, 1024x600)",
           "fits": true,
           "downloads": 41,
+          "support": "tested"
+        },
+        {
+          "id": "m5stack-tough",
+          "name": "M5Stack Tough (2-inch touch display, 320x240)",
+          "fits": true,
+          "downloads": 31,
           "support": "tested"
         },
         {
@@ -3619,6 +3627,28 @@
           "fits": true,
           "downloads": 11,
           "support": "builds"
+        }
+      ]
+    },
+    {
+      "id": "panel-display",
+      "title": "Show a few values in the switch panel",
+      "summary": "One or two Signal K values per page on a small display in the switch panel, read only.",
+      "order": 6,
+      "needs": [
+        "display"
+      ],
+      "projects": [
+        "din-meter"
+      ],
+      "description": "A small display that sits with the breakers and switches, on a DIN rail, and shows a few Signal K values such as battery voltage or tank levels. It reads from Signal K only and changes nothing on the boat.",
+      "boards": [
+        {
+          "id": "m5stack-din-meter",
+          "name": "M5Stack DIN Meter (DIN-rail display with knob)",
+          "fits": true,
+          "downloads": 8,
+          "support": "tested"
         }
       ]
     }
