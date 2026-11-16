@@ -1,0 +1,13 @@
+{
+  "id": "panel-display",
+  "title": "Show a few values in the switch panel",
+  "summary": "One or two Signal K values per page on a small display in the switch panel, read only.",
+  "order": 6,
+  "needs": [
+    "display"
+  ],
+  "projects": [
+    "din-meter"
+  ],
+  "description": "A small display that sits with the breakers and switches, on a DIN rail, and shows a few Signal K values such as battery voltage or tank levels. It reads from Signal K only and changes nothing on the boat."
+}
