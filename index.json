@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "updated": "2026-11-16T18:38:47.368Z",
+  "updated": "2026-11-17T22:56:20.391Z",
   "esposLatest": "0.29.2",
   "projects": [
     {
@@ -2040,6 +2040,29 @@
       "webAssetsBranch": "release-assets",
       "releases": [
         {
+          "version": "0.2.0",
+          "tag": "v0.2.0",
+          "espos": "0.29.2",
+          "channel": "stable",
+          "publishedAt": "2026-11-17T21:13:20Z",
+          "notes": "Built on espOS 0.29.2. Update over the air.",
+          "notesUrl": "https://github.com/Colug0/espos-din-meter/releases/tag/v0.2.0",
+          "builds": [
+            {
+              "target": "esp32s3",
+              "boardId": "m5stack-din-meter",
+              "otaUrl": "https://github.com/Colug0/espos-din-meter/releases/download/v0.2.0/din-meter-esp32s3-v0.2.0-ota.bin",
+              "otaWebUrl": "https://raw.githubusercontent.com/Colug0/espos-din-meter/release-assets/v0.2.0/din-meter-esp32s3-v0.2.0-ota.bin",
+              "otaBytes": 1773568,
+              "otaSha256": "40a6bb897dd546a4d93c09f89801db047997971a69d02952b1e8b6b5c3c0c424",
+              "mergedUrl": "https://github.com/Colug0/espos-din-meter/releases/download/v0.2.0/din-meter-esp32s3-v0.2.0-merged.bin",
+              "mergedWebUrl": "https://raw.githubusercontent.com/Colug0/espos-din-meter/release-assets/v0.2.0/din-meter-esp32s3-v0.2.0-merged.bin",
+              "mergedBytes": 8323072,
+              "mergedSha256": "2ac6edd97763e0e13996b2a342a07c32c5a4d9dd3cdcb499222eaac2b958ae10"
+            }
+          ]
+        },
+        {
           "version": "0.1.1",
           "tag": "v0.1.1",
           "espos": "0.27.0",
@@ -3185,7 +3208,7 @@
           "name": "DIN Meter Signal K display",
           "boardId": "m5stack-din-meter",
           "support": "tested",
-          "downloads": 8
+          "downloads": 12
         }
       ]
     },
@@ -3647,7 +3670,7 @@
           "id": "m5stack-din-meter",
           "name": "M5Stack DIN Meter (DIN-rail display with knob)",
           "fits": true,
-          "downloads": 8,
+          "downloads": 12,
           "support": "tested"
         }
       ]
