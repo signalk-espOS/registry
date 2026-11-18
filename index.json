@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "updated": "2026-11-18T04:28:06.320Z",
+  "updated": "2026-11-18T22:01:46.209Z",
   "esposLatest": "0.29.2",
   "projects": [
     {
@@ -2145,6 +2145,29 @@
       "webAssetsBranch": "release-assets",
       "releases": [
         {
+          "version": "0.6.3",
+          "tag": "v0.6.3",
+          "espos": "0.29.2",
+          "channel": "stable",
+          "publishedAt": "2026-11-18T20:39:07Z",
+          "notes": "<!-- Release notes generated using configuration in .github/release.yml at main -->",
+          "notesUrl": "https://github.com/Colug0/espos-m5-tough/releases/tag/v0.6.3",
+          "builds": [
+            {
+              "target": "esp32",
+              "boardId": "m5stack-tough",
+              "otaUrl": "https://github.com/Colug0/espos-m5-tough/releases/download/v0.6.3/m5-tough-esp32-v0.6.3-ota.bin",
+              "otaWebUrl": "https://raw.githubusercontent.com/Colug0/espos-m5-tough/release-assets/v0.6.3/m5-tough-esp32-v0.6.3-ota.bin",
+              "otaBytes": 2297856,
+              "otaSha256": "2eabd481997575ea65f6a9a0e82c050c8fc29b853895d09a3b860374d5bc7ae6",
+              "mergedUrl": "https://github.com/Colug0/espos-m5-tough/releases/download/v0.6.3/m5-tough-esp32-v0.6.3-merged.bin",
+              "mergedWebUrl": "https://raw.githubusercontent.com/Colug0/espos-m5-tough/release-assets/v0.6.3/m5-tough-esp32-v0.6.3-merged.bin",
+              "mergedBytes": 15728640,
+              "mergedSha256": "fb0ce0d7318a6c07620d390948948ede39d60b336be5063fc50d6bcdc1a120fb"
+            }
+          ]
+        },
+        {
           "version": "0.6.2",
           "tag": "v0.6.2",
           "espos": "0.29.2",
@@ -2203,11 +2226,9 @@
               "target": "esp32",
               "boardId": "m5stack-tough",
               "otaUrl": "https://github.com/Colug0/espos-m5-tough/releases/download/v0.6.0/m5-tough-esp32-v0.6.0-ota.bin",
-              "otaWebUrl": "https://raw.githubusercontent.com/Colug0/espos-m5-tough/release-assets/v0.6.0/m5-tough-esp32-v0.6.0-ota.bin",
               "otaBytes": 2297856,
               "otaSha256": "d94f6a0b311617683ac03a849efdc4c9b770a7facf7298a63e03a0426864fecb",
               "mergedUrl": "https://github.com/Colug0/espos-m5-tough/releases/download/v0.6.0/m5-tough-esp32-v0.6.0-merged.bin",
-              "mergedWebUrl": "https://raw.githubusercontent.com/Colug0/espos-m5-tough/release-assets/v0.6.0/m5-tough-esp32-v0.6.0-merged.bin",
               "mergedBytes": 15728640,
               "mergedSha256": "7f0b0f1120fbca7b59df2b3f657b5d2087eff8c9ff3bc953e83c81f395ecf2a9"
             }
@@ -3268,7 +3289,7 @@
           "name": "M5 Tough Display",
           "boardId": "m5stack-tough",
           "support": "tested",
-          "downloads": 33
+          "downloads": 35
         }
       ]
     },
@@ -3490,7 +3511,7 @@
           "id": "m5stack-tough",
           "name": "M5Stack Tough (2-inch touch display, 320x240)",
           "fits": true,
-          "downloads": 33,
+          "downloads": 35,
           "support": "tested"
         },
         {
