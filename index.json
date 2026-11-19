@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "updated": "2026-11-18T22:01:46.209Z",
-  "esposLatest": "0.29.2",
+  "updated": "2026-11-19T03:35:26.587Z",
+  "esposLatest": "0.29.3",
   "projects": [
     {
       "id": "8relay",
@@ -1519,6 +1519,41 @@
       "official": true,
       "releases": [
         {
+          "version": "1.8.0",
+          "tag": "v1.8.0",
+          "espos": "0.29.3",
+          "channel": "stable",
+          "publishedAt": "2026-11-19T03:27:17Z",
+          "notes": "layout: tab strip as overlay, page swipes (#211) (23ea06d)",
+          "notesUrl": "https://github.com/dirkwa/espos-p4-cockpit/releases/tag/v1.8.0",
+          "builds": [
+            {
+              "target": "esp32p4",
+              "boardId": "waveshare-p4-touch-7b",
+              "otaUrl": "https://github.com/dirkwa/espos-p4-cockpit/releases/download/v1.8.0/p4_cockpit-v1.8.0-7b-ota.bin",
+              "otaWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-p4-cockpit/release-assets/v1.8.0/p4_cockpit-v1.8.0-7b-ota.bin",
+              "otaBytes": 2756608,
+              "otaSha256": "a2b7ecb656a5726c41c403105a40320203cdb870ba76b1faa1c6b0f072c2329d",
+              "mergedUrl": "https://github.com/dirkwa/espos-p4-cockpit/releases/download/v1.8.0/p4_cockpit-v1.8.0-7b-merged.bin",
+              "mergedWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-p4-cockpit/release-assets/v1.8.0/p4_cockpit-v1.8.0-7b-merged.bin",
+              "mergedBytes": 15036742,
+              "mergedSha256": "0a7e6b7e80daa6c96714bee433c81a7fbb7f8c268aa5271eb5dc28e82fa82cab"
+            },
+            {
+              "target": "esp32p4",
+              "boardId": "waveshare-p4-touch-x-7",
+              "otaUrl": "https://github.com/dirkwa/espos-p4-cockpit/releases/download/v1.8.0/p4_cockpit-v1.8.0-x7-ota.bin",
+              "otaWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-p4-cockpit/release-assets/v1.8.0/p4_cockpit-v1.8.0-x7-ota.bin",
+              "otaBytes": 2822144,
+              "otaSha256": "5341156882f93b766be26a31c6c7410c922eb1fac773d9da717d72c0b4803f2e",
+              "mergedUrl": "https://github.com/dirkwa/espos-p4-cockpit/releases/download/v1.8.0/p4_cockpit-v1.8.0-x7-merged.bin",
+              "mergedWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-p4-cockpit/release-assets/v1.8.0/p4_cockpit-v1.8.0-x7-merged.bin",
+              "mergedBytes": 15036742,
+              "mergedSha256": "e844f5aaa6cc33819c8562e82b6cb739083abbfec0b37633cdb6f3fef36cca48"
+            }
+          ]
+        },
+        {
           "version": "1.7.0",
           "tag": "v1.7.0",
           "espos": "0.29.0",
@@ -1601,11 +1636,9 @@
               "target": "esp32p4",
               "boardId": "waveshare-p4-touch-7b",
               "otaUrl": "https://github.com/dirkwa/espos-p4-cockpit/releases/download/v1.5.6/p4_cockpit-v1.5.6-7b-ota.bin",
-              "otaWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-p4-cockpit/release-assets/v1.5.6/p4_cockpit-v1.5.6-7b-ota.bin",
               "otaBytes": 2953216,
               "otaSha256": "ad178ec5a643d8769c7f13844cc0b3c22696a53b58a6026f452c370c4ac6cdb4",
               "mergedUrl": "https://github.com/dirkwa/espos-p4-cockpit/releases/download/v1.5.6/p4_cockpit-v1.5.6-7b-merged.bin",
-              "mergedWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-p4-cockpit/release-assets/v1.5.6/p4_cockpit-v1.5.6-7b-merged.bin",
               "mergedBytes": 15036742,
               "mergedSha256": "a79262dc7bf54b5a8bed918abd52df18b49bbb72d5f6585462dad9b29dcf0b41"
             },
@@ -1613,11 +1646,9 @@
               "target": "esp32p4",
               "boardId": "waveshare-p4-touch-x-7",
               "otaUrl": "https://github.com/dirkwa/espos-p4-cockpit/releases/download/v1.5.6/p4_cockpit-v1.5.6-x7-ota.bin",
-              "otaWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-p4-cockpit/release-assets/v1.5.6/p4_cockpit-v1.5.6-x7-ota.bin",
               "otaBytes": 3018752,
               "otaSha256": "17a1bc53e207f88101d670c397b259bdbe5e44b30dc4ecb0404e1538d5b7645c",
               "mergedUrl": "https://github.com/dirkwa/espos-p4-cockpit/releases/download/v1.5.6/p4_cockpit-v1.5.6-x7-merged.bin",
-              "mergedWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-p4-cockpit/release-assets/v1.5.6/p4_cockpit-v1.5.6-x7-merged.bin",
               "mergedBytes": 15036742,
               "mergedSha256": "949cc15d7efd4ed99422b64c37bb6564d39765b95bde1373bcf836e34e9925b4"
             }
@@ -2145,6 +2176,52 @@
       "webAssetsBranch": "release-assets",
       "releases": [
         {
+          "version": "0.7.1",
+          "tag": "v0.7.1",
+          "espos": "0.29.2",
+          "channel": "stable",
+          "publishedAt": "2026-11-19T02:56:49Z",
+          "notes": "<!-- Release notes generated using configuration in .github/release.yml at main -->",
+          "notesUrl": "https://github.com/Colug0/espos-m5-tough/releases/tag/v0.7.1",
+          "builds": [
+            {
+              "target": "esp32",
+              "boardId": "m5stack-tough",
+              "otaUrl": "https://github.com/Colug0/espos-m5-tough/releases/download/v0.7.1/m5-tough-esp32-v0.7.1-ota.bin",
+              "otaWebUrl": "https://raw.githubusercontent.com/Colug0/espos-m5-tough/release-assets/v0.7.1/m5-tough-esp32-v0.7.1-ota.bin",
+              "otaBytes": 2297856,
+              "otaSha256": "b91de61a85f479848dd96195762ed20e52304858fd8f4924083eeaaf4569b17b",
+              "mergedUrl": "https://github.com/Colug0/espos-m5-tough/releases/download/v0.7.1/m5-tough-esp32-v0.7.1-merged.bin",
+              "mergedWebUrl": "https://raw.githubusercontent.com/Colug0/espos-m5-tough/release-assets/v0.7.1/m5-tough-esp32-v0.7.1-merged.bin",
+              "mergedBytes": 15728640,
+              "mergedSha256": "ac45b5ab014b881452f855283c4a0059454b913c1619e29e3440e0004a27feca"
+            }
+          ]
+        },
+        {
+          "version": "0.7.0",
+          "tag": "v0.7.0",
+          "espos": "0.29.2",
+          "channel": "stable",
+          "publishedAt": "2026-11-19T00:27:23Z",
+          "notes": "<!-- Release notes generated using configuration in .github/release.yml at main -->",
+          "notesUrl": "https://github.com/Colug0/espos-m5-tough/releases/tag/v0.7.0",
+          "builds": [
+            {
+              "target": "esp32",
+              "boardId": "m5stack-tough",
+              "otaUrl": "https://github.com/Colug0/espos-m5-tough/releases/download/v0.7.0/m5-tough-esp32-v0.7.0-ota.bin",
+              "otaWebUrl": "https://raw.githubusercontent.com/Colug0/espos-m5-tough/release-assets/v0.7.0/m5-tough-esp32-v0.7.0-ota.bin",
+              "otaBytes": 2297856,
+              "otaSha256": "6acda21a95a148134da5a2f71439fcdd0a9a117f93c3632b51447d1ce3a16a1a",
+              "mergedUrl": "https://github.com/Colug0/espos-m5-tough/releases/download/v0.7.0/m5-tough-esp32-v0.7.0-merged.bin",
+              "mergedWebUrl": "https://raw.githubusercontent.com/Colug0/espos-m5-tough/release-assets/v0.7.0/m5-tough-esp32-v0.7.0-merged.bin",
+              "mergedBytes": 15728640,
+              "mergedSha256": "8fb5c6ec6aa73f2b711c62d4f7bb7ffaa47e8f3b4baf78b89762d0d26675d093"
+            }
+          ]
+        },
+        {
           "version": "0.6.3",
           "tag": "v0.6.3",
           "espos": "0.29.2",
@@ -2180,11 +2257,9 @@
               "target": "esp32",
               "boardId": "m5stack-tough",
               "otaUrl": "https://github.com/Colug0/espos-m5-tough/releases/download/v0.6.2/m5-tough-esp32-v0.6.2-ota.bin",
-              "otaWebUrl": "https://raw.githubusercontent.com/Colug0/espos-m5-tough/release-assets/v0.6.2/m5-tough-esp32-v0.6.2-ota.bin",
               "otaBytes": 2297856,
               "otaSha256": "6bf7eb46fe26b332c9f095a7cdc968913d0995d5d29e08d828ebe25120f26236",
               "mergedUrl": "https://github.com/Colug0/espos-m5-tough/releases/download/v0.6.2/m5-tough-esp32-v0.6.2-merged.bin",
-              "mergedWebUrl": "https://raw.githubusercontent.com/Colug0/espos-m5-tough/release-assets/v0.6.2/m5-tough-esp32-v0.6.2-merged.bin",
               "mergedBytes": 15728640,
               "mergedSha256": "aa45a88fc2263bc716f1df95f5c7e212824c34c885a91a0e0b42581b051d4380"
             }
@@ -2203,11 +2278,9 @@
               "target": "esp32",
               "boardId": "m5stack-tough",
               "otaUrl": "https://github.com/Colug0/espos-m5-tough/releases/download/v0.6.1/m5-tough-esp32-v0.6.1-ota.bin",
-              "otaWebUrl": "https://raw.githubusercontent.com/Colug0/espos-m5-tough/release-assets/v0.6.1/m5-tough-esp32-v0.6.1-ota.bin",
               "otaBytes": 2297856,
               "otaSha256": "3f40e7fa1a001c5b97369f5efb0aa27cff91038e29c158e7c4d2c7d7b8e3e938",
               "mergedUrl": "https://github.com/Colug0/espos-m5-tough/releases/download/v0.6.1/m5-tough-esp32-v0.6.1-merged.bin",
-              "mergedWebUrl": "https://raw.githubusercontent.com/Colug0/espos-m5-tough/release-assets/v0.6.1/m5-tough-esp32-v0.6.1-merged.bin",
               "mergedBytes": 15728640,
               "mergedSha256": "53a56080643de08a0f5b61b5523a9f77fe563e1a48c921dcc05b1bf91355e3e9"
             }
@@ -3289,7 +3362,7 @@
           "name": "M5 Tough Display",
           "boardId": "m5stack-tough",
           "support": "tested",
-          "downloads": 35
+          "downloads": 39
         }
       ]
     },
@@ -3511,7 +3584,7 @@
           "id": "m5stack-tough",
           "name": "M5Stack Tough (2-inch touch display, 320x240)",
           "fits": true,
-          "downloads": 35,
+          "downloads": 39,
           "support": "tested"
         },
         {
