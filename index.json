@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "updated": "2026-11-22T06:54:26.329Z",
+  "updated": "2026-11-22T18:56:39.971Z",
   "esposLatest": "0.32.0",
   "projects": [
     {
@@ -2741,6 +2741,151 @@
       "official": true,
       "releases": [
         {
+          "version": "0.2.1",
+          "tag": "v0.2.1",
+          "espos": "0.32.0",
+          "channel": "stable",
+          "publishedAt": "2026-11-22T18:52:28Z",
+          "notes": "bump espOS to v0.31.0 (#29) (c9308cd)",
+          "notesUrl": "https://github.com/dirkwa/espos-nmea-gateway/releases/tag/v0.2.1",
+          "builds": [
+            {
+              "target": "esp32",
+              "boardId": "esp32-devkit",
+              "otaUrl": "https://github.com/dirkwa/espos-nmea-gateway/releases/download/v0.2.1/nmea-gateway-esp32-v0.2.1-ota.bin",
+              "otaWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-nmea-gateway/release-assets/v0.2.1/nmea-gateway-esp32-v0.2.1-ota.bin",
+              "otaBytes": 1314816,
+              "otaSha256": "1d6bbf0ab3e46d732a42e9d858b5aaa7f6fed94351dde46c4051f969b03756cf",
+              "mergedUrl": "https://github.com/dirkwa/espos-nmea-gateway/releases/download/v0.2.1/nmea-gateway-esp32-v0.2.1-merged.bin",
+              "mergedWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-nmea-gateway/release-assets/v0.2.1/nmea-gateway-esp32-v0.2.1-merged.bin",
+              "mergedBytes": 4128768,
+              "mergedSha256": "9ae892bbbf7e5a94676113b15c48f6a7afc5fc8e3149813f9b0d448747b99db2",
+              "mergedByFlash": [
+                {
+                  "flashBytes": 4194304,
+                  "url": "https://github.com/dirkwa/espos-nmea-gateway/releases/download/v0.2.1/nmea-gateway-esp32-v0.2.1-merged-4mb.bin",
+                  "webUrl": "https://raw.githubusercontent.com/dirkwa/espos-nmea-gateway/release-assets/v0.2.1/nmea-gateway-esp32-v0.2.1-merged-4mb.bin",
+                  "bytes": 4128768,
+                  "sha256": "9ae892bbbf7e5a94676113b15c48f6a7afc5fc8e3149813f9b0d448747b99db2"
+                },
+                {
+                  "flashBytes": 8388608,
+                  "url": "https://github.com/dirkwa/espos-nmea-gateway/releases/download/v0.2.1/nmea-gateway-esp32-v0.2.1-merged-8mb.bin",
+                  "webUrl": "https://raw.githubusercontent.com/dirkwa/espos-nmea-gateway/release-assets/v0.2.1/nmea-gateway-esp32-v0.2.1-merged-8mb.bin",
+                  "bytes": 8323072,
+                  "sha256": "6082ff8c155cd6b4e9606aa8bd6e575a3ed5e23f3b9365724a67df336a6a7486"
+                },
+                {
+                  "flashBytes": 16777216,
+                  "url": "https://github.com/dirkwa/espos-nmea-gateway/releases/download/v0.2.1/nmea-gateway-esp32-v0.2.1-merged-16mb.bin",
+                  "webUrl": "https://raw.githubusercontent.com/dirkwa/espos-nmea-gateway/release-assets/v0.2.1/nmea-gateway-esp32-v0.2.1-merged-16mb.bin",
+                  "bytes": 15728640,
+                  "sha256": "3a2f06bacb21e9641c50e73fda7fa71fb2f6d87841f3183703110a54a27b3b09"
+                }
+              ]
+            },
+            {
+              "target": "esp32c3",
+              "boardId": "esp32c3-devkit",
+              "otaUrl": "https://github.com/dirkwa/espos-nmea-gateway/releases/download/v0.2.1/nmea-gateway-esp32c3-v0.2.1-ota.bin",
+              "otaWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-nmea-gateway/release-assets/v0.2.1/nmea-gateway-esp32c3-v0.2.1-ota.bin",
+              "otaBytes": 1380352,
+              "otaSha256": "b8f0fd19c7447f3f0904f12540a5d2ce98789527f2b0045d3a2789ea8269afc4",
+              "mergedUrl": "https://github.com/dirkwa/espos-nmea-gateway/releases/download/v0.2.1/nmea-gateway-esp32c3-v0.2.1-merged.bin",
+              "mergedWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-nmea-gateway/release-assets/v0.2.1/nmea-gateway-esp32c3-v0.2.1-merged.bin",
+              "mergedBytes": 4128768,
+              "mergedSha256": "2190ab1b3a4172af316a0af40c38f04c37317bd6bd666a5daa5f86165ba39b50"
+            },
+            {
+              "target": "esp32c5",
+              "boardId": "waveshare-esp32-c5-wifi6-kit",
+              "otaUrl": "https://github.com/dirkwa/espos-nmea-gateway/releases/download/v0.2.1/nmea-gateway-esp32c5-v0.2.1-ota.bin",
+              "otaWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-nmea-gateway/release-assets/v0.2.1/nmea-gateway-esp32c5-v0.2.1-ota.bin",
+              "otaBytes": 1445888,
+              "otaSha256": "37e7c28c6c9473ca130e2f39d67071de11433e709a138fc5c5c4ee1d1add1baa",
+              "mergedUrl": "https://github.com/dirkwa/espos-nmea-gateway/releases/download/v0.2.1/nmea-gateway-esp32c5-v0.2.1-merged.bin",
+              "mergedWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-nmea-gateway/release-assets/v0.2.1/nmea-gateway-esp32c5-v0.2.1-merged.bin",
+              "mergedBytes": 15728640,
+              "mergedSha256": "428602f906fec2e6845200d9fd40effd4f14427222198e351b8b91be6a70454e"
+            },
+            {
+              "target": "esp32c6",
+              "boardId": "esp32c6-devkit",
+              "otaUrl": "https://github.com/dirkwa/espos-nmea-gateway/releases/download/v0.2.1/nmea-gateway-esp32c6-v0.2.1-ota.bin",
+              "otaWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-nmea-gateway/release-assets/v0.2.1/nmea-gateway-esp32c6-v0.2.1-ota.bin",
+              "otaBytes": 1445888,
+              "otaSha256": "aeffe99fed9580cf0e704c56b53f80641564a0a5fa648a6577801b86326a60d7",
+              "mergedUrl": "https://github.com/dirkwa/espos-nmea-gateway/releases/download/v0.2.1/nmea-gateway-esp32c6-v0.2.1-merged.bin",
+              "mergedWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-nmea-gateway/release-assets/v0.2.1/nmea-gateway-esp32c6-v0.2.1-merged.bin",
+              "mergedBytes": 4128768,
+              "mergedSha256": "b5e79735db74cbe2487473fb942800a1e2dcb6a8bbf4f8a544871a512bb7d750",
+              "mergedByFlash": [
+                {
+                  "flashBytes": 4194304,
+                  "url": "https://github.com/dirkwa/espos-nmea-gateway/releases/download/v0.2.1/nmea-gateway-esp32c6-v0.2.1-merged-4mb.bin",
+                  "webUrl": "https://raw.githubusercontent.com/dirkwa/espos-nmea-gateway/release-assets/v0.2.1/nmea-gateway-esp32c6-v0.2.1-merged-4mb.bin",
+                  "bytes": 4128768,
+                  "sha256": "b5e79735db74cbe2487473fb942800a1e2dcb6a8bbf4f8a544871a512bb7d750"
+                },
+                {
+                  "flashBytes": 8388608,
+                  "url": "https://github.com/dirkwa/espos-nmea-gateway/releases/download/v0.2.1/nmea-gateway-esp32c6-v0.2.1-merged-8mb.bin",
+                  "webUrl": "https://raw.githubusercontent.com/dirkwa/espos-nmea-gateway/release-assets/v0.2.1/nmea-gateway-esp32c6-v0.2.1-merged-8mb.bin",
+                  "bytes": 8323072,
+                  "sha256": "2575d23313bb108c0465778bf8ab0ed45deb32ff75fb5966ae6c83399b5ab21b"
+                }
+              ]
+            },
+            {
+              "target": "esp32p4",
+              "boardId": "waveshare-p4-touch-7b",
+              "otaUrl": "https://github.com/dirkwa/espos-nmea-gateway/releases/download/v0.2.1/nmea-gateway-esp32p4-v0.2.1-ota.bin",
+              "otaWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-nmea-gateway/release-assets/v0.2.1/nmea-gateway-esp32p4-v0.2.1-ota.bin",
+              "otaBytes": 1314816,
+              "otaSha256": "dffc9efd4990c8a9ab042d477a9972b5833af2fe92df242fe1459e2a94186096",
+              "mergedUrl": "https://github.com/dirkwa/espos-nmea-gateway/releases/download/v0.2.1/nmea-gateway-esp32p4-v0.2.1-merged.bin",
+              "mergedWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-nmea-gateway/release-assets/v0.2.1/nmea-gateway-esp32p4-v0.2.1-merged.bin",
+              "mergedBytes": 15728640,
+              "mergedSha256": "cdb0458d841e82747924335cc6f6743548764ad50a1f473fa047977fc5271b7b"
+            },
+            {
+              "target": "esp32s3",
+              "boardId": "esp32s3-devkit",
+              "otaUrl": "https://github.com/dirkwa/espos-nmea-gateway/releases/download/v0.2.1/nmea-gateway-esp32s3-v0.2.1-ota.bin",
+              "otaWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-nmea-gateway/release-assets/v0.2.1/nmea-gateway-esp32s3-v0.2.1-ota.bin",
+              "otaBytes": 1249280,
+              "otaSha256": "9b96ff02ed662920569bb93b9b1a7a0b2354dfcf4a8d41bc00b18fcceada155f",
+              "mergedUrl": "https://github.com/dirkwa/espos-nmea-gateway/releases/download/v0.2.1/nmea-gateway-esp32s3-v0.2.1-merged.bin",
+              "mergedWebUrl": "https://raw.githubusercontent.com/dirkwa/espos-nmea-gateway/release-assets/v0.2.1/nmea-gateway-esp32s3-v0.2.1-merged.bin",
+              "mergedBytes": 4128768,
+              "mergedSha256": "0414a68808f65173694f48664e9e92f85c5974030b848e68dedc17769cfff45e",
+              "mergedByFlash": [
+                {
+                  "flashBytes": 4194304,
+                  "url": "https://github.com/dirkwa/espos-nmea-gateway/releases/download/v0.2.1/nmea-gateway-esp32s3-v0.2.1-merged-4mb.bin",
+                  "webUrl": "https://raw.githubusercontent.com/dirkwa/espos-nmea-gateway/release-assets/v0.2.1/nmea-gateway-esp32s3-v0.2.1-merged-4mb.bin",
+                  "bytes": 4128768,
+                  "sha256": "0414a68808f65173694f48664e9e92f85c5974030b848e68dedc17769cfff45e"
+                },
+                {
+                  "flashBytes": 8388608,
+                  "url": "https://github.com/dirkwa/espos-nmea-gateway/releases/download/v0.2.1/nmea-gateway-esp32s3-v0.2.1-merged-8mb.bin",
+                  "webUrl": "https://raw.githubusercontent.com/dirkwa/espos-nmea-gateway/release-assets/v0.2.1/nmea-gateway-esp32s3-v0.2.1-merged-8mb.bin",
+                  "bytes": 8323072,
+                  "sha256": "abce0566a4c2d2ed5c1e64703a98668f712afaa7e92271472878498c93863d60"
+                },
+                {
+                  "flashBytes": 16777216,
+                  "url": "https://github.com/dirkwa/espos-nmea-gateway/releases/download/v0.2.1/nmea-gateway-esp32s3-v0.2.1-merged-16mb.bin",
+                  "webUrl": "https://raw.githubusercontent.com/dirkwa/espos-nmea-gateway/release-assets/v0.2.1/nmea-gateway-esp32s3-v0.2.1-merged-16mb.bin",
+                  "bytes": 15728640,
+                  "sha256": "68d84c1d3e291291a4199ddb808e5741ec890659170d50d0e188c64951f68458"
+                }
+              ]
+            }
+          ]
+        },
+        {
           "version": "0.2.0",
           "tag": "v0.2.0",
           "espos": "0.19.0",
@@ -3316,7 +3461,7 @@
           "id": "ble-gateway",
           "name": "BLE Gateway",
           "boardId": "esp32-devkit",
-          "downloads": 40
+          "downloads": 42
         },
         {
           "id": "nmea-gateway",
@@ -3372,7 +3517,7 @@
           "id": "ble-gateway",
           "name": "BLE Gateway",
           "boardId": "esp32c6-devkit",
-          "downloads": 44
+          "downloads": 46
         },
         {
           "id": "zigbee-coordinator",
@@ -3413,7 +3558,7 @@
           "id": "ble-gateway",
           "name": "BLE Gateway",
           "boardId": "esp32s3-devkit",
-          "downloads": 41
+          "downloads": 43
         },
         {
           "id": "nmea-gateway",
@@ -3531,18 +3676,18 @@
       "notes": "WiFi on 2.4 and 5 GHz. Sold as N16R8 (8 MB PSRAM) and N16R4 (4 MB); the -M versions come with the pin headers soldered on.",
       "projects": [
         {
+          "id": "ble-gateway",
+          "name": "BLE Gateway",
+          "boardId": "waveshare-esp32-c5-wifi6-kit",
+          "support": "tested",
+          "downloads": 14
+        },
+        {
           "id": "zigbee-coordinator",
           "name": "Zigbee Coordinator",
           "boardId": "waveshare-esp32-c5-wifi6-kit",
           "support": "builds",
           "downloads": 13
-        },
-        {
-          "id": "ble-gateway",
-          "name": "BLE Gateway",
-          "boardId": "waveshare-esp32-c5-wifi6-kit",
-          "support": "tested",
-          "downloads": 12
         },
         {
           "id": "nmea-gateway",
@@ -3593,7 +3738,7 @@
           "name": "BLE Gateway",
           "boardId": "waveshare-p4-poe",
           "support": "tested",
-          "downloads": 15
+          "downloads": 16
         },
         {
           "id": "nmea-gateway",
@@ -3640,7 +3785,7 @@
           "name": "BLE Gateway",
           "boardId": "waveshare-p4-poe",
           "support": "tested",
-          "downloads": 15
+          "downloads": 16
         }
       ]
     },
@@ -3663,7 +3808,7 @@
           "name": "BLE Gateway",
           "boardId": "waveshare-p4-poe",
           "support": "tested",
-          "downloads": 15
+          "downloads": 16
         }
       ]
     },
@@ -3750,7 +3895,7 @@
           "id": "waveshare-p4-poe-eth",
           "name": "Waveshare ESP32-P4 Ethernet board with PoE",
           "fits": true,
-          "downloads": 15,
+          "downloads": 16,
           "support": "tested",
           "reason": "Wired Ethernet: the radio does nothing but Bluetooth, and one cable powers it."
         },
@@ -3758,21 +3903,21 @@
           "id": "waveshare-p4-touch-7b",
           "name": "Waveshare ESP32-P4 7-inch touch display (7B, 1024x600)",
           "fits": true,
-          "downloads": 15,
+          "downloads": 16,
           "support": "tested"
         },
         {
           "id": "waveshare-p4-touch-x-7",
           "name": "Waveshare ESP32-P4 7-inch touch display (X series, 720x1280)",
           "fits": true,
-          "downloads": 15,
+          "downloads": 16,
           "support": "tested"
         },
         {
           "id": "waveshare-esp32-c5-wifi6-kit",
           "name": "Waveshare ESP32-C5 dual-band WiFi 6 development board",
           "fits": true,
-          "downloads": 12,
+          "downloads": 14,
           "support": "tested",
           "reason": "Dual-band WiFi: joins a 5 GHz network, which the other boards here cannot."
         },
@@ -3780,20 +3925,20 @@
           "id": "esp32c6-devkit",
           "name": "ESP32-C6 development board",
           "fits": true,
-          "downloads": 44,
+          "downloads": 46,
           "reason": "The cheapest way to start."
         },
         {
           "id": "esp32s3-devkit",
           "name": "ESP32-S3 development board",
           "fits": true,
-          "downloads": 41
+          "downloads": 43
         },
         {
           "id": "esp32-devkit",
           "name": "ESP32 development board",
           "fits": true,
-          "downloads": 40
+          "downloads": 42
         }
       ]
     },
