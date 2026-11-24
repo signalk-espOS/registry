@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "updated": "2026-11-22T18:56:39.971Z",
+  "updated": "2026-11-24T00:57:36.357Z",
   "esposLatest": "0.32.0",
   "projects": [
     {
@@ -3468,7 +3468,7 @@
           "name": "NMEA Gateway",
           "boardId": "esp32-devkit",
           "support": "builds",
-          "downloads": 4
+          "downloads": 12
         }
       ]
     },
@@ -3491,7 +3491,7 @@
           "name": "NMEA Gateway",
           "boardId": "esp32c3-devkit",
           "support": "builds",
-          "downloads": 0
+          "downloads": 8
         }
       ]
     },
@@ -3531,7 +3531,7 @@
           "name": "NMEA Gateway",
           "boardId": "esp32c6-devkit",
           "support": "builds",
-          "downloads": 0
+          "downloads": 6
         }
       ]
     },
@@ -3558,14 +3558,14 @@
           "id": "ble-gateway",
           "name": "BLE Gateway",
           "boardId": "esp32s3-devkit",
-          "downloads": 43
+          "downloads": 44
         },
         {
           "id": "nmea-gateway",
           "name": "NMEA Gateway",
           "boardId": "esp32s3-devkit",
           "support": "builds",
-          "downloads": 1
+          "downloads": 9
         }
       ]
     },
@@ -3694,7 +3694,7 @@
           "name": "NMEA Gateway",
           "boardId": "waveshare-esp32-c5-wifi6-kit",
           "support": "builds",
-          "downloads": 1
+          "downloads": 9
         }
       ]
     },
@@ -3745,7 +3745,7 @@
           "name": "NMEA Gateway",
           "boardId": "waveshare-p4-touch-7b",
           "support": "builds",
-          "downloads": 0
+          "downloads": 6
         }
       ]
     },
@@ -3932,7 +3932,7 @@
           "id": "esp32s3-devkit",
           "name": "ESP32-S3 development board",
           "fits": true,
-          "downloads": 43
+          "downloads": 44
         },
         {
           "id": "esp32-devkit",
@@ -3980,7 +3980,7 @@
           "id": "waveshare-p4-touch-7b",
           "name": "Waveshare ESP32-P4 7-inch touch display (7B, 1024x600)",
           "fits": true,
-          "downloads": 43,
+          "downloads": 49,
           "support": "tested"
         },
         {
@@ -3993,35 +3993,35 @@
           "id": "esp32-devkit",
           "name": "ESP32 development board",
           "fits": false,
-          "downloads": 4,
+          "downloads": 12,
           "support": "builds"
         },
         {
           "id": "esp32s3-devkit",
           "name": "ESP32-S3 development board",
           "fits": false,
-          "downloads": 1,
+          "downloads": 9,
           "support": "builds"
         },
         {
           "id": "waveshare-esp32-c5-wifi6-kit",
           "name": "Waveshare ESP32-C5 dual-band WiFi 6 development board",
           "fits": false,
-          "downloads": 1,
+          "downloads": 9,
           "support": "builds"
         },
         {
           "id": "esp32c3-devkit",
           "name": "ESP32-C3 development board",
           "fits": false,
-          "downloads": 0,
+          "downloads": 8,
           "support": "builds"
         },
         {
           "id": "esp32c6-devkit",
           "name": "ESP32-C6 development board",
           "fits": false,
-          "downloads": 0,
+          "downloads": 6,
           "support": "builds"
         }
       ]
