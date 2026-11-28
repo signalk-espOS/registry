@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "updated": "2026-11-27T11:19:10.686Z",
-  "esposLatest": "0.32.3",
+  "updated": "2026-11-28T03:57:24.776Z",
+  "esposLatest": "0.33.0",
   "projects": [
     {
       "id": "8relay",
@@ -3824,7 +3824,7 @@
           "name": "P4 Cockpit",
           "boardId": "waveshare-p4-touch-7b",
           "support": "tested",
-          "downloads": 50
+          "downloads": 53
         },
         {
           "id": "ble-gateway",
@@ -3871,7 +3871,7 @@
           "id": "cockpit",
           "name": "P4 Cockpit",
           "boardId": "waveshare-p4-touch-x-7",
-          "downloads": 51
+          "downloads": 53
         },
         {
           "id": "ble-gateway",
@@ -3954,7 +3954,7 @@
           "id": "waveshare-p4-touch-7b",
           "name": "Waveshare ESP32-P4 7-inch touch display (7B, 1024x600)",
           "fits": true,
-          "downloads": 50,
+          "downloads": 53,
           "support": "tested"
         },
         {
@@ -3968,7 +3968,7 @@
           "id": "waveshare-p4-touch-x-7",
           "name": "Waveshare ESP32-P4 7-inch touch display (X series, 720x1280)",
           "fits": true,
-          "downloads": 51
+          "downloads": 53
         }
       ]
     },
@@ -4073,14 +4073,14 @@
           "id": "waveshare-p4-touch-7b",
           "name": "Waveshare ESP32-P4 7-inch touch display (7B, 1024x600)",
           "fits": true,
-          "downloads": 56,
+          "downloads": 59,
           "support": "tested"
         },
         {
           "id": "waveshare-p4-touch-x-7",
           "name": "Waveshare ESP32-P4 7-inch touch display (X series, 720x1280)",
           "fits": false,
-          "downloads": 51
+          "downloads": 53
         },
         {
           "id": "esp32-devkit",
